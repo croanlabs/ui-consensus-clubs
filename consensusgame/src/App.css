@@ -1,0 +1,13 @@
+.container > .margin-minus {
+  margin-right: -150px;
+  margin-left: -150px;
+}
+
+.container > .row > .polls-right {
+  background-color: #2251dd;
+  color: white;
+}
+
+.navbar > .brand-image {
+  height: 10px;
+}
