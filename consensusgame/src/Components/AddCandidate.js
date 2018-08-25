@@ -22,8 +22,8 @@ class AddCandidate extends Component {
 
   handleSubmit(e) {
     let id = 4;
-    if (this.refs.name.value === "") {
-      alert("Please enter a name");
+    if (this.refs.twitter.value === "") {
+      alert("Please enter twitter id");
     } else {
       this.setState(
         {
@@ -60,28 +60,32 @@ class AddCandidate extends Component {
 
     return (
       <div>
-        <h4>Add New Candidate</h4>
+        <a href="#">
+          <h4>Add New Candidate</h4>
+        </a>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <div>
+          {/* <div>
             <label>Name</label>
             <br />
             <input type="text" ref="name" />
           </div>
+          <br /> */}
+          {/* <label>Twitter</label>
           <br />
-          <div>
-            <label>Twitter</label>
-            <br />
-            <select ref="twitter">{twitterOptions}</select>
-          </div>
-          <br />
-          <div>
+          <select ref="twitter">{twitterOptions}</select> */}
+          {/* <div>
             <label>Description</label>
             <br />
             <input type="text" ref="description" />
           </div>
-          <br />
-          {/* How much you want to state */}
-          <input type="submit" value="Submit" />
+          <br /> */}
+          {/* <p>How much do you want to stake?</p>
+          <input type="text" ref="meritsToStake" /> */}
+          {/* <input
+            type="submit"
+            value="Submit"
+            style={{ margin: "0 0 0 10px" }}
+          /> */}
         </form>
       </div>
     );

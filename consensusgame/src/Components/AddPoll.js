@@ -57,9 +57,9 @@ class AddPoll extends Component {
     return (
       <div>
         <h4>
-          Want to set a poll? Click <a href="#">here</a>
+          <a href="#">Want to set a poll? Click here</a>
         </h4>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        {/* <form onSubmit={this.handleSubmit.bind(this)}>
           <div>
             <label>Question</label>
             <br />
@@ -79,7 +79,7 @@ class AddPoll extends Component {
           </div>
           <br />
           <input type="submit" value="Submit" />
-        </form>
+        </form> */}
       </div>
     );
   }

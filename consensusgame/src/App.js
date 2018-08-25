@@ -1,83 +1,42 @@
 import React, { Component } from "react";
 import "./App.css";
+import { Route, Switch } from "react-router-dom";
 import Polls from "./Components/Polls";
-import AddPoll from "./Components/AddPoll";
 import NavBar from "./Components/NavBar";
+import Notifications from "./Components/Notifications";
+import Rewards from "./Components/Rewards";
+import Score from "./Components/Score";
+import Profile from "./Components/Profile";
+import Home from "./Components/Home";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      polls: []
-      // isLaded: false
-    };
-  }
-
-  getPolls() {
-    fetch("http://www.mocky.io/v2/5b7a961334000050008ed53e")
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          // isLoaded: true,
-          polls: json
-        });
-      })
-      .catch(error => console.log("fetching failed", error));
-  }
-
-  // componentDidMount() {
-  //   this.getPolls();
-  // }
-
-  componentWillMount() {
-    this.getPolls();
-  }
-
-  handleAddPoll(poll) {
-    let polls = this.state.polls;
-    polls.push(poll);
-    this.setState({ polls: polls });
-  }
-
-  // handleAddCandidate(candidate) {
-  //   let candidates = this.state.candidates;
-  //   candidates.push(candidate);
-  //   this.setState({ candidates: candidates });
-  //   //console.log(investor)
-  // }
-
-  // handleConfCandidate(id) {
-  //   console.log("You have supported!");
-  //   //let investors = this.state.investors
-  //   //let index = investors.findIndex(x => x.id === id)
-  //   // add uprate or downrate plus 1k
-  //   //this.setState({investors.uprate: investors.uprate + 1})
-  // }
-
-  // handleNoConfCandidate(id) {
-  //   console.log("You have UNsupported!");
-  // }
-
   render() {
-    const { isLoaded, polls } = this.state;
-
-    // if (!isLoaded) {
-    //   return <p>Loading...</p>;
-    // } else {
     return (
-      <React.Fragment>
-        <div className="navbar">
+      <div>
+        <div className="navbar" style={{ margin: "30px" }}>
           <NavBar />
         </div>
 
         <main className="container polls">
-          <Polls key={polls.id} polls={polls} />
-          <AddPoll addPoll={this.handleAddPoll.bind(this)} />
+          <Switch>
+            <Route path="/polls/:id" render={props => <Polls {...props} />} />
+            <Route path="/polls" render={props => <Polls {...props} />} />
+            <Route path="/notifications" component={Notifications} />
+            <Route path="/rewards" component={Rewards} />
+            <Route path="/score" component={Score} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/" component={Home} />
+            <Route component={() => <p>This page does not exist!</p>} />
+          </Switch>
         </main>
-      </React.Fragment>
+      </div>
     );
   }
 }
 // }
 
 export default App;
+
+{
+  /* <Polls key={polls.id} polls={polls} /> */
+}

@@ -18,24 +18,33 @@ class Candidates extends Component {
   }
 
   render() {
+    const { length: count } = this.props.poll.candidates;
+
+    if (count === 0) return <p>There are no candidates yet.</p>;
+
     return (
       <div>
         <AddCandidate addCandidate={this.handleAddCandidate.bind(this)} />
         <br />
+        <h3 style={{ color: "black" }}>
+          <strong>{count}</strong> candidates
+        </h3>
         <br />
-        {this.props.poll.candidates.map(candidate => (
-          <div>
-            {candidate.id} - {candidate.name}
-            <br />
-            {candidate.twitter}
-            <br />
-            <br />↑ {candidate.confidence} ↓{candidate.noconfidence}
-            <br />
-            <button>More info</button>
-            <br />
-            <br />
-          </div>
-        ))}
+        <ul className="list-unstyled">
+          {this.props.poll.candidates.map(candidate => (
+            <li key={candidate.id}>
+              {candidate.id} - {candidate.name}
+              <br />
+              {candidate.twitter}
+              <br />
+              <br />↑ {candidate.confidence} ↓{candidate.noconfidence}
+              <br />
+              <button>More info</button>
+              <br />
+              <br />
+            </li>
+          ))}
+        </ul>
         <br />
         <br />
         <br />

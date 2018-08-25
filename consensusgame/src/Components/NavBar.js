@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import logo from "./images/logo.JPG";
+import { Link } from "react-router-dom";
 
 // Stateless functional component
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
-      <a className="navbar-brand" href="#">
+      <Link className="navbar-brand" to="/">
         <img src={logo} alt="consensus" style={{ height: "40px" }} />
-      </a>
+      </Link>
       Consensus Clubs
       <button
         className="navbar-toggler"
@@ -23,24 +24,29 @@ const NavBar = () => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <a className="nav-link" href="#" style={{ color: "blue" }}>
+            <Link className="nav-link" to="/polls" style={{ color: "blue" }}>
               Polls <span className="sr-only">(current)</span>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <Link className="nav-link" to="/notifications">
               Notifications
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <Link className="nav-link" to="/rewards">
               Rewards
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <Link className="nav-link" to="/score">
+              Score
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/profile">
               Profile
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
