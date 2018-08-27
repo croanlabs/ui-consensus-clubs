@@ -1,21 +1,50 @@
 import React, { Component } from "react";
 import logo from "./images/logo.JPG";
+import trends from "./Icons/Profile/Trends.png";
 import { Link } from "react-router-dom";
+import { twitterLogInUrl } from "../config.json";
+import twitterLogIn from "./images/twitterLogIn.png";
 
 // Stateless functional component
 const NavBar = () => {
+  const Pages = [
+    {
+      pageName: "Polls",
+      toLink: "/polls"
+    },
+    {
+      pageName: "Notifications",
+      toLink: "/notifications"
+    },
+    {
+      pageName: "Rewards",
+      toLink: "/rewards"
+    },
+    {
+      pageName: "Score",
+      toLink: "/score"
+    },
+    {
+      pageName: "Profile",
+      toLink: "/profile"
+    }
+  ];
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light">
+    <nav
+      className="navbar navbar-expand-lg navbar-light"
+      style={{ width: "100%" }}
+    >
       <Link className="navbar-brand" to="/">
         <img src={logo} alt="consensus" style={{ height: "40px" }} />
       </Link>
-      Consensus Clubs
+      <p style={{ margin: "0 20px 0 0" }}>Consensus Clubs</p>
       <button
         className="navbar-toggler"
         type="button"
         data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
@@ -23,7 +52,14 @@ const NavBar = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
+          {Pages.map(page => (
+            <li key={page.pageName} className="nav-bar">
+              <Link className="nav-link" to={page.toLink}>
+                {page.pageName}
+              </Link>
+            </li>
+          ))}
+          {/* <li className="nav-item active">
             <Link className="nav-link" to="/polls" style={{ color: "blue" }}>
               Polls <span className="sr-only">(current)</span>
             </Link>
@@ -47,9 +83,34 @@ const NavBar = () => {
             <Link className="nav-link" to="/profile">
               Profile
             </Link>
+          </li> */}
+        </ul>
+        <ul className="nav navbar-nav navbar-right float-right">
+          <li style={{ margin: "0 10px 0 0 " }}>
+            <a href={twitterLogInUrl}>
+              <span className="glyphicon glyphicon-user float-right" /> Sign Up
+            </a>
+          </li>
+          <li style={{ margin: "0 10px 0 0 " }}>
+            <a href={twitterLogInUrl}>
+              <span className="glyphicon glyphicon-log-in" /> Login
+            </a>
+          </li>
+          <li>
+            <Link className="navbar-brand" to="/trends">
+              <img
+                src={trends}
+                alt="consensus"
+                style={{ height: "20px", margin: "0  5px 20px 0" }}
+              />
+              <span style={{ color: "white" }}>Trends</span>
+            </Link>
           </li>
         </ul>
       </div>
+      {/* <a href={twitterLogInUrl} className="navbar-form pull-right">
+        <img src={twitterLogIn} alt="twitterLogIn" style={{ height: "30px" }} />
+      </a> */}
     </nav>
   );
 };

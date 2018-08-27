@@ -1,13 +1,18 @@
-.container > .margin-minus {
-  margin-right: -150px;
-  margin-left: -150px;
+.row > .polls-left {
+  padding: 60px;
 }
 
-.container > .row > .polls-right {
+.row > .polls-right {
   background-color: #2251dd;
   color: white;
+  padding: 60px;
 }
 
-.navbar > .brand-image {
-  height: 10px;
+.navbar {
+  background: linear-gradient(90deg, white 50%, #2251dd 50%);
 }
+
+/* .Profile > .row > .col-sm-4 {
+  text-align: center;
+  font-size: 50px;
+} */

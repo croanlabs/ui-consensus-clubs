@@ -13,11 +13,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="navbar" style={{ margin: "30px" }}>
+        <div className="navbar">
           <NavBar />
         </div>
 
-        <main className="container polls">
+        <main className=".mx-auto px-{2} ">
           <Switch>
             <Route path="/polls/:id" render={props => <Polls {...props} />} />
             <Route path="/polls" render={props => <Polls {...props} />} />

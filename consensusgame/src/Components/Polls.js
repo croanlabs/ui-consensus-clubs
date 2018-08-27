@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import AddPoll from "./AddPoll";
 import Pagination from "./Pagination";
 import { Paginate } from "../utils/Paginate";
+import { apiPolls } from "../config.json";
 // import { Link } from "react-router-dom";
 
 class Polls extends Component {
@@ -17,7 +18,7 @@ class Polls extends Component {
   }
 
   getPolls() {
-    fetch("http://www.mocky.io/v2/5b7a961334000050008ed53e")
+    fetch(apiPolls)
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -77,7 +78,7 @@ class Polls extends Component {
     const polls = Paginate(allPolls, currentPage);
     return (
       <div className="row margin-minus">
-        <div className="col polls-left" style={{ padding: "60px" }}>
+        <div className="col polls-left">
           <h4>{currentPage} / 3</h4>
           <br />
 

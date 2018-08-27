@@ -1,0 +1,5 @@
+{
+  "apiPolls": "http://www.mocky.io/v2/5b7a961334000050008ed53e",
+  "twitterLogInUrl": "http://192.168.99.100:31000/login/twitter",
+  "apiUsers": "http://www.mocky.io/v2/5b8193523400006700ecb384"
+}
