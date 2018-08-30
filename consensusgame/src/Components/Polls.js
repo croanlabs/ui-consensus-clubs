@@ -5,6 +5,7 @@ import AddPoll from "./AddPoll";
 import Pagination from "./Pagination";
 import { Paginate } from "../utils/Paginate";
 import { apiPolls } from "../config.json";
+import axios from "axios";
 // import { Link } from "react-router-dom";
 
 class Polls extends Component {
@@ -13,28 +14,12 @@ class Polls extends Component {
     this.state = {
       polls: [],
       currentPage: 1
-      // isLaded: false
     };
   }
 
-  getPolls() {
-    fetch(apiPolls)
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          // isLoaded: true,
-          polls: json
-        });
-      })
-      .catch(error => console.log("fetching failed", error));
-  }
-
-  // componentDidMount() {
-  //   this.getPolls();
-  // }
-
-  componentWillMount() {
-    this.getPolls();
+  async componentDidMount() {
+    const { data: polls } = await axios.get(apiPolls);
+    this.setState({ polls });
   }
 
   handleAddPoll(poll) {
@@ -43,8 +28,11 @@ class Polls extends Component {
     this.setState({ polls: polls });
   }
 
-  // handleChangePage = page => {
-  //   this.setState({ currentPage: page });
+  // handleAddPoll = async () => {
+  //   const obj = { question: "a", description: "b" };
+  //   const { data: poll } = await axios.post(apiPolls, obj);
+  //   console.log(poll);
+  //   // this.setState({ polls });
   // };
 
   handleNextPage = page => {
@@ -55,25 +43,9 @@ class Polls extends Component {
     this.setState({ currentPage: page - 1 });
   };
 
-  // handleConfCandidate(id) {
-  //   console.log("You have supported!");
-  //   //let investors = this.state.investors
-  //   //let index = investors.findIndex(x => x.id === id)
-  //   // add uprate or downrate plus 1k
-  //   //this.setState({investors.uprate: investors.uprate + 1})
-  // }
-
-  // handleNoConfCandidate(id) {
-  //   console.log("You have UNsupported!");
-  // }
-
   render() {
-    const { isLoaded, polls: allPolls, currentPage } = this.state;
+    const { polls: allPolls, currentPage } = this.state;
     const { length: count } = this.state.polls;
-
-    // if (!isLoaded) {
-    //   return <p>Loading...</p>;
-    // } else {
 
     const polls = Paginate(allPolls, currentPage);
     return (
@@ -90,10 +62,6 @@ class Polls extends Component {
                   <strong>{poll.question}</strong>
                 </h1>
                 <br />
-                {/* category: {poll.category}
-                <br />
-                description: {poll.description} */}
-                <br />
                 <br />
               </li>
             ))}
@@ -104,7 +72,6 @@ class Polls extends Component {
           {/* Arrows for changing displayed polls */}
           <Pagination
             itemCount={count}
-            // onChangePage={this.handleChangePage}
             onNextPage={this.handleNextPage}
             onPreviousPage={this.handlePreviousPage}
             currentPage={currentPage}

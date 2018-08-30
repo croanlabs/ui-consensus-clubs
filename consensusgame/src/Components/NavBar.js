@@ -86,22 +86,22 @@ const NavBar = () => {
           </li> */}
         </ul>
         <ul className="nav navbar-nav navbar-right float-right">
-          <li style={{ margin: "0 10px 0 0 " }}>
-            <a href={twitterLogInUrl}>
-              <span className="glyphicon glyphicon-user float-right" /> Sign Up
+          <li className="nav-item">
+            <a href={twitterLogInUrl} className="nav-link">
+              <span style={{ color: "white" }}>Sign up</span>
             </a>
           </li>
-          <li style={{ margin: "0 10px 0 0 " }}>
-            <a href={twitterLogInUrl}>
-              <span className="glyphicon glyphicon-log-in" /> Login
+          <li className="nav-item">
+            <a href={twitterLogInUrl} className="nav-link">
+              <span style={{ color: "white" }}>Log in</span>
             </a>
           </li>
-          <li>
-            <Link className="navbar-brand" to="/trends">
+          <li className="nav-item">
+            <Link className="nav-link" to="/trends">
               <img
                 src={trends}
                 alt="consensus"
-                style={{ height: "20px", margin: "0  5px 20px 0" }}
+                style={{ height: "20px", margin: "0  5px 0 10px" }}
               />
               <span style={{ color: "white" }}>Trends</span>
             </Link>
@@ -125,3 +125,4 @@ export default NavBar;
 // <span className="badge badge-pill badge-secondary">
 //   {totalNotificationCounters}
 // </span>
+// style={{ margin: "0 10px 0 0 " }}

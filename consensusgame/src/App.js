@@ -7,6 +7,7 @@ import Notifications from "./Components/Notifications";
 import Rewards from "./Components/Rewards";
 import Score from "./Components/Score";
 import Profile from "./Components/Profile";
+import Trends from "./Components/Trends";
 import Home from "./Components/Home";
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
             <Route path="/rewards" component={Rewards} />
             <Route path="/score" component={Score} />
             <Route path="/profile" component={Profile} />
+            <Route path="/trends" component={Trends} />
             <Route path="/" component={Home} />
             <Route component={() => <p>This page does not exist!</p>} />
           </Switch>
