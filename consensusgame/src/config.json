@@ -2,5 +2,6 @@
   "apiPolls": "http://192.168.99.100:31000/polls",
   "twitterLogInUrl": "http://192.168.99.100:31000/login/twitter",
   "apiUsers": "http://www.mocky.io/v2/5b8193523400006700ecb384",
-  "apiAddCandidate": "http://192.168.99.100:31000/polls/0/user-add-candidate"
+  "apiAddCandidate": "http://192.168.99.100:31000/polls/0/user-add-candidate",
+  "moduleResolution": "node"
 }

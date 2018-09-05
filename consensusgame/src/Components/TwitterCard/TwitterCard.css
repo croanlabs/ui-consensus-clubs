@@ -1,0 +1,46 @@
+.twitter-card {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid #ffffff;
+    border-left: 5px solid #F5A623;
+    padding: 1em 2em 1em 1em;
+    background: white;
+    border-radius: 5px;
+    color: #333;
+    margin-bottom: 1em;
+}
+
+.twitter-card.teal {
+    border-left: 5px solid #30D9B2;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card-container h2, 
+.card-container p {
+    margin: 0;
+}
+
+.card-container h2 {
+    font-size: 1em;
+}
+
+.twitter-card .details img {
+    object-fit: contain;
+    margin-right: 1em;
+    height: 70px;
+}
+
+.twitter-card .details .name {
+    font-size: 1.2em;
+}
+
+.twitter-card .details .handle {
+    font-size: 0.785em;
+    color: #999;
+}
