@@ -1,3 +1,5 @@
+
+
 html {
   box-sizing: border-box;
   overflow: hidden;
@@ -6,9 +8,36 @@ html {
   box-sizing: inherit;
 }
 
+@font-face {
+  font-family: SFPro;
+  src: url('assets/font/SFProText-Regular.ttf');
+}
+
+@font-face {
+  font-family: SFProMedium;
+  src: url('assets/font/SFProText-Medium.ttf');
+}
+
+@font-face {
+  font-family: SFProLight;
+  src: url('assets/font/SFProText-Medium.ttf');
+}
+
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: SFPro, Helvetica, Arial, sans-serif;
+  font-size: 14px;
   height: 100%;
+  letter-spacing: 0.03em;
+  color: #4a4a4a;
+}
+
+h1, h2 {
+  font-family: SFProMedium, Helvetica, Arial, sans-serif;
+}
+
+h3 {
+  font-family:  RobotoLight, Helvetica, Arial, sans-serif;
 }

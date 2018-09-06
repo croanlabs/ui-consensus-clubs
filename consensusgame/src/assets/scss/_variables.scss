@@ -1,28 +1,35 @@
+// WEB
+
 // Color
-$navy: #333370;
-$yellow: #f6a827;
-$teal: #2fd7b1;
-$purple: #cc68e2;
-$red: #f77889;
-$redish: #ff8091;
-$green: #7cb462;
-$blue: #488fe2;
-$teal-light: #5ff0cf;
+$navy: #353571;
+$yellow: #f5a623;
+$teal: #31d9b3;
+$purple: #cc65e1;
+$red: #f77888;
+$green: #7db463;
+$light-green: #b3e488;
 $grey: #8a8a8a;
 $light-grey: #9b9b9b;
 
+// MOBILE
+
+$blue: #334bc9;
+
+
 // Typography
 $h1-color: $navy;
-$h1-size: 26px;
+$h1-color2: #616161;
+$h1-color3: #376294;
+$h1-size: 64px;
 $h1-weight: 600;
 
-$h2-color: #335573;
-$h2-size: 10px;
-$h2-weight: 500;
+$h2-color: #9b9b9b;
+$h2-color2: #616161;
+$h2-color3: #376294;
+$h2-size: 24px;
+$h2-weight: 600;
 
-$h3-color: #335573;
-$h3-size: 9px;
-$h3-weight: 300;
+$h3-color: #4a4a4a;
 
 $h4-color: $navy;
 $h4-size: 12px;
