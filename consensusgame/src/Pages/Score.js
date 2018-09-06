@@ -27,31 +27,26 @@ class Score extends Component {
   render() {
     const { users } = this.state;
     return (
-      <div className="grid">
-        <aside className="col-50">
+      <div className="layout">
+        <aside className="col">
           <h1>Score board</h1>
-          <br />
-          <p>Track the performance of other users</p>
+          <h6>Track the performance of other users</h6>
           {/* Add polls link?? */}
         </aside>
 
-        <section className="col-50">
+        <section className="col">
           <ul className="list-unstyled">
             {users.map(user => (
               <li key={user.id}>
-                <br />
                 <h2>{user.twitter}</h2>
-                <p className="float-right" style={{ color: "#FFA500" }}>
+                <p style={{ color: "#FFA500" }}>
                   {user.merits} Merits
                 </p>
-                <br />
-                <div className="row">
-                  <div className="col-sm-4">3 month</div>
-                  <div className="col-sm-4">6 month</div>
-                  <div className="col-sm-4">1 year</div>
+                <div className="card flex sb">
+                  <div>3 month</div>
+                  <div>6 month</div>
+                  <div>1 year</div>
                 </div>
-                <br />
-                <br />
                 <br />
               </li>
             ))}

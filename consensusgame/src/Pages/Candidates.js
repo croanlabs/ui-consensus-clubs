@@ -29,25 +29,16 @@ class Candidates extends Component {
         <h3 style={{ color: "black" }}>
           <strong>{count}</strong> candidates
         </h3>
-        <br />
         <ul className="list-unstyled">
           {this.props.poll.candidates.map(candidate => (
             <li key={candidate.id}>
-              {candidate.id} - {candidate.name}
-              <br />
-              {candidate.twitter}
-              <br />
-              <br />↑ {candidate.confidence} ↓{candidate.noconfidence}
-              <br />
+              <p>{candidate.id} - {candidate.name}</p>
+              <p>{candidate.twitter}</p>
+              <p>↑ {candidate.confidence} ↓{candidate.noconfidence}</p>
               <button>More info</button>
-              <br />
-              <br />
             </li>
           ))}
         </ul>
-        <br />
-        <br />
-        <br />
       </div>
     );
   }

@@ -22,15 +22,11 @@
 
 .navbar-links li a {
     color: #353571;
-    font-size: 0.875em;
-    font-weight: 400;
     text-decoration: none;
-    letter-spacing: 0.03em;
 }
 
 .navbar-links li a.navbar-brand {
     color: #244266;
-    font-size: 1em;
     margin-right: 2em;
     font-weight: 600;
 }
