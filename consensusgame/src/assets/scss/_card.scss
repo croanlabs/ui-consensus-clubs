@@ -1,0 +1,63 @@
+@import "variables";
+
+.card {
+    width: 100%;
+    border: 1px solid #ffffff;
+    border-left: 5px solid $yellow;
+    padding: 1em 2em 1em 1em;
+    background: white;
+    border-radius: 5px;
+    color: #333;
+    margin-bottom: 1em;
+
+    .card-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &.yellow {
+        border-left-color: $yellow;
+        .profile {
+            img {
+                border-color: lighten($yellow, 20%);
+            }
+        }
+    }
+    
+    &.teal {
+        border-left-color: $teal;
+        .profile {
+            img {
+                border-color: lighten($teal, 20%);
+            }
+        }
+    }
+
+    &.purple {
+        border-left-color: $purple;
+        .profile {
+            img {
+                border-color: $purple;
+            }
+        }
+    }
+
+    &.red {
+        border-left-color: $red;
+        .profile {
+            img {
+                border-color: $red;
+            }
+        }
+    }
+
+    &.green {
+        border-left-color: $green;
+        .profile {
+            img {
+                border-color: $green;
+            }
+        }
+    }
+}

@@ -1,5 +1,6 @@
 
 @import "assets/scss/layout";
+@import "assets/scss/card";
 @import "assets/scss/variables";
 
 /* Wrapper */
@@ -23,6 +24,10 @@
   .wrapper {
     width: 1170px;
   }
+}
+
+i {
+  font-style: normal;
 }
 
 ul {
@@ -94,6 +99,6 @@ h6 {
   display: flex;
   &.sb {
     justify-content: space-between;
-    align-content: center;
+    align-items: center;
   }
 }
