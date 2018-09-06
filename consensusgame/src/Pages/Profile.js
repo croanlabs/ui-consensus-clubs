@@ -36,34 +36,41 @@ class Profile extends Component {
     return (
       <div className="layout">
         <aside className="col">
-          <h1>Profile</h1>
+          <h1 className="lg-vspace">Profile</h1>
           <h6>Track your performance here</h6>
           {/* Add polls link?? */}
         </aside>
 
         <section className="col">
           <h1>{user.name}</h1>
-          <h3 className="float-right" style={{ color: "#FFA500" }}>
-            {user.merits} Merits
-          </h3>
-          <p>{user.twitter}</p>
 
-          
-          <div className="flex sb">
-            <div>{user.three_month}%</div>
-            <div>{user.six_month}%</div>
-            <div>{user.one_year}%</div>
-          </div>
-          <div className="flex sb">
-            <div>3 month</div>
-            <div>6 month</div>
-            <div>1 year</div>
-          </div>
-          {/* Bottom part */}
-          <div className="flex sb">
-            <div>Current Opinion</div>
-            <div>Closed Votes</div>
-            <div>Ongoing Votes</div>
+          <div className="card yellow">
+            <div className="card-container">
+              <h3 className="float-right" style={{ color: "#FFA500" }}>
+                {user.merits} Merits
+              </h3>
+              <p>{user.twitter}</p>
+
+              <div className="flex sb">
+                <div>{user.three_month}%</div>
+                <div>{user.six_month}%</div>
+                <div>{user.one_year}%</div>
+              </div>
+
+              <div className="flex sb">
+                <div>3 month</div>
+                <div>6 month</div>
+                <div>1 year</div>
+              </div>
+
+              {/* Bottom part */}
+              <div className="flex sb">
+                <div>Current Opinion</div>
+                <div>Closed Votes</div>
+                <div>Ongoing Votes</div>
+              </div>
+
+            </div>
           </div>
         </section>
       </div>

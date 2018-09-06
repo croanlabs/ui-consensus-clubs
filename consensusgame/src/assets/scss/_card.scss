@@ -4,16 +4,13 @@
     width: 100%;
     border: 1px solid #ffffff;
     border-left: 5px solid $yellow;
-    padding: 1em 2em 1em 1em;
     background: white;
     border-radius: 5px;
     color: #333;
     margin-bottom: 1em;
 
-    .card-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .card-container { 
+        margin: 2em;
     }
 
     &.yellow {
