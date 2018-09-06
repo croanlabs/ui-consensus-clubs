@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import AddCandidate from "./AddCandidate";
 // import PropTypes from "prop-types";
+import axios from "axios";
+import { apiAddCandidate } from "../config.json";
+import StakeMerits from "./StakeMerits";
 
 class Candidates extends Component {
+  // For voting!!!
   // confCandidate(id) {
   //   this.props.onConf(id);
   // }
@@ -11,11 +15,35 @@ class Candidates extends Component {
   //   this.props.onNoConf(id);
   // }
 
-  handleAddCandidate(candidate) {
-    let candidates = this.props.poll.candidates;
-    candidates.push(candidate);
-    this.setState({ candidates: candidates });
-  }
+  // handleConfCandidate(id) {
+  //   console.log("You have supported!");
+  //   //let investors = this.state.investors
+  //   //let index = investors.findIndex(x => x.id === id)
+  //   // add uprate or downrate plus 1k
+  //   //this.setState({investors.uprate: investors.uprate + 1})
+  // }
+
+  // handleNoConfCandidate(id) {
+  //   console.log("You have UNsupported!");
+  // }
+
+  // handleAddCandidate(candidate) {
+  //   let candidates = this.props.poll.candidates;
+  //   candidates.push(candidate);
+  //   this.setState({ candidates: candidates });
+  // }
+
+  handleAddCandidate = async () => {
+    const obj = {
+      name: "adfasdfasdf",
+      description: "Cryptobobby needs a description bhabhabha",
+      twitterUser: "@klsjdfl,sdf",
+      confidence: "true",
+      amountMerits: 100
+    };
+    const { data: candidate } = await axios.post(apiAddCandidate, obj);
+    console.log(candidate);
+  };
 
   render() {
     const { length: count } = this.props.poll.candidates;
@@ -24,21 +52,33 @@ class Candidates extends Component {
 
     return (
       <div>
-        <AddCandidate addCandidate={this.handleAddCandidate.bind(this)} />
+        <AddCandidate onClick={this.handleAddCandidate} />
+
         <br />
         <h3 style={{ color: "black" }}>
           <strong>{count}</strong> candidates
         </h3>
+        <br />
         <ul className="list-unstyled">
           {this.props.poll.candidates.map(candidate => (
             <li key={candidate.id}>
-              <p>{candidate.id} - {candidate.name}</p>
-              <p>{candidate.twitter}</p>
-              <p>↑ {candidate.confidence} ↓{candidate.noconfidence}</p>
-              <button>More info</button>
+              {candidate.id + 1} - {candidate.name}
+              <br />
+              {candidate.twitter_user}
+              <br />
+              <br />↑ {candidate.total_tokens_confidence} ↓
+              {candidate.total_tokens_no_confidence}
+              <br />
+              <br />
+              <StakeMerits shown={true} />
+              <br />
+              <br />
             </li>
           ))}
         </ul>
+        <br />
+        <br />
+        <br />
       </div>
     );
   }
