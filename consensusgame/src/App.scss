@@ -65,12 +65,12 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 h1 {
-  font-size: 3.79em;
+  font-size: 3.79rem;
   color: $navy;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 1.5rem;
   color: $h2-color;
   .color2 {
     color: $h2-color2;
@@ -78,20 +78,27 @@ h2 {
   .color3 {
     color: $h2-color3;
   }
+  &.coming-soon {
+    margin: 3em 0;
+    color: lighten($grey, 30%);
+    width: 100%;
+    text-align: center;
+  }
 }
 
 h3 {
-  font-size: 18px;
+  font-size: 1.125rem;
   color: $h3-color;
 }
 
 h4 {
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 h6 {
-  font-size: 14px;
+  font-size: 1.5rem;
   color: $h2-color;
+  margin-top: 0.5em;
 }
 
 /* helpers */
@@ -100,5 +107,43 @@ h6 {
   &.sb {
     justify-content: space-between;
     align-items: center;
+  }
+}
+
+.flex-sb {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lg-vspace {
+  margin-top: 10rem;
+}
+
+.md-vspace {
+  margin-top: 2rem;
+}
+
+.sm-vspace {
+  margin-top: 0.5rem;
+}
+
+@media only screen and (max-width: 979px) {
+  .lg-vspace {
+    margin-top: 3rem;
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  h1 {
+    font-size: 1.825rem;
+  }
+  section {
+    font-size: 40%;
+    img {
+      max-width: 60%;
+    }
+  }
+  .lg-vspace {
+    margin-top: 1rem;
   }
 }

@@ -94,7 +94,7 @@ class Polls extends Component {
           <ul className="candidates">
           {/* todo: List each candidate */}
             <li className="card yellow">
-              <div className="card-container">
+              <div className="card-container flex-sb">
                 <div className="profile flex">
                   <div className="image-cropper"><img src={profilePic} alt="Metem" className="profile-pic" /></div>
                   <div className="name">
@@ -111,7 +111,7 @@ class Polls extends Component {
             </li>
             {/* todo: dynamically add color class for each candidate to pick up colors */}
             <li className="card teal">
-              <div className="card-container">
+              <div className="card-container flex-sb">
                 <div className="profile flex">
                   <div className="image-cropper"><img src={profilePic} alt="Ari Paul" className="profile-pic" /></div>
                   <div className="name">
