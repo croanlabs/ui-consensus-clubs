@@ -39,8 +39,7 @@ class Rewards extends Component {
       <div className="layout">
         <aside className="col">
           <h1>Rewards</h1>
-          <br />
-          <p>Get merit points on completing the rewards</p>
+          <h6>Get merit points on completing the rewards</h6>
           {/* Add polls link?? */}
         </aside>
 
@@ -49,19 +48,11 @@ class Rewards extends Component {
           <ul className="list-unstyled">
             {rewards.map(reward => (
               <li key={reward.points}>
-                <br />
-                <h1
-                  className="float-left"
-                  style={{ color: "#66CDAA", margin: "0 20px 0 0" }}
-                >
+                <h1 style={{ color: "#66CDAA", margin: "0 20px 0 0" }}>
                   {reward.points}
                 </h1>
                 <h3>{reward.title}</h3>
                 <p>{reward.description}</p>
-
-                <br />
-                <br />
-                <br />
               </li>
             ))}
           </ul>

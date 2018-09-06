@@ -37,37 +37,33 @@ class Profile extends Component {
       <div className="layout">
         <aside className="col">
           <h1>Profile</h1>
-          <br />
-          <p>Track your performance here</p>
+          <h6>Track your performance here</h6>
           {/* Add polls link?? */}
         </aside>
 
         <section className="col">
-          <br />
           <h1>{user.name}</h1>
           <h3 className="float-right" style={{ color: "#FFA500" }}>
             {user.merits} Merits
           </h3>
           <p>{user.twitter}</p>
 
-          <br />
-          <div className="row">
-            <div className="col-sm-4">{user.three_month}%</div>
-            <div className="col-sm-4">{user.six_month}%</div>
-            <div className="col-sm-4">{user.one_year}%</div>
+          
+          <div className="flex sb">
+            <div>{user.three_month}%</div>
+            <div>{user.six_month}%</div>
+            <div>{user.one_year}%</div>
           </div>
-          <div className="row">
-            <div className="col-sm-4">3 month</div>
-            <div className="col-sm-4">6 month</div>
-            <div className="col-sm-4">1 year</div>
+          <div className="flex sb">
+            <div>3 month</div>
+            <div>6 month</div>
+            <div>1 year</div>
           </div>
-          <br />
-          <br />
           {/* Bottom part */}
-          <div className="row">
-            <div className="col-sm-4">Current Opinion</div>
-            <div className="col-sm-4">Closed Votes</div>
-            <div className="col-sm-4">Ongoing Votes</div>
+          <div className="flex sb">
+            <div>Current Opinion</div>
+            <div>Closed Votes</div>
+            <div>Ongoing Votes</div>
           </div>
         </section>
       </div>

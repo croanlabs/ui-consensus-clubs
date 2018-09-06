@@ -20,7 +20,7 @@ html {
 
 @font-face {
   font-family: SFProLight;
-  src: url('assets/font/SFProText-Medium.ttf');
+  src: url('assets/font/SFProText-Light.ttf');
 }
 
 
@@ -38,6 +38,6 @@ h1, h2 {
   font-family: SFProMedium, Helvetica, Arial, sans-serif;
 }
 
-h3 {
-  font-family:  RobotoLight, Helvetica, Arial, sans-serif;
+h3, h4, h5, h6 {
+  font-family: SFProLight, Helvetica, Arial, sans-serif;
 }

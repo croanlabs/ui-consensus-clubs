@@ -38,8 +38,7 @@ class Notifications extends Component {
       <div className="layout">
         <aside className="col">
           <h1>Notifications</h1>
-          <br />
-          <p>Stay updated about your recent activities</p>
+          <h6>Stay updated about your recent activities</h6>
           {/* Add polls link?? */}
         </aside>
 
@@ -47,15 +46,11 @@ class Notifications extends Component {
           <ul className="list-unstyled">
             {notifications.map(notification => (
               <li key={notification.title}>
-                <br />
-                <h3>{notification.title}</h3>
+                <h2>{notification.title}</h2>
                 <p>{notification.description}</p>
                 <p className="float-right" style={{ color: "#66CDAA" }}>
                   {notification.time}
                 </p>
-                <br />
-                <br />
-                <br />
               </li>
             ))}
           </ul>

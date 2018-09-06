@@ -91,8 +91,9 @@ class Polls extends Component {
                   <a href="#">Trend</a>
                 </h5>
                 <h1>Candidates</h1>
-                <br />
-                <Candidates key={poll.id} id={poll.id} poll={poll} />
+                <p>
+                  <Candidates key={poll.id} id={poll.id} poll={poll} />
+                </p>
               </li>
             ))}
         </section>
