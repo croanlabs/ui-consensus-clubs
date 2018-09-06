@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Rewards.scss";
 
 class Rewards extends Component {
   render() {
@@ -45,13 +46,16 @@ class Rewards extends Component {
         <section className="col">
           <ul className="md-vspace">
             {rewards.map(reward => (
-              <li key={reward.points} className="card yellow">
-                <div className="card-container">
-                  <h1 style={{ color: "#66CDAA", margin: "0 20px 0 0" }}>
+              <li key={reward.points} className="card teal">
+                <div className="card-container flex sb">
+                  <div className="circle teal">
                     {reward.points}
-                  </h1>
-                  <h3>{reward.title}</h3>
-                  <p>{reward.description}</p>
+                  </div>
+                  <div className="msg">
+                    <h3>{reward.title}</h3>
+                    <p>{reward.description}</p>
+                  </div>
+                  <i className="triangle"></i>
                 </div>
               </li>
             ))}

@@ -3,7 +3,7 @@
 .card {
     width: 100%;
     border: 1px solid #ffffff;
-    border-left: 5px solid $yellow;
+    border-left: 6px solid $yellow;
     background: white;
     border-radius: 5px;
     color: #333;
@@ -17,7 +17,7 @@
         border-left-color: $yellow;
         .profile {
             img {
-                border-color: lighten($yellow, 20%);
+                border-color: lighten($yellow, 10%);
             }
         }
     }
@@ -26,7 +26,7 @@
         border-left-color: $teal;
         .profile {
             img {
-                border-color: lighten($teal, 20%);
+                border-color: lighten($teal, 10%);
             }
         }
     }

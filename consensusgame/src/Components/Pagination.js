@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import previousArrow from "../assets/icons/next@2x.svg";
-import nextArrow from "../assets/icons/next@2x.svg";
+import arrowIcon from "../assets/icons/polls/next@2x.svg";
 
 const Pagination = props => {
   const pages = [1, 2, 3];
@@ -15,7 +14,7 @@ const Pagination = props => {
         <li className={currentPage === 1 ? "page-item invisible" : "page-item"} style={{ display: "inline-block" }}>
           <a onClick={() => onPreviousPage(currentPage)} aria-label="Previous">
             <img
-              src={previousArrow}
+              src={arrowIcon}
               alt="previous arrow"
               style={{ margin: "0 40px 0 0" }}
             />
@@ -23,7 +22,7 @@ const Pagination = props => {
         </li>
         <li className={currentPage === 3 ? "page-item invisible" : "page-item"} style={{ display: "inline-block" }}>
           <a onClick={() => onNextPage(currentPage)} aria-label="Next">
-            <img src={nextArrow} alt="next arrow" style={{ transform: "rotate(180deg)" }} />
+            <img src={arrowIcon} alt="next arrow" style={{ transform: "rotate(180deg)" }} />
           </a>
         </li>
       </ul>
