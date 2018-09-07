@@ -10,16 +10,7 @@
   margin-right: auto;
   margin-left: auto;
 }
-@media (min-width: 768px) {
-  .wrapper {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  .wrapper {
-    width: 970px;
-  }
-}
+
 @media (min-width: 1200px) {
   .wrapper {
     width: 1170px;
@@ -79,7 +70,7 @@ h2 {
     color: $h2-color3;
   }
   &.coming-soon {
-    margin: 3em 0;
+    margin: 2em 0;
     color: lighten($grey, 30%);
     width: 100%;
     text-align: center;
@@ -116,7 +107,7 @@ h6 {
 }
 
 .lg-vspace {
-  margin-top: 10rem;
+  margin-top: 7rem;
 }
 
 .md-vspace {

@@ -46,9 +46,9 @@ class Rewards extends Component {
         <section className="col">
           <ul className="md-vspace">
             {rewards.map(reward => (
-              <li key={reward.points} className="card teal">
+              <li key={reward.points} className="card red">
                 <div className="card-container flex sb">
-                  <div className="circle teal">
+                  <div className="circle red">
                     {reward.points}
                   </div>
                   <div className="msg">
