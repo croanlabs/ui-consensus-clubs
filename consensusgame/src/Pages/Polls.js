@@ -5,6 +5,7 @@ import AddPoll from "./AddPoll";
 import Pagination from "../Components/Pagination";
 import { Paginate } from "../utils/Paginate";
 import { apiPolls } from "../config.json";
+import { mockyPolls } from "../config.json";
 import axios from "axios";
 import plusIcon from "../assets/icons/polls/plus.png";
 import profilePic from "../assets/images/profile/Aripaul@2x.png";
@@ -23,7 +24,7 @@ class Polls extends Component {
   }
 
   async componentDidMount() {
-    const { data: polls } = await axios.get(apiPolls);
+    const { data: polls } = await axios.get(mockyPolls);
     this.setState({ polls });
   }
 
@@ -57,9 +58,6 @@ class Polls extends Component {
       <div className="layout polls">
         <aside className="col">
             <h2>{currentPage}/3</h2>
-            <h1>
-              Who are the most insightful crypto investors?
-            </h1>
 
             {/* List each poll */}
             <ul className="list-unstyled">

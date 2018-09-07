@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import thumbsUpIcon from "../assets/icons/notifications/thumbs-up.png";
+import newIcon from "../assets/icons/notifications/new.png";
 import "./Notifications.scss";
 {/* todo: need to hook up these icons to array below...
 import thumbsUpIcon from "../assets/icons/notifications/thumbs-up.png";
@@ -15,13 +16,13 @@ class Notifications extends Component {
         title: "Congrates! Successful Consensus!",
         description: "@cburniske is up 25.2%",
         time: "3 Aug",
-        icon: "thumbsUpIcon"
+        icon: thumbsUpIcon
       },
       {
         title: "New Poll",
         description: "It is a great time to make an impact",
         time: "10 Aug",
-        icon: "newIcon" 
+        icon: newIcon
       },
       {
         title: "Time to vote",
@@ -62,7 +63,7 @@ class Notifications extends Component {
               <li key={notification.title} className="card yellow">
                 <div className="card-container">
                   <div className="flex">
-                    <i><img src={thumbsUpIcon} alt="Thumbs Up" /></i>
+                    <i><img src={notification.icon} alt="icon" /></i>
                     <div className="msg-details">
                       <h2>{notification.title}</h2>
                       <h3>{notification.description}</h3>
