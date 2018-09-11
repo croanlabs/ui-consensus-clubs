@@ -51,6 +51,7 @@ class App extends Component {
               <Route path="/score" component={Score} />
               <Route path="/profile" component={Profile} />
               <Route path="/about" component={About} />
+              <Route path="/" component={Polls} />
               <Route component={() => <p>This page does not exist!</p>} />
             </Switch>
           </main>

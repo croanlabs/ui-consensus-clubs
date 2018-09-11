@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Card from "../Components/Card/Card";
 import "./Rewards.scss";
 
 class Rewards extends Component {

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import thumbsUpIcon from "../assets/icons/notifications/thumbs-up.png";
 import newIcon from "../assets/icons/notifications/new.png";
 import "./Notifications.scss";
+
 {
   /* todo: need to hook up these icons to array below...
 import thumbsUpIcon from "../assets/icons/notifications/thumbs-up.png";
@@ -69,7 +70,7 @@ class Notifications extends Component {
                 <div className="card-container">
                   <div className="flex">
                     <i>
-                      <img src={notification.icon} alt="icons" />
+                      <img src={notification.icon} alt="icon" />
                     </i>
                     <div className="msg-details">
                       <h2>{notification.title}</h2>

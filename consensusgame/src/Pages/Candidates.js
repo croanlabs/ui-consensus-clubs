@@ -9,7 +9,7 @@ import downArrow from "../assets/icons/polls/down-arrow.png";
 import upArrow from "../assets/icons/polls/up-arrow.png";
 import { Link } from "react-router-dom";
 import plusIcon from "../assets/icons/polls/plus.png";
-import "./Polls.scss";
+import "./Candidate.scss";
 
 class Candidates extends Component {
   // For voting!!!
@@ -58,7 +58,7 @@ class Candidates extends Component {
     if (count === 0) return <p>There are no candidates yet.</p>;
 
     return (
-      <div>
+      <div className="candidates">
         <AddCandidate onClick={this.handleAddCandidate} />
         <Link to="/candidates/new">
           <p className="add-new-candidate flex">
@@ -80,7 +80,7 @@ class Candidates extends Component {
               key={candidate.id}
               className={`card ${colors[index % colors.length]}`}
             >
-              <div className="card-container">
+              <div className="layout card-container">
                 <div className="profile flex">
                   <div className="image-cropper">
                     <img src={profilePic} alt="Metem" className="profile-pic" />

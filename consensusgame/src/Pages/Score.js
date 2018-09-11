@@ -51,6 +51,23 @@ class Score extends Component {
                 <br />
               </li>
             ))}
+        <section className="col">
+          <ul className="md-vspace">
+            <li className="card purple">
+              <div className="card-container">
+                <h2 className="coming-soon">Coming Soon</h2>
+              </div>
+            </li>
+            <li className="card teal">
+              <div className="card-container">
+                <h2 className="coming-soon">Coming Soon</h2>
+              </div>
+            </li>
+            <li className="card green">
+              <div className="card-container">
+                <h2 className="coming-soon">Coming Soon</h2>
+              </div>
+            </li>
           </ul>
         </section> */}
         <section className="col">

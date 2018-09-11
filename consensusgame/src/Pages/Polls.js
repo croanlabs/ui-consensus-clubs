@@ -58,7 +58,6 @@ class Polls extends Component {
             {currentPage}
             /3
           </h2>
-
           {/* List each poll */}
           <ul className="list-unstyled">
             {polls.map(poll => (
@@ -81,7 +80,6 @@ class Polls extends Component {
 
         <section className="col">
           <h1>Candidates</h1>
-
           <ul className="list-unstyled">
             {polls.map(poll => (
               <li key={poll.id}>

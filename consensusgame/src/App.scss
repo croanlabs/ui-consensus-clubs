@@ -9,16 +9,7 @@
   margin-right: auto;
   margin-left: auto;
 }
-@media (min-width: 768px) {
-  .wrapper {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  .wrapper {
-    width: 970px;
-  }
-}
+
 @media (min-width: 1200px) {
   .wrapper {
     width: 1170px;
@@ -67,12 +58,12 @@ h6 {
   margin: 0;
 }
 h1 {
-  font-size: 3.79em;
+  font-size: 3.79rem;
   color: $navy;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 1.5rem;
   color: $h2-color;
   .color2 {
     color: $h2-color2;
@@ -80,20 +71,27 @@ h2 {
   .color3 {
     color: $h2-color3;
   }
+  &.coming-soon {
+    margin: 2em 0;
+    color: lighten($grey, 30%);
+    width: 100%;
+    text-align: center;
+  }
 }
 
 h3 {
-  font-size: 18px;
+  font-size: 1.125rem;
   color: $h3-color;
 }
 
 h4 {
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 h6 {
-  font-size: 14px;
+  font-size: 1.5rem;
   color: $h2-color;
+  margin-top: 0.5em;
 }
 
 /* helpers */
@@ -104,8 +102,13 @@ h6 {
     align-items: center;
   }
 }
+.flex-sb {
+  display: flex;
+  justify-content: space-between;
+}
+
 .lg-vspace {
-  margin-top: 10rem;
+  margin-top: 7rem;
 }
 
 .md-vspace {

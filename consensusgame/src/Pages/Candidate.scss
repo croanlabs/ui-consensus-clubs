@@ -1,0 +1,44 @@
+/* Candidate page */
+@import "../assets/scss/variables";
+
+.candidates {
+  .add-new-candidate {
+    align-items: center;
+    margin-bottom: 2em;
+    i {
+      margin-right: 0.5em;
+    }
+    img {
+      height: 24px;
+    }
+  }
+  .profile {
+    align-items: center;
+    h2 {
+      font-size: 18px;
+      color: $navy;
+    }
+    h3 {
+      font-size: 14px;
+      color: $grey;
+    }
+    img {
+      height: 70px;
+      margin-right: 1em;
+      border: 3px solid gray;
+      border-radius: 50%;
+    }
+  }
+  .rating {
+    img {
+      height: 30px;
+      margin-right: 0.5em;
+    }
+    .up,
+    .down {
+      align-items: center;
+      margin-left: 1em;
+      font-weight: 600;
+    }
+  }
+}

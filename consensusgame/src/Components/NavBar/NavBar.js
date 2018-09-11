@@ -81,17 +81,10 @@ class NavBar extends Component {
 
 export default NavBar;
 
-{
-  /* <a href={twitterLogInUrl} className="navbar-form pull-right">
-<img src={twitterLogIn} alt="twitterLogIn" style={{ height: "30px" }} />
-</a> */
-}
 // How many notifications a user has
 // totalNotificationCounters={
 //     this.state.counters.filter(c => c.value > 0).length
 //   }
-
 // <span className="badge badge-pill badge-secondary">
 //   {totalNotificationCounters}
 // </span>
-// style={{ margin: "0 10px 0 0 " }}

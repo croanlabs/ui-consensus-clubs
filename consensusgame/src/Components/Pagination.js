@@ -1,6 +1,5 @@
 import React from "react";
-import previousArrow from "../assets/icons/next@2x.svg";
-import nextArrow from "../assets/icons/next@2x.svg";
+import arrowIcon from "../assets/icons/polls/next@2x.svg";
 
 const Pagination = props => {
   const { onNextPage, onPreviousPage, currentPage, itemCount } = props;
@@ -24,7 +23,7 @@ const Pagination = props => {
         >
           <a onClick={() => onPreviousPage(currentPage)} aria-label="Previous">
             <img
-              src={previousArrow}
+              src={arrowIcon}
               alt="previous arrow"
               style={{ margin: "0 40px 0 0" }}
             />
@@ -34,7 +33,7 @@ const Pagination = props => {
         <li className={"page-item"} style={nextArrowStyle}>
           <a onClick={() => onNextPage(currentPage)} aria-label="Next">
             <img
-              src={nextArrow}
+              src={arrowIcon}
               alt="next arrow"
               style={{ transform: "rotate(180deg)" }}
             />
