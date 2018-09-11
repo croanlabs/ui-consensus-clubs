@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { twitterLogInUrl } from "../../config.json";
-import "./NavBar.scss";
+import "./MobileNavbar.scss";
 import twitterLogIn from "../../assets/images/twitterLogIn.png";
 import { NavLink } from "react-router-dom";
-import BurgerButton from "./BurgerButton";
 
-class NavBar extends Component {
+class MobileNavbar extends Component {
   constructor() {
     super();
     this.state = {
-      Pages: [
+      MobilePages: [
         {
           pageName: "Polls",
           toLink: "/polls"
@@ -39,38 +38,30 @@ class NavBar extends Component {
     };
   }
   render() {
-    const { Pages } = this.state;
+    const { MobilePages } = this.state;
 
     return (
-      <div className="navbar responsive">
-        <ul className="left">
-          <li className="first">
-            <span className="navbar-brand">Consensus Clubs</span>
-          </li>
-          <li className="icon">
-            <BurgerButton click={this.props.mobileNavClickHandler} />
-          </li>
-          {Pages.map(page => (
-            <li key={page.pageName}>
+      <div className="mobileNavbar">
+        <ul>
+          {MobilePages.map(mobilePage => (
+            <li key={mobilePage.pageName} onClick={this.props.linkClick}>
               <NavLink
                 className="nav-link"
                 activeClassName="active"
-                to={page.toLink}
+                to={mobilePage.toLink}
               >
-                {page.pageName}
+                {mobilePage.pageName}
               </NavLink>
             </li>
           ))}
-        </ul>
-        <ul className="right">
           <li>
             <a href={twitterLogInUrl} className="nav-link">
-              <span className="white">Sign up</span>
+              <span className="black">Sign up</span>
             </a>
           </li>
           <li className="last">
             <a href={twitterLogInUrl} className="nav-link">
-              <span className="white">Log in</span>
+              <span className="black">Log in</span>
             </a>
           </li>
         </ul>
@@ -79,19 +70,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
-
-{
-  /* <a href={twitterLogInUrl} className="navbar-form pull-right">
-<img src={twitterLogIn} alt="twitterLogIn" style={{ height: "30px" }} />
-</a> */
-}
-// How many notifications a user has
-// totalNotificationCounters={
-//     this.state.counters.filter(c => c.value > 0).length
-//   }
-
-// <span className="badge badge-pill badge-secondary">
-//   {totalNotificationCounters}
-// </span>
-// style={{ margin: "0 10px 0 0 " }}
+export default MobileNavbar;

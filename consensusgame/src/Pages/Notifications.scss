@@ -1,0 +1,37 @@
+/* Polls page */
+@import "../assets/scss/variables";
+
+.notifications {
+  .messages {
+    align-items: center;
+    h2 {
+      font-size: 18px;
+      color: $navy;
+    }
+    h3 {
+      font-size: 14px;
+      color: $grey;
+    }
+    h4 {
+      width: 100%;
+      text-align: right;
+      color: $green;
+    }
+    i {
+      width: 40px;
+      height: 40px;
+      margin-right: 1em;
+    }
+    img {
+      height: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .notifications {
+    aside {
+      padding-top: 6.3em;
+    }
+  }
+}

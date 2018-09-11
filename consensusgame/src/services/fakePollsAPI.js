@@ -14,7 +14,7 @@ const polls = [
           description: "<<Description>>",
           twitter_user: "@melt_dem"
         },
-        total_tokens_confidence: "0.00000000000000000",
+        total_tokens_confidence: "15000",
         total_tokens_no_confidence: "0.00000000000000000"
       },
       {

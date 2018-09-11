@@ -8,14 +8,15 @@ class StakeMerits extends Component {
       confidence: true
     };
   }
-  showMoreInfo = () =>
-    this.setState({
-      shown: !this.state.shown
+  showMoreInfo = () => {
+    this.setState(prevState => {
+      return { shown: !prevState.shown };
     });
+  };
 
   confidence = () =>
-    this.setState({
-      confidence: !this.state.confidence
+    this.setState(prevState => {
+      return { confidence: !prevState.confidence };
     });
   support = () => console.log("Supported!!");
   unSupport = () => console.log("UNSupported!!");

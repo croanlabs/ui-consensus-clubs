@@ -1,0 +1,130 @@
+/* Navbar */
+
+/* Remove margins and padding from the list, and add a black background color */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4em;
+  padding-top: 2rem;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Float the list items side by side */
+.navbar ul li {
+  display: inline-block;
+}
+
+/* Style the links inside the list items */
+.navbar ul li a {
+  display: inline-block;
+  color: #666;
+  text-align: center;
+  padding: 14px 12px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.navbar ul li.first a {
+  padding-left: 0;
+  margin-right: 24px;
+  font-weight: 600;
+}
+
+.navbar ul li.last a {
+  padding-right: 0;
+}
+
+.navbar ul li .white {
+  color: white;
+}
+
+/* Change background color of links on hover */
+.navbar ul li.icon a:hover {
+  color: #111;
+}
+
+/* Change color of links when active */
+.navbar ul li a.active {
+  color: blue;
+}
+
+/* Hide the list item that contains the link that should open and close the topnav on small screens */
+.navbar ul li.icon {
+  display: none;
+  font-size: 2em;
+}
+
+/* When the screen is less than 680 pixels wide, hide all list items, except for the first one ("Home"). Show the list item that contains the link to open and close the topnav (li.icon) */
+@media screen and (max-width: 980px) {
+  /* .navbar ul li:not(:first-child) {
+    display: none;
+  } */
+  .navbar ul li.icon {
+    float: right;
+    display: inline-block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens */
+@media screen and (max-width: 980px) {
+  .navbar.responsive {
+    /* This allows to see the content with transparency */
+    position: absolute;
+
+    /* White background of menu with transparency */
+    background: rgba(255, 255, 255, 0.9);
+    width: 100%;
+
+    /* Show menu links */
+    height: 60px;
+    left: 0;
+    right: 0;
+
+    /* Put some images to back */
+    z-index: 2;
+    padding: 0 1em;
+
+    /* Put Signup and Login below other menu */
+    flex-direction: column;
+
+    /* Put menu to the left */
+    align-items: flex-start;
+    justify-content: inherit;
+  }
+  .navbar.responsive ul.left {
+    margin-top: 4em;
+  }
+  .navbar.responsive ul li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .navbar.responsive ul li .navbar-brand {
+    position: absolute;
+    left: 1em;
+    top: 1em;
+  }
+  .navbar.responsive ul li {
+    float: none;
+    display: inline;
+  }
+  .navbar.responsive ul li a {
+    display: block;
+    text-align: left;
+  }
+  .navbar.responsive ul li a.nav-link {
+    font-size: 2em;
+    display: none;
+  }
+  .navbar ul li .white {
+    color: #666;
+  }
+}
+
+@media (max-width: 980px) {
+  .navbar.responsive ul li .nav-link {
+    display: none;
+  }
+}

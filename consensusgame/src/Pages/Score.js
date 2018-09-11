@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { apiUsers } from "../config.json";
+import "./Score.scss";
 
 class Score extends Component {
   constructor() {
@@ -27,14 +28,14 @@ class Score extends Component {
   render() {
     const { users } = this.state;
     return (
-      <div className="layout">
+      <div className="layout score">
         <aside className="col">
-          <h1>Score board</h1>
+          <h1 className="lg-vspace">Score board</h1>
           <h6>Track the performance of other users</h6>
           {/* Add polls link?? */}
         </aside>
 
-        <section className="col">
+        {/* <section className="col">
           <ul className="list-unstyled">
             {users.map(user => (
               <li key={user.id}>
@@ -50,6 +51,25 @@ class Score extends Component {
                 <br />
               </li>
             ))}
+          </ul>
+        </section> */}
+        <section className="col">
+          <ul className="md-vspace">
+            {/* <li className="card purple"> */}
+            <div className="card-container">
+              <h2 className="coming-soon">Coming Soon</h2>
+            </div>
+            {/* </li> */}
+            {/* <li className="card teal">
+              <div className="card-container">
+                <h2 className="coming-soon">Coming Soon</h2>
+              </div>
+            </li>
+            <li className="card green">
+              <div className="card-container">
+                <h2 className="coming-soon">Coming Soon</h2>
+              </div>
+            </li> */}
           </ul>
         </section>
       </div>

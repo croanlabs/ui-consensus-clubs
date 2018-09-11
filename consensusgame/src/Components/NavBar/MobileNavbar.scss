@@ -1,0 +1,68 @@
+/* MobileNavbar */
+
+@media screen and (max-width: 980px) {
+  .mobileNavbar {
+    position: absolute;
+    margin-top: 60px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    padding: 0 1em;
+    /* Put Signup and Login below other menu */
+    flex-direction: column;
+
+    /* Put menu to the left */
+    align-items: flex-start;
+    justify-content: inherit;
+  }
+  .mobileNavbar ul {
+    margin-top: 4em;
+  }
+  .mobileNavbar ul li {
+    float: none;
+    display: inline;
+  }
+  .mobileNavbar ul li a {
+    display: block;
+    text-align: left;
+    text-align: center;
+    padding: 14px 12px;
+    text-decoration: none;
+    transition: 0.3s;
+    color: #666;
+  }
+  .mobileNavbar ul li a.nav-link {
+    font-size: 2em;
+  }
+  .mobileNavbar ul li .white {
+    color: black;
+  }
+
+  .mobileNavbar ul li a:visited {
+    color: #666;
+  }
+
+  .mobileNavbar ul li:hover {
+    /* MUST OCCUR AFTER VISITED */
+    cursor: pointer;
+    color: white;
+  }
+  /* Change color of links when active */
+  .mobileNavbar ul li a.active {
+    color: blue;
+  }
+
+  /* Change background color of links on hover */
+}
+
+@media screen and (min-width: 980px) {
+  .mobileNavbar {
+    display: none;
+  }
+}

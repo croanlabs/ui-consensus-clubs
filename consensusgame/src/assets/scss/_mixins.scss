@@ -1,0 +1,69 @@
+@import "./variables";
+
+@mixin circle($width, $color) {
+  position: relative;
+  width: $width;
+  height: $width;
+  background: $color;
+  border-radius: $width/2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.5rem;
+  font-weight: 400;
+  padding: 1rem;
+}
+
+@mixin triangle($width, $dir, $color) {
+  @if $dir == right {
+    width: 0;
+    height: 0;
+    border-top: $width solid transparent;
+    border-bottom: $width solid transparent;
+    border-left: $width solid $color;
+  }
+}
+
+.circle {
+  @include circle(80px, $yellow);
+  &:after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    bottom: -3px;
+    left: -3px;
+    border: 8px solid $yellow-border;
+    border-radius: 80px;
+  }
+  &.teal {
+    background: $teal;
+    &:after {
+      border-color: $teal-border;
+    }
+  }
+  &.red {
+    background: $red;
+    &:after {
+      border-color: $red-border;
+    }
+  }
+  // ADDED FOR TEST (yoshie)
+  &.purple {
+    background: $purple;
+    &:after {
+      border-color: $purple-border;
+    }
+  }
+  &.green {
+    background: $green;
+    &:after {
+      border-color: $green-border;
+    }
+  }
+}
+
+.triangle {
+  @include triangle(10px, right, $blue);
+}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "../Components/Card/Card";
+import "./Rewards.scss";
 
 class Rewards extends Component {
   render() {
@@ -35,24 +36,32 @@ class Rewards extends Component {
           "Download consensus games to solve problems and earn airdrop prizes!"
       }
     ];
+    const colors = ["yellow", "teal", "purple", "red", "green"];
     return (
-      <div className="layout">
+      <div className="layout rewards">
         <aside className="col">
-          <h1>Rewards</h1>
+          <h1 className="lg-vspace">Rewards</h1>
           <h6>Get merit points on completing the rewards</h6>
           {/* Add polls link?? */}
         </aside>
 
         <section className="col">
-          <Card />
-          <ul className="list-unstyled">
-            {rewards.map(reward => (
-              <li key={reward.points}>
-                <h1 style={{ color: "#66CDAA", margin: "0 20px 0 0" }}>
-                  {reward.points}
-                </h1>
-                <h3>{reward.title}</h3>
-                <p>{reward.description}</p>
+          <ul className="md-vspace">
+            {rewards.map((reward, index) => (
+              <li
+                key={reward.points}
+                className={`card ${colors[index % colors.length]}`}
+              >
+                <div className="card-container flex sb">
+                  <div className={`circle ${colors[index % colors.length]}`}>
+                    {reward.points}
+                  </div>
+                  <div className="msg">
+                    <h3>{reward.title}</h3>
+                    <p>{reward.description}</p>
+                  </div>
+                  <i className="triangle" />
+                </div>
               </li>
             ))}
           </ul>
