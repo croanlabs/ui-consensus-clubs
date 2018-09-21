@@ -1,0 +1,26 @@
+@import "../../assets/scss/variables";
+.tab-list {
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    padding-left: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .tab-list-item {
+    display: inline-block;
+    list-style: none;
+    margin-bottom: -2px;
+    padding: 0.5rem 0;
+    width: 50%;
+    color: grey;
+    font-size: 1.5rem;
+    &:hover {
+        cursor: pointer;
+    }
+  }
+  
+  .tab-list-active {
+    background-color: transparent;
+    border-bottom: 4px solid $green;
+    color: navy;
+  }

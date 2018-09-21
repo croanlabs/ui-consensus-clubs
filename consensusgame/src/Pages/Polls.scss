@@ -13,6 +13,10 @@
         .pagination {
             margin-top: 4rem;
         }
+
+        .poll-questions {
+            min-height: 12em;
+        }
     }
 
     @media only screen and (max-width: 979px) {
@@ -25,6 +29,17 @@
     
             .pagination {
                 margin-top: 2rem;
+            }
+        }
+        section {
+            h1 {
+                display: none;
+            }
+            .add-new-candidate {
+                position: absolute;
+                right: 0;
+                top: -5em;
+                color: $navy;
             }
         }
       }
@@ -41,6 +56,35 @@
     }
 
     section {
+
+        .search-bar {
+            position: relative;
+
+            img {
+                position: absolute;
+                left: 1em;
+                top: 1.7em;
+                color: $navy;
+                font-weight: 700;
+                width: 20px;
+            }
+
+            input {
+                width: 100%;
+                border: 1px solid #ccc;
+                padding: 1.5rem 1rem 1.5rem 3.5rem;
+                color: #999;
+                border-radius: 3px;
+                margin: 0.5rem 0;
+              }
+        }
+        
+        .total-candidates {
+            width: 100%;
+            text-align: center;
+            color: $grey;
+            padding: 2rem 0;
+        }
         .profile {
             align-items: center;
             h2 {
