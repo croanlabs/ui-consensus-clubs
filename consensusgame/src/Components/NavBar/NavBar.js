@@ -36,28 +36,15 @@ const NavBar = () => {
               Consensus Clubs
             </Link>
           </li>
-        {Pages.map(page => (
+      </ul>
+      <ul className="right">
+      {Pages.map(page => (
           <li key={page.pageName}>
             <Link className="nav-link" to={page.toLink}>
               {page.pageName}
             </Link>
           </li>
         ))}
-      </ul>
-      <ul className="right">
-        <li>
-          <a href={twitterLogInUrl} className="nav-link">
-            <span className="white">Sign up</span>
-          </a>
-        </li>
-        <li className="last">
-          <a href={twitterLogInUrl} className="nav-link">
-            <span className="white">Log in</span>
-          </a>
-        </li>
-        <li className="icon">
-          <a href="#" className="burger">&#9776;</a>
-        </li>
       </ul>
       
     </div>

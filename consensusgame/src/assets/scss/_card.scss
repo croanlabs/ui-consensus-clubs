@@ -11,13 +11,21 @@
 
     .card-container { 
         margin: 1em;
+        .number {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
     }
 
     &.yellow {
         border-left-color: $yellow;
+        
         .profile {
             img {
                 border-color: lighten($yellow, 10%);
+            }
+            .number {
+                color: $yellow;
             }
         }
     }
@@ -28,6 +36,10 @@
             img {
                 border-color: lighten($teal, 10%);
             }
+            
+            .number {
+                color: $teal;
+            }
         }
     }
 
@@ -36,6 +48,9 @@
         .profile {
             img {
                 border-color: $purple;
+            }
+            .number {
+                color: $purple;
             }
         }
     }
@@ -46,6 +61,9 @@
             img {
                 border-color: $red;
             }
+            .number {
+                color: $red;
+            }
         }
     }
 
@@ -54,6 +72,9 @@
         .profile {
             img {
                 border-color: $green;
+            }
+            .number {
+                color: $green;
             }
         }
     }

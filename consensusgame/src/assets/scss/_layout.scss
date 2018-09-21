@@ -4,6 +4,7 @@
     display: block;
     > .col {
         width: 100%;
+        position: relative;
     }
     section, aside {
         padding: 1em 0;
