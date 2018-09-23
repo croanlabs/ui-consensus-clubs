@@ -100,7 +100,8 @@ class Polls extends Component {
                 <ul className="candidates">
               {/* todo: List each candidate */}
                 <li className="card yellow">
-                  <div className="card-container flex-sb">
+                  <div className="card-container">
+                  <div className="flex-sb">
                     <div className="profile flex">
                       <div className="number">1</div>
                       <div className="image-cropper"><img src={profilePic} alt="Metem" className="profile-pic" /></div>
@@ -113,6 +114,20 @@ class Polls extends Component {
                     <div className="rating flex">
                       <div className="up flex"><i><img src={upArrow} alt="Rating Up" /></i><span>15.1k</span></div>
                       <div className="down flex"><i><img src={downArrow} alt="Rating Down" /></i><span>2.8k</span></div>
+                    </div>
+                    </div>
+                    <div className="candidate">
+                      <p className="info">
+                        Cryptocurrency research. Tweets are our opinion only. 
+                        Tweets are for informational purposes and do not represent financial advice.
+                      </p>
+                      <p>
+                        <i><img src={upArrow} alt="Rating Up" /></i>
+                      </p>
+                      <button>I support @melt_Dem</button>
+                      <p className="oppose">
+                        <i><img src={downArrow} alt="Rating Down" /></i><span>Do you oppose @melt_Dem</span>
+                      </p>
                     </div>
                   </div>
                 </li>
