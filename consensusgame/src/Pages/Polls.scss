@@ -89,6 +89,9 @@
 
         .candidate {
             text-align: center;
+            .info {
+                line-height: 1.5;
+            }
             .oppose {
                 display: flex;
                 align-items: center;
@@ -126,6 +129,73 @@
                 align-items: center; 
                 margin-left: 1em;
                 font-weight: 600;
+            }
+        }
+        .position-content {
+            text-align: center;
+
+            .switch-field {
+                padding: 2em 0;
+                overflow: hidden;
+              }
+              
+              .switch-field input {
+                  position: absolute !important;
+                  clip: rect(0, 0, 0, 0);
+                  height: 1px;
+                  width: 1px;
+                  border: 0;
+                  overflow: hidden;
+              }
+              
+              .switch-field label {
+                float: left;
+              }
+              
+              .switch-field label {
+                display: inline-block;
+                width: 50%;
+                background-color: lighten($grey, 40%);
+                color: rgba(0, 0, 0, 0.6);
+                font-size: 14px;
+                font-weight: normal;
+                text-align: center;
+                text-shadow: none;
+                padding: 1em;
+                border: none;
+                transition: all 0.1s ease-in-out;
+              }
+              
+              .switch-field label:hover {
+                  cursor: pointer;
+              }
+              
+              .switch-field input:checked + label {
+                background-color: $blue2;
+                color: white;
+                box-shadow: none;
+              }
+              
+              .switch-field label:first-of-type {
+                border-radius: 3px 0 0 3px;
+              }
+              
+              .switch-field label:last-of-type {
+                border-radius: 0 3px 3px 0;
+              }
+            .current-value {
+                color: $grey;
+            }
+            .merits {
+                color: $teal;
+                font-size: 2rem;
+            }
+            .withdraw-support {
+                color: $blue2;
+                font-size: 1.3rem;
+                span {
+                    color: $green;
+                }
             }
         }
     }
