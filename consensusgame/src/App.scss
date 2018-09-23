@@ -10,6 +10,11 @@
   margin-left: auto;
 }
 
+header {
+  background: white;
+  height: 50px;
+}
+
 @media (min-width: 1200px) {
   .wrapper {
     width: 1170px;

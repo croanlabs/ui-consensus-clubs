@@ -7,7 +7,7 @@ import "./NavBar.css";
 const NavBar = () => {
   const Pages = [
     {
-      pageName: "Polls",
+      pageName: "Home",
       toLink: "/polls"
     },
     {
@@ -15,12 +15,8 @@ const NavBar = () => {
       toLink: "/notifications"
     },
     {
-      pageName: "Rewards",
+      pageName: "Reward",
       toLink: "/rewards"
-    },
-    {
-      pageName: "Score",
-      toLink: "/score"
     },
     {
       pageName: "Profile",

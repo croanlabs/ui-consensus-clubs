@@ -15,24 +15,23 @@ class App extends Component {
         
         <div className="left-half"></div>
         <div className="right-half"></div>
-        <div className="wrapper">
-          <nav>
+        <header>
+          <nav className="wrapper">
             <NavBar />
           </nav>
-          <main>
-            <Switch>
-              <Route path="/polls/:id" render={props => <Polls {...props} />} />
-              <Route path="/polls" render={props => <Polls {...props} />} />
-              <Route path="/notifications" component={Notifications} />
-              <Route path="/rewards" component={Rewards} />
-              <Route path="/score" component={Score} />
-              <Route path="/profile" component={Profile} />
-              <Route path="/" component={Polls} />
-              <Route component={() => <p>This page does not exist!</p>} />
-            </Switch>
-          </main>
-        </div>
-
+        </header>
+        <main className="wrapper">
+          <Switch>
+            <Route path="/polls/:id" render={props => <Polls {...props} />} />
+            <Route path="/polls" render={props => <Polls {...props} />} />
+            <Route path="/notifications" component={Notifications} />
+            <Route path="/rewards" component={Rewards} />
+            <Route path="/score" component={Score} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/" component={Polls} />
+            <Route component={() => <p>This page does not exist!</p>} />
+          </Switch>
+        </main>
       </div>
     );
   }
