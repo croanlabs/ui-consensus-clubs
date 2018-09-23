@@ -157,23 +157,44 @@ class Polls extends Component {
                 <input type="search" className="find" placeholder="Find Candidate..." />
               </div>
               
-              <p className="total-candidates">Total Candidates - 6</p>
+              <p className="total-candidates">Total Candidates - 3</p>
               <ul className="candidates">
               {/* todo: List each candidate */}
                 <li className="card purple">
-                  <div className="card-container flex-sb">
-                    <div className="profile flex">
-                      <div className="number">1</div>
-                      <div className="image-cropper"><img src={profilePic} alt="Metem" className="profile-pic" /></div>
-                      <div className="name">
-                        <h2>Meltem Demirors</h2>
-                        <h3>@melt_Dem</h3>
+                  <div className="card-container">
+                    <div className="flex-sb">
+                      <div className="profile flex">
+                        <div className="number">1</div>
+                        <div className="image-cropper"><img src={profilePic} alt="Metem" className="profile-pic" /></div>
+                        <div className="name">
+                          <h2>Meltem Demirors</h2>
+                          <h3>@melt_Dem</h3>
+                        </div>
+                      </div>
+                      
+                      <div className="rating flex">
+                        <div className="up flex"><i><img src={upArrow} alt="Rating Up" /></i><span>837 Merits</span></div>
+                        <div className="down flex"><i><img src={downArrow} alt="Rating Down" /></i></div>
                       </div>
                     </div>
-                    
-                    <div className="rating flex">
-                      <div className="up flex"><i><img src={upArrow} alt="Rating Up" /></i><span>15.1k</span></div>
-                      <div className="down flex"><i><img src={downArrow} alt="Rating Down" /></i><span>2.8k</span></div>
+                    <div className="position-content">
+                      <form class="form">
+                        <div class="switch-field">
+                          <input type="radio" id="switch_left" name="switch_2" value="Withdraw" checked/>
+                          <label for="switch_left">Withdraw</label>
+                          <input type="radio" id="switch_right" name="switch_2" value="modify" />
+                          <label for="switch_right">Modify</label>
+                        </div>
+                      </form>
+                      <p className="current-value">
+                        Current Value
+                      </p>
+                      <p className="merits">
+                        1,231 Merits
+                      </p>
+                      <p className="withdraw-support">
+                        Withdraw my support for an <span>18.3%</span> gain
+                      </p>
                     </div>
                   </div>
                 </li>
