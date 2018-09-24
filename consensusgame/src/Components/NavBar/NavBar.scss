@@ -25,10 +25,11 @@
     transition: 0.3s;
 }
 
-.navbar ul li.first a {
+.navbar-brand {
     padding-left: 0;
     margin-right: 24px;
     font-weight: 600;
+    text-decoration: none;
 }
 
 .navbar ul li:last-child a {
@@ -43,7 +44,20 @@
 .navbar ul li a:hover {color: #111;}
 
 /* Hide the list item that contains the link that should open and close the topnav on small screens */
-.navbar ul li.icon {display: none;font-size: 2em;}
+.navbar ul li {
+    .nav-link {
+        font-size: 10px;
+        img {
+            height: 15px;
+        }
+        .profile-pic {
+            img {
+                height: 25px;
+            }
+        }
+    }
+}
+
 
 /* When the screen is less than 680 pixels wide, hide all list items, except for the first one ("Home"). Show the list item that contains the link to open and close the topnav (li.icon) */
 /*
