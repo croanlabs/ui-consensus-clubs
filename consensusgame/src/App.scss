@@ -13,11 +13,18 @@
 header {
   background: white;
   height: 50px;
+  border-bottom: 1px solid $grey;
 }
 
-@media (min-width: 1200px) {
+@media only screen and (min-width: 980px) {
+  header {
+    height: 100px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
   .wrapper {
-    width: 1170px;
+    width: 1440px;
   }
 }
 
@@ -33,6 +40,13 @@ ul {
 .container {
   background: white;
   padding: 1.5rem 2rem 2rem;
+}
+
+@media only screen and (min-width: 980px) {
+  .container {
+    background: transparent;
+    padding: 0;
+  }
 }
 
 section {
