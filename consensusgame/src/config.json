@@ -2,7 +2,14 @@
   "apiPolls": "http://192.168.99.100:31000/polls",
   "twitterLogInUrl": "http://192.168.99.100:31000/login/twitter",
   "apiUsers": "http://www.mocky.io/v2/5b8193523400006700ecb384",
-  "apiAddCandidate": "http://192.168.99.100:31000/polls/0/user-add-candidate",
+  "apiAddCandidate": "http://192.168.99.100:31000/polls/0/add-candidate",
   "moduleResolution": "node",
-  "mockyPolls": "http://www.mocky.io/v2/5b8e6896320000e00c7b391c"
+  "mockyPolls": "http://www.mocky.io/v2/5b93b7fd32000061007a6617",
+
+  "twitter": {
+    "consumer_key": "gikB5dYMFrzqoOaE41K6BFoky",
+    "consumer_secret": "TIVea5QSEPoPuxHORkW7WAm48WraOTTBuakcdAQ9cCcobOdL7U",
+    "access_token": "1011258807358492675-yjVPl1y8i4xAD88qYHNer5FTHlWX5g",
+    "access_token_secret": "I15tkknT3S1QYki0eYPbh1qn5fVGuKElRfUaa2ZG21F3n"
+  }
 }

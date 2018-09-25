@@ -7,7 +7,7 @@ const Pagination = props => {
   let nextArrowStyle;
   if (currentPage === 1) {
     nextArrowStyle = { margin: "0 0 0 70px" };
-  } else if (currentPage === 3) {
+  } else if (currentPage === itemCount) {
     nextArrowStyle = { display: "none" };
   } else {
     nextArrowStyle = { display: "inline-block" };

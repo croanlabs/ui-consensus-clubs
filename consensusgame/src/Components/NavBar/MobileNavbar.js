@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { twitterLogInUrl } from "../../config.json";
 import "./MobileNavbar.scss";
-import twitterLogIn from "../../assets/images/twitterLogIn.png";
 import { NavLink } from "react-router-dom";
 
 class MobileNavbar extends Component {

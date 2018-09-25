@@ -10,8 +10,16 @@ import upArrow from "../assets/icons/polls/up-arrow.png";
 import { Link } from "react-router-dom";
 import plusIcon from "../assets/icons/polls/plus.png";
 import "./Candidate.scss";
+import { NavLink } from "react-router-dom";
 
 class Candidates extends Component {
+  constructor() {
+    super();
+    this.state = {
+      search: "",
+      allCandidates: true
+    };
+  }
   // For voting!!!
   // confCandidate(id) {
   //   this.props.onConf(id);
@@ -39,100 +47,159 @@ class Candidates extends Component {
   //   this.setState({ candidates: candidates });
   // }
 
+  updateSearch(e) {
+    this.setState({ search: e.target.value });
+  }
+
+  allCandidates = () =>
+    this.setState(prevState => {
+      return { allCandidates: !prevState.allCandidates };
+    });
+
   handleAddCandidate = async () => {
     const obj = {
-      name: "adfasdfasdf",
-      description: "Cryptobobby needs a description bhabhabha",
-      twitterUser: "@klsjdfl,sdf",
-      confidence: "true",
-      amountMerits: 100
+      name: "dddddddddd",
+      description: "dddddddddd",
+      twitterUser: "@ddddddddddd"
     };
     const { data: candidate } = await axios.post(apiAddCandidate, obj);
-    console.log(candidate);
+    const candidates = [...this.props.poll.candidates, candidate];
+    this.setState({ candidates });
+    window.location.reload();
   };
 
   render() {
-    const { length: count } = this.props.poll.candidates;
+    let count;
+    if (this.props.poll.candidates && this.props.poll.candidates.length >= 0) {
+      count = this.props.poll.candidates.length;
+    }
     const colors = ["yellow", "teal", "purple", "red", "green"];
 
     if (count === 0) return <p>There are no candidates yet.</p>;
 
+    let filteredCandidates =
+      this.props.poll.candidates &&
+      this.props.poll.candidates.filter(candidate => {
+        return (
+          candidate.name
+            .toLowerCase()
+            .indexOf(this.state.search.toLowerCase()) !== -1
+        );
+      });
     return (
       <div className="candidates">
-        <AddCandidate onClick={this.handleAddCandidate} />
-        <Link to="/candidates/new">
-          <p className="add-new-candidate flex">
-            <i className="icon">
-              <img src={plusIcon} alt="Add New Candidate" />
-            </i>
-            <span>Add New Candidate</span>
-          </p>
-        </Link>
+        {/* <AddCandidate onClick={this.handleAddCandidate} /> */}
+        <li key="AddCandidateForm">
+          {/* <NavLink to="/addcandidateform" className="" activeClassName="active"> */}
+          <button className="btn btn-primary" onClick={this.handleAddCandidate}>
+            Add
+          </button>
+          {/* <button>
+              <p className="add-new-candidate flex">
+                <i className="icon">
+                  <img src={plusIcon} alt="Add New Candidate" />
+                </i>
+                <span>Add New Candidate</span>
+              </p>
+            </button>
+          </NavLink> */}
+        </li>
+        {this.state.allCandidates ? (
+          <div>
+            <button disabled onClick={() => this.allCandidates()}>
+              <strong>All candidates</strong>
+            </button>
+            <button onClick={() => this.allCandidates()}>My positions</button>
+            {/* Search box */}
+            <br />
+            <br />
+            <input
+              type="text"
+              value={this.state.search}
+              onChange={this.updateSearch.bind(this)}
+            />
+            {/* Total candidates */}
+            <h3 style={{ color: "black" }}>
+              <strong>{count}</strong> candidates
+            </h3>
+            <br />
+            <ul className="candidates">
+              {filteredCandidates &&
+                filteredCandidates.map((candidate, index) => (
+                  <li
+                    key={candidate.id}
+                    className={`card ${colors[index % colors.length]}`}
+                  >
+                    <div className="layout card-container">
+                      <div className="profile flex">
+                        <div className="image-cropper">
+                          <img
+                            src={profilePic}
+                            alt="Metem"
+                            className="profile-pic"
+                          />
+                        </div>
+                        <div className="name">
+                          <h2>{candidate.name}</h2>
+                          <h3>{candidate.twitter_user}</h3>
+                        </div>
+                      </div>
 
-        <h3 style={{ color: "black" }}>
-          <strong>{count}</strong> candidates
-        </h3>
-        <br />
-        <ul className="candidates">
-          {/* todo: List each candidate */}
-          {this.props.poll.candidates.map((candidate, index) => (
-            <li
-              key={candidate.id}
-              className={`card ${colors[index % colors.length]}`}
-            >
-              <div className="layout card-container">
-                <div className="profile flex">
-                  <div className="image-cropper">
-                    <img src={profilePic} alt="Metem" className="profile-pic" />
-                  </div>
-                  <div className="name">
-                    <h2>{candidate.name}</h2>
-                    <h3>{candidate.twitter_user}</h3>
-                  </div>
-                </div>
-
-                <div className="rating flex">
-                  <div className="up flex">
-                    <i>
-                      <img src={upArrow} alt="Rating Up" />
-                    </i>
-                    <span>
-                      {candidate.total_tokens_confidence > 500000
-                        ? (candidate.total_tokens_confidence / 1000000).toFixed(
-                            1
-                          ) + "M"
-                        : candidate.total_tokens_confidence > 500
-                          ? (candidate.total_tokens_confidence / 1000).toFixed(
-                              1
-                            ) + "K"
-                          : candidate.total_tokens_confidence}
-                    </span>
-                  </div>
-                  <div className="down flex">
-                    <i>
-                      <img src={downArrow} alt="Rating Down" />
-                    </i>
-                    <span>
-                      {candidate.total_tokens_no_confidence > 500000
-                        ? (
-                            candidate.total_tokens_no_confidence / 1000000
-                          ).toFixed(1) + "M"
-                        : candidate.total_tokens_no_confidence > 500
-                          ? (
-                              candidate.total_tokens_no_confidence / 1000
-                            ).toFixed(1) + "K"
-                          : candidate.total_tokens_no_confidence}
-                    </span>
-                  </div>
-                  <StakeMerits shown={true} />
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-        <br />
-        <br />
-        <br />
+                      <div className="rating flex">
+                        <div className="up flex">
+                          <i>
+                            <img src={upArrow} alt="Rating Up" />
+                          </i>
+                          <span>
+                            {candidate.total_tokens_confidence > 500000
+                              ? (
+                                  candidate.total_tokens_confidence / 1000000
+                                ).toFixed(1) + "M"
+                              : candidate.total_tokens_confidence > 500
+                                ? (
+                                    candidate.total_tokens_confidence / 1000
+                                  ).toFixed(1) + "K"
+                                : candidate.total_tokens_confidence}
+                          </span>
+                        </div>
+                        <div className="down flex">
+                          <i>
+                            <img src={downArrow} alt="Rating Down" />
+                          </i>
+                          <span>
+                            {candidate.total_tokens_no_confidence > 500000
+                              ? (
+                                  candidate.total_tokens_no_confidence / 1000000
+                                ).toFixed(1) + "M"
+                              : candidate.total_tokens_no_confidence > 500
+                                ? (
+                                    candidate.total_tokens_no_confidence / 1000
+                                  ).toFixed(1) + "K"
+                                : candidate.total_tokens_no_confidence}
+                          </span>
+                        </div>
+                        <StakeMerits
+                          shown={true}
+                          isLoggedInOrOut={this.props.isLoggedInOrNot}
+                        />
+                      </div>
+                    </div>
+                  </li>
+                ))}
+            </ul>
+            <br />
+            <br />
+            <br />
+          </div>
+        ) : (
+          <div>
+            <button onClick={() => this.allCandidates()}>All candidates</button>
+            <button disabled onClick={() => this.allCandidates()}>
+              <strong>My positions</strong>
+            </button>
+            <p>No position yet</p>
+          </div>
+        )}
       </div>
     );
   }
@@ -145,7 +212,7 @@ class Candidates extends Component {
   //     {this.props.candidate.twitter}
   //     <br />
   //     {this.props.candidate.conf}{" "}
-  //     <a
+  //</li>     <a
   //       href="#"
   //       onClick={this.confCandidate.bind(this, this.props.candidate.id)}
   //     >

@@ -1,11 +1,16 @@
 import React, { Component } from "react";
+import { twitterLogInUrl } from "../../src/config.json";
+import AfterStaked from "./AfterStaked";
+import { Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class StakeMerits extends Component {
   constructor() {
     super();
     this.state = {
       shown: false,
-      confidence: true
+      confidence: true,
+      isSupported: true
     };
   }
   showMoreInfo = () => {
@@ -18,10 +23,43 @@ class StakeMerits extends Component {
     this.setState(prevState => {
       return { confidence: !prevState.confidence };
     });
-  support = () => console.log("Supported!!");
-  unSupport = () => console.log("UNSupported!!");
+
+  support = () => {
+    this.props.isLoggedIn
+      ? console.log("supported")
+      : console.log("Please log in");
+    // {
+    //   this.props.isLoggedIn ? (
+    //     <AfterStaked isSupported={this.state.isSupported} />
+    //   ) : (
+    //     <Redirect push to={twitterLogInUrl} />
+    //   );
+    // }
+  };
 
   render() {
+    let support;
+    if (this.props.isLoggedInOrOut) {
+      support = (
+        <li key="AfterStaked">
+          <NavLink
+            className=""
+            activeClassName="active"
+            to="/afterstaked"
+            isSupported={this.state.isSupported}
+          >
+            Support
+          </NavLink>
+        </li>
+      );
+    } else {
+      support = (
+        <a href={twitterLogInUrl} className="">
+          <span className="">Support</span>
+        </a>
+      );
+    }
+
     return (
       <div>
         {/* Show and Hide button */}
@@ -41,8 +79,8 @@ class StakeMerits extends Component {
                 </button>
                 <button onClick={() => this.confidence()}>No confidence</button>
                 <p>Adjust the slider to set the merit points</p>
-                <h1>Graph</h1>
-                <button onClick={() => this.support()}>Support</button>
+                <h1 style={{ color: "black" }}>Graph</h1>
+                {support}
               </div>
             ) : (
               <div>
@@ -51,7 +89,7 @@ class StakeMerits extends Component {
                   <strong>No confidence</strong>
                 </button>
                 <p>Adjust the slider to set the merit points</p>
-                <h1>Graph</h1>
+                <h1 style={{ color: "black" }}>Graph</h1>
                 <button onClick={() => this.unSupport()}>Unsupport</button>
               </div>
             )}

@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import NumericInput from "react-numeric-input";
-import Profile from "./Profile";
-import Joi from "joi-browser";
+import { Component } from "react";
+// import PropTypes from "prop-types";
+// import NumericInput from "react-numeric-input";
+// import Profile from "./Profile";
+// import Joi from "joi-browser";
 // import { getMovie, saveMovie } from "../services/fakeMovieService";
-import { getTwitterUsers } from "../services/fakeTwitterUser";
+// import { getTwitterUsers } from "../services/fakeTwitterUser";
 
 class AddCandidate extends Component {
   state = {

@@ -19,24 +19,22 @@ class Polls extends Component {
   }
 
   async componentDidMount() {
-    const { data: polls } = await axios.get(
-      "http://www.mocky.io/v2/5b93b7fd32000061007a6617"
-    );
+    const { data: polls } = await axios.get(apiPolls);
     this.setState({ polls });
   }
-
-  handleAddPoll(poll) {
-    let polls = this.state.polls;
-    polls.push(poll);
-    this.setState({ polls: polls });
-  }
-
-  // handleAddPoll = async () => {
-  //   const obj = { question: "a", description: "b" };
-  //   const { data: poll } = await axios.post(apiPolls, obj);
-  //   console.log(poll);
-  //   this.setState({ polls });
-  // };
+  handleAddPoll = async () => {
+    const obj = {
+      question: "What is the best crypto in Japan?",
+      description: "Wowwwwwwwwwww"
+    };
+    const { data: poll } = await axios.post(
+      "http://192.168.99.100:31000/polls/create",
+      obj
+    );
+    const polls = [...this.state.polls, poll];
+    this.setState({ polls });
+    window.location.reload();
+  };
 
   handleNextPage = page => {
     this.setState({ currentPage: page + 1 });
@@ -55,8 +53,7 @@ class Polls extends Component {
       <div className="layout polls">
         <aside className="col">
           <h2>
-            {currentPage}
-            /3
+            {currentPage}/{count}
           </h2>
           {/* List each poll */}
           <ul className="list-unstyled">
@@ -76,6 +73,9 @@ class Polls extends Component {
               currentPage={currentPage}
             />
           </p>
+          <button className="btn btn-primary" onClick={this.handleAddPoll}>
+            Add
+          </button>
         </aside>
 
         <section className="col">
@@ -83,7 +83,12 @@ class Polls extends Component {
           <ul className="list-unstyled">
             {polls.map(poll => (
               <li key={poll.id}>
-                <Candidates key={poll.id} id={poll.id} poll={poll} />
+                <Candidates
+                  key={poll.id}
+                  id={poll.id}
+                  poll={poll}
+                  isLoggedInOrNot={this.props.isLoggedIn}
+                />
               </li>
             ))}
           </ul>
