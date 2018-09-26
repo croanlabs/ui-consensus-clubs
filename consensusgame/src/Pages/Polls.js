@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 import AddPoll from "./AddPoll";
 import Pagination from "../Components/Pagination";
 import Tabs from '../Components/Tabs/Tabs';
+import Congrats from '../Components/Congratulations/Congratulations';
+import Merits from '../Components/Merits/Merits';
+import WithdrawModify from '../Components/WithdrawModify/WithdrawModify';
 import { Paginate } from "../utils/Paginate";
 import { apiPolls } from "../config.json";
 import { mockyPolls } from "../config.json";
@@ -13,6 +16,7 @@ import profilePic from "../assets/images/profile/Aripaul@2x.png";
 import downArrow from "../assets/icons/polls/down-arrow.png";
 import upArrow from "../assets/icons/polls/up-arrow.png";
 import searchIcon from "../assets/icons/search-icon.png";
+import downTriggerArrow from "../assets/icons/collapse-icon.png";
 import "./Polls.scss";
 // import { Link } from "react-router-dom";
 
@@ -96,10 +100,11 @@ class Polls extends Component {
                 <input type="search" className="find" placeholder="Find Candidate..." />
               </div>
             <p className="total-candidates">Total Candidates - 6</p>
-                <ul className="candidates">
+              <ul className="candidates">
               {/* todo: List each candidate */}
                 <li className="card yellow">
                   <div className="card-container">
+                  <div className="arrow-trigger"><i><img src={downTriggerArrow} alt="Expanded" className="down-arrow" /></i></div>
                   <div className="flex-sb">
                     <div className="profile flex">
                       <div className="number">1</div>
@@ -115,12 +120,12 @@ class Polls extends Component {
                       <div className="down flex"><i><img src={downArrow} alt="Rating Down" /></i><span>2.8k</span></div>
                     </div>
                     </div>
-                    <div className="candidate">
-                      <p className="info">
-                        Cryptocurrency research. Tweets are our opinion only. 
+                    <p className="info">
+                        Cryptocurrency research. Tweets are our opinion only.<br /> 
                         Tweets are for informational purposes and do not represent financial advice.
-                      </p>
-                      <p>
+                    </p>
+                    <div className="candidate">                      
+                      <p className="arrow">
                         <i><img src={upArrow} alt="Rating Up" /></i>
                       </p>
                       <button>I support @melt_Dem</button>
@@ -130,25 +135,38 @@ class Polls extends Component {
                     </div>
                   </div>
                 </li>
-                {/* todo: dynamically add color class for each candidate to pick up colors */}
+                
                 <li className="card red">
-                  <div className="card-container flex-sb">
-                    <div className="profile flex">
-                      <div className="number">2</div>
-                      <div className="image-cropper"><img src={profilePic} alt="Ari Paul" className="profile-pic" /></div>
-                      <div className="name">
-                        <h2>Ari Paul</h2>
-                        <h3>@aridavidpaul</h3>
+                  <div className="card-container">
+                    <div className="flex-sb">
+                      <div className="profile flex">
+                        <div className="number">2</div>
+                        <div className="image-cropper"><img src={profilePic} alt="Ari Paul" className="profile-pic" /></div>
+                        <div className="name">
+                          <h2>Ari Paul</h2>
+                          <h3>@aridavidpaul</h3>
+                        </div>
+                      </div>
+                      
+                      <div className="rating flex">
+                        <div className="up flex"><i><img src={upArrow} alt="Rating Up" /></i><span>15.1k</span></div>
+                        <div className="down flex"><i><img src={downArrow} alt="Rating Down" /></i><span>2.8k</span></div>
                       </div>
                     </div>
-                    
-                    <div className="rating flex">
-                      <div className="up flex"><i><img src={upArrow} alt="Rating Up" /></i><span>15.1k</span></div>
-                      <div className="down flex"><i><img src={downArrow} alt="Rating Down" /></i><span>2.8k</span></div>
-                    </div>
+
+                    <p className="info">
+                        Cryptocurrency research. Tweets are our opinion only.<br />
+                        Tweets are for informational purposes and do not represent financial advice.
+                    </p>
+
+                    <Merits />
+
                   </div>
                 </li>
               </ul>
+
+              <Congrats />
+
             </div>
             <div label="My Positions">
               <div className="search-bar">
@@ -172,29 +190,11 @@ class Polls extends Component {
                       </div>
                       
                       <div className="rating flex">
-                        <div className="up flex"><i><img src={upArrow} alt="Rating Up" /></i><span>837 Merits</span></div>
-                        <div className="down flex"><i><img src={downArrow} alt="Rating Down" /></i></div>
+                        <div className="up flex"><i><img src={upArrow} alt="Rating Up" /></i><span className="merit-num">837 Merits</span></div>
                       </div>
                     </div>
-                    <div className="position-content">
-                      <form class="form">
-                        <div class="switch-field">
-                          <input type="radio" id="switch_left" name="switch_2" value="Withdraw" checked/>
-                          <label for="switch_left">Withdraw</label>
-                          <input type="radio" id="switch_right" name="switch_2" value="modify" />
-                          <label for="switch_right">Modify</label>
-                        </div>
-                      </form>
-                      <p className="current-value">
-                        Current Value
-                      </p>
-                      <p className="merits">
-                        1,231 Merits
-                      </p>
-                      <p className="withdraw-support">
-                        Withdraw my support for an <span>18.3%</span> gain
-                      </p>
-                    </div>
+                    <WithdrawModify />
+                    
                   </div>
                 </li>
                 {/* todo: dynamically add color class for each candidate to pick up colors */}

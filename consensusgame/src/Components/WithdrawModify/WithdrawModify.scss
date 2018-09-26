@@ -1,0 +1,84 @@
+@import "../../assets/scss/variables";
+.withdraw-modify {
+    text-align: center;
+    margin: 2em auto 5em;
+    width: 90%;
+
+    .switch-field {
+        padding: 2em 0;
+        overflow: hidden;
+      }
+      
+      .switch-field input {
+          position: absolute !important;
+          clip: rect(0, 0, 0, 0);
+          height: 1px;
+          width: 1px;
+          border: 0;
+          overflow: hidden;
+      }
+      
+      .switch-field label {
+        float: left;
+      }
+      
+      .switch-field label {
+        display: inline-block;
+        width: 50%;
+        background-color: lighten($grey, 40%);
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 14px;
+        font-weight: normal;
+        text-align: center;
+        text-shadow: none;
+        padding: 1em;
+        border: none;
+        transition: all 0.1s ease-in-out;
+      }
+      
+      .switch-field label:hover {
+          cursor: pointer;
+      }
+      
+      .switch-field input:checked + label {
+        background-color: $blue2;
+        color: white;
+        box-shadow: none;
+      }
+      
+      .switch-field label:first-of-type {
+        border-radius: 3px 0 0 3px;
+      }
+      
+      .switch-field label:last-of-type {
+        border-radius: 0 3px 3px 0;
+      }
+
+      .container {          
+        font-family: SFProMedium;
+
+        .current-value {
+            color: $grey;
+            padding: 2em 0 0;
+            margin: 0;
+            font-size: 1.5em;
+        }
+        .merits-count {
+            color: $teal;
+            font-size: 2.5em;
+            padding: 0.5em 0 1em;
+            margin: 0;
+        }
+        .withdraw-support {
+            color: $blue2;
+            font-size: 1.3em;
+            padding: 0;
+            margin: 0;
+            span {
+                color: $green;
+            }
+        }
+
+      }
+    
+}

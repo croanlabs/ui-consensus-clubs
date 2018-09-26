@@ -1,0 +1,21 @@
+@import "../../assets/scss/variables";
+.congratulations {
+    .card-container {
+        margin: 8em auto;
+        text-align: center;
+        img {
+            height: 100px;
+        }
+        h2 {
+            color: $grey;
+            font-size: 3.3em;
+            padding-top: 0.5em;
+        }
+        p {
+            font-size: 1.5em;
+            color: $light-grey;
+            margin: 1em auto;
+            width: 50%;
+        }
+    }
+}
