@@ -1,4 +1,5 @@
 /* Layout */
+@import "./variables";
 
 .layout {
     display: block;
@@ -17,7 +18,7 @@
 @media only screen and (max-width: 979px) {
     /* 50/50 background split */
     .left-half {
-        background: url(assets/images/Background.jpg);
+        background: url(assets/images/bg-image-mobile.png);
         width: 100%;
         position: absolute;
         left: 0;
@@ -43,7 +44,7 @@
     } 
 
     .left-half {
-        background: url(assets/images/Background.jpg);
+        background: url(assets/images/bg-image.png);
         width: 50%;
         position: absolute;
         left: 0;
@@ -52,7 +53,7 @@
         opacity: 0.2;
       }
       .right-half {
-        background: #2251dd;
+        background: $blue;
         width: 50%;
         position: absolute;
         right: 0;

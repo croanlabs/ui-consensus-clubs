@@ -4,8 +4,8 @@
 
 /* Wrapper */
 .wrapper {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 2em;
+  padding-left: 2em;
   margin-right: auto;
   margin-left: auto;
 }
@@ -13,7 +13,7 @@
 header {
   background: white;
   height: 50px;
-  border-bottom: 1px solid $grey;
+  border-bottom: 1px solid $light-grey;
 }
 
 @media only screen and (min-width: 980px) {
@@ -79,12 +79,13 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 h1 {
-  font-size: 3.79rem;
+  font-size: 5.33em;
   color: $navy;
+  font-family: SFProLight, Helvetica, Arial, sans-serif;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   color: $h2-color;
   .color2 {
     color: $h2-color2;
@@ -101,16 +102,16 @@ h2 {
 }
 
 h3 {
-  font-size: 1.125rem;
+  font-size: 1.125em;
   color: $h3-color;
 }
 
 h4 {
-  font-size: 1rem;
+  font-size: 1em;
 }
 
 h6 {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   color: $h2-color;
   margin-top: 0.5em;
 }
@@ -150,7 +151,7 @@ h6 {
 
 @media only screen and (max-width: 479px) {
   h1 {
-    font-size: 1.825rem;
+    font-size: 1.825em;
   }
   section {
     font-size: 40%;

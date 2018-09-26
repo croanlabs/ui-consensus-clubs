@@ -84,7 +84,6 @@ class Polls extends Component {
         </aside>
         
         <section className="col">
-          <h1>Candidates</h1>
           <p className="add-new-candidate flex">
             <i className="icon"><img src={plusIcon} alt="Add New Candidate" /></i>
             <span>Add New Candidate</span>

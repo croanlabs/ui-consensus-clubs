@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>Rewards</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Rewards" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Rewards-inactive" transform="translate(1.423828, 0.000000)" fill-rule="nonzero">
+            <polygon id="Shape" fill="#ADADAD" points="3.072125 6.04975 0.0161875 11.80725 2.79125 11.550875 4.134375 13.993 7.1903125 8.2355"></polygon>
+            <g id="Group" transform="translate(4.515625, 6.042969)" fill="#ADADAD">
+                <polygon id="Shape" points="4.272875 0.00678125 7.3288125 5.76428125 4.55375 5.50790625 3.210625 7.95003125 0.1546875 2.19253125"></polygon>
+            </g>
+            <circle id="Oval" fill="#373838" cx="5.9303125" cy="5.1060625" r="5.1060625"></circle>
+            <path d="M5.9303125,8.7504375 C3.9204375,8.7504375 2.2855,7.1150625 2.2855,5.105625 C2.2855,3.0961875 3.9204375,1.46125 5.9303125,1.46125 C7.9401875,1.46125 9.575125,3.096625 9.575125,5.1060625 C9.575125,7.1155 7.9401875,8.7504375 5.9303125,8.7504375 Z" id="Shape" fill="#ADADAD"></path>
+        </g>
+    </g>
+</svg>

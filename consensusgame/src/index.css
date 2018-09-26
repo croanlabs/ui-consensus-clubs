@@ -35,21 +35,22 @@ body {
   margin: 0;
   padding: 0;
   font-family: SFPro, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  height: 100%;
+  font-size: 12px;
   letter-spacing: 0.03em;
   color: #4a4a4a;
-  background: #334bc9 url(assets/images/bg-image.png);
-  background-position: 0 0;
-  background-size: 50%;
-  background-repeat: repeat-y;
-  min-height: 100%;
+  background-image: linear-gradient(
+    to right, 
+    white 0%,
+    white 50%, 
+    #334bc9 50%, 
+    #334bc9 100%
+  );
 }
 
 @media only screen and (max-width: 979px) {
   body {
-    background-color: white;
-    background-size: 100%;
+    background: white url(assets/images/bg-image-mobile.png) 0 0 repeat-y;
+    background-size: contain;
   }
 }
 

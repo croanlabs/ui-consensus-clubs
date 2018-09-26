@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import thumbsUpIcon from "../assets/icons/notifications/thumbs-up.png";
 import newIcon from "../assets/icons/notifications/new.png";
+import voteIcon from "../assets/icons/votetime-icon.png";
+import thumbsDownIcon from "../assets/icons/thumbdown-icon.png";
+import referralIcon from "../assets/icons/referralsuccess-icon.png";
 import "./Notifications.scss";
 {/* todo: need to hook up these icons to array below...
 import thumbsUpIcon from "../assets/icons/notifications/thumbs-up.png";
@@ -28,7 +31,7 @@ class Notifications extends Component {
         title: "Time to vote",
         description: "Remove @scamcoin?",
         time: "12 Aug",
-        icon: "poll"
+        icon: voteIcon
       },
       {
         title: "Congrates! Successful Consensus!",
@@ -40,13 +43,13 @@ class Notifications extends Component {
         title: "Oops! Weak Consensus",
         description: "@kalesamani is down 13.6%",
         time: "19 Aug",
-        icon: "thumbs down"
+        icon: thumbsDownIcon
       },
       {
         title: "Referral Success",
         description: "Seamus has joined - 500 merits earned",
         time: "26 Aug",
-        icon: "cup"
+        icon: referralIcon
       }
     ];
     return (
