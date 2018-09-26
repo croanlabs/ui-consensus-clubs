@@ -12,9 +12,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        
-        <div className="left-half"></div>
-        <div className="right-half"></div>
         <header>
           <nav className="wrapper">
             <NavBar />

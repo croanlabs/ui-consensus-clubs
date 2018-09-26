@@ -39,6 +39,18 @@ body {
   height: 100%;
   letter-spacing: 0.03em;
   color: #4a4a4a;
+  background: #334bc9 url(assets/images/bg-image.png);
+  background-position: 0 0;
+  background-size: 50%;
+  background-repeat: repeat-y;
+  min-height: 100%;
+}
+
+@media only screen and (max-width: 979px) {
+  body {
+    background-color: white;
+    background-size: 100%;
+  }
 }
 
 h1, h2 {
