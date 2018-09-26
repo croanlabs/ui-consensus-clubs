@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { twitterLogInUrl } from "../../config.json";
+import menuLogo from "../../assets/images/logo.svg";
 import homeIcon from "../../assets/icons/svg/home-active.svg";
 import notificationsIcon from "../../assets/icons/svg/notifications-inactive.svg";
 import rewardIcon from "../../assets/icons/svg/rewards-inactive.svg";
@@ -12,7 +13,8 @@ const NavBar = () => {
   return (
     <div className="navbar">
       <Link className="navbar-brand" to="/">
-        Consensus Clubs
+        <span><img src={menuLogo} alt="Consensus Clubs" /></span>
+        <span className="logo-text">Consensus Clubs</span>
       </Link>
       <ul>
         <li>
