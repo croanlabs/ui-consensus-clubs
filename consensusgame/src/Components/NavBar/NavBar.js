@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { twitterLogInUrl } from "../../config.json";
-import homeIcon from "../../assets/icons/mobile/home-inactive-icon.png";
-import notificationsIcon from "../../assets/icons/mobile/notifications-inactive-icon.png";
-import rewardIcon from "../../assets/icons/mobile/rewards-inactive-icon.png";
+import homeIcon from "../../assets/icons/svg/home-active.svg";
+import notificationsIcon from "../../assets/icons/svg/notifications-inactive.svg";
+import rewardIcon from "../../assets/icons/svg/rewards-inactive.svg";
 import profilePic from "../../assets/images/profile-pic.jpg";
 import "./NavBar.scss";
 
