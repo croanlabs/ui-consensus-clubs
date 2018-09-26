@@ -36,6 +36,25 @@
     text-decoration: none;
     color: $navy;
     font-size: 2em;
+    display: flex;
+    align-items: center;
+    img {
+        height: 70px;
+    }
+
+    .logo-text {
+        display: none;
+    }
+
+    @media only screen and (max-width: 979px) {
+        img {
+            height: 30px;
+        }
+        .logo-text {
+            display: none;
+        }
+    }
+
 }
 
 .navbar ul li:last-child a {
