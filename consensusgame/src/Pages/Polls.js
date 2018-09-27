@@ -30,8 +30,10 @@ class Polls extends Component {
   }
 
   async componentDidMount() {
-    const { data: polls } = await axios.get(mockyPolls);
-    this.setState({ polls });
+    const { data: polls } = await axios.get(
+      `${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_POLLS}`
+    );
+    this.setState({ polls, totalPolls: polls.length });
   }
 
   handleAddPoll(poll) {
@@ -48,11 +50,19 @@ class Polls extends Component {
   // };
 
   handleNextPage = page => {
-    this.setState({ currentPage: page + 1 });
+    let currentPage =  (page + 1) % (this.state.totalPolls + 1);
+    if (currentPage == 0) {
+      currentPage = 1;
+    }
+    this.setState({ currentPage, poll: this.state.polls[currentPage - 1]});
   };
 
   handlePreviousPage = page => {
-    this.setState({ currentPage: page - 1 });
+    let currentPage =  (page - 1) % (this.state.totalPolls + 1);
+    if (currentPage == 0) {
+      currentPage = 1;
+    }
+    this.setState({ currentPage, poll: this.state.polls[currentPage - 1]});
   };
 
   render() {
@@ -75,7 +85,7 @@ class Polls extends Component {
                 </li>
               ))}
             </ul>
-            
+
             <p>
               {/* Arrows for changing displayed polls */}
               <Pagination
@@ -86,7 +96,7 @@ class Polls extends Component {
               />
             </p>
         </aside>
-        
+
         <section className="col">
           <p className="add-new-candidate flex">
             <i className="icon"><img src={plusIcon} alt="Add New Candidate" /></i>
@@ -102,6 +112,8 @@ class Polls extends Component {
             <p className="total-candidates">Total Candidates - 6</p>
               <ul className="candidates">
               {/* todo: List each candidate */}
+
+
                 <li className="card yellow">
                   <div className="card-container">
                   <div className="arrow-trigger"><i><img src={downTriggerArrow} alt="Expanded" className="down-arrow" /></i></div>
@@ -114,17 +126,17 @@ class Polls extends Component {
                         <h3>@melt_Dem</h3>
                       </div>
                     </div>
-                    
+
                     <div className="rating flex">
                       <div className="up flex"><i><img src={upArrow} alt="Rating Up" /></i><span>15.1k</span></div>
                       <div className="down flex"><i><img src={downArrow} alt="Rating Down" /></i><span>2.8k</span></div>
                     </div>
                     </div>
                     <p className="info">
-                        Cryptocurrency research. Tweets are our opinion only.<br /> 
+                        Cryptocurrency research. Tweets are our opinion only.<br />
                         Tweets are for informational purposes and do not represent financial advice.
                     </p>
-                    <div className="candidate">                      
+                    <div className="candidate">
                       <p className="arrow">
                         <i><img src={upArrow} alt="Rating Up" /></i>
                       </p>
@@ -135,7 +147,7 @@ class Polls extends Component {
                     </div>
                   </div>
                 </li>
-                
+
                 <li className="card red">
                   <div className="card-container">
                     <div className="flex-sb">
@@ -147,7 +159,7 @@ class Polls extends Component {
                           <h3>@aridavidpaul</h3>
                         </div>
                       </div>
-                      
+
                       <div className="rating flex">
                         <div className="up flex"><i><img src={upArrow} alt="Rating Up" /></i><span>15.1k</span></div>
                         <div className="down flex"><i><img src={downArrow} alt="Rating Down" /></i><span>2.8k</span></div>
@@ -173,7 +185,7 @@ class Polls extends Component {
                 <img src={searchIcon} alt="Find" />
                 <input type="search" className="find" placeholder="Find Candidate..." />
               </div>
-              
+
               <p className="total-candidates">Total Candidates - 3</p>
               <ul className="candidates">
               {/* todo: List each candidate */}
@@ -188,13 +200,13 @@ class Polls extends Component {
                           <h3>@melt_Dem</h3>
                         </div>
                       </div>
-                      
+
                       <div className="rating flex">
                         <div className="up flex"><i><img src={upArrow} alt="Rating Up" /></i><span className="merit-num">837 Merits</span></div>
                       </div>
                     </div>
                     <WithdrawModify />
-                    
+
                   </div>
                 </li>
                 {/* todo: dynamically add color class for each candidate to pick up colors */}
@@ -208,7 +220,7 @@ class Polls extends Component {
                         <h3>@aridavidpaul</h3>
                       </div>
                     </div>
-                    
+
                     <div className="rating flex">
                       <div className="up flex"><i><img src={upArrow} alt="Rating Up" /></i><span>15.1k</span></div>
                       <div className="down flex"><i><img src={downArrow} alt="Rating Down" /></i><span>2.8k</span></div>
@@ -220,7 +232,7 @@ class Polls extends Component {
           </Tabs>
 
           </div>
-          
+
         </section>
 
       </div>
