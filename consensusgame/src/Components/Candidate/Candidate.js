@@ -22,7 +22,7 @@ class Candidate extends Component {
     }
 
     return (
-      <li className="card yellow" onClick={this.onClick.bind(this)}>
+      <li className={`card ${this.props.color}`} onClick={this.onClick.bind(this)}>
         <div className="card-container">
           <div className="arrow-trigger">
             <i>
