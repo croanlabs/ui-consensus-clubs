@@ -85,6 +85,8 @@
         }
         .profile-pic {
             img {
+                border-radius: 50%;
+                display: inline;
                 height: 25px;
             }
         }
