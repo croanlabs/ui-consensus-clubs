@@ -15,7 +15,7 @@
         }
 
         .poll-questions {
-            min-height: 12em;
+            min-height: 20em;
         }
     }
 
@@ -29,6 +29,10 @@
     
             .pagination {
                 margin-top: 2rem;
+            }
+
+            .poll-questions {
+              min-height: 12em;
             }
         }
         section {
