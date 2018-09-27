@@ -1,23 +1,46 @@
-import React, { Component } from "react";
-import "./App.scss";
-import { Route, Switch } from "react-router-dom";
-import Polls from "./Pages/Polls";
-import NavBar from "./Components/NavBar/NavBar";
-import Notifications from "./Pages/Notifications";
-import Rewards from "./Pages/Rewards";
-import Score from "./Pages/Score";
-import Profile from "./Pages/Profile";
+import React, {Component} from 'react';
+import './App.scss';
+import {Route, Switch} from 'react-router-dom';
+import Polls from './Pages/Polls';
+import NavBar from './Components/NavBar/NavBar';
+import Notifications from './Pages/Notifications';
+import Rewards from './Pages/Rewards';
+import Score from './Pages/Score';
+import Profile from './Pages/Profile';
+import Dotenv from 'dotenv';
+
+Dotenv.config();
 
 class App extends Component {
+  constructor() {
+    super();
+    let authInfo = localStorage.getItem('authInfo');
+    if (authInfo) {
+      this.state = JSON.parse(authInfo);
+    } else {
+      this.state = {isAuthenticated: false, user: null, token: ''};
+    }
+  }
+
+  updateAuthInfo(isAuthenticated, user, token) {
+    localStorage.setItem(
+      'authInfo',
+      JSON.stringify({isAuthenticated, user, token}),
+    );
+    this.setState({isAuthenticated, user, token});
+  }
+
   render() {
     return (
       <div>
-        
-        <div className="left-half"></div>
-        <div className="right-half"></div>
+        <div className="left-half" />
+        <div className="right-half" />
         <header>
           <nav className="wrapper">
-            <NavBar />
+            <NavBar
+              updateAuthInfo={this.updateAuthInfo.bind(this)}
+              authInfo={this.state}
+            />
           </nav>
         </header>
         <main className="wrapper">
@@ -36,7 +59,6 @@ class App extends Component {
     );
   }
 }
-// }
 
 export default App;
 
