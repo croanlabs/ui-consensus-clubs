@@ -32,7 +32,10 @@ class Authentication extends Component {
         <Link className="nav-link" to="/profile">
           <div class="profile-pic">
             <img
-              src={this.props.authInfo.user.externalInfo._json.profile_image_url_https}
+              src={
+                this.props.authInfo.user.externalInfo._json
+                  .profile_image_url_https
+              }
               alt="Profile"
             />
           </div>
@@ -40,10 +43,15 @@ class Authentication extends Component {
       </div>
     ) : (
       <TwitterLogin
-        loginUrl={process.env.REACT_APP_SERVER_LOGIN_URL}
+        loginUrl={
+          process.env.REACT_APP_API_URL + process.env.REACT_APP_API_LOGIN_ROUTE
+        }
         onFailure={this.onFailed}
         onSuccess={this.onSuccess}
-        requestTokenUrl={process.env.REACT_APP_SERVER_REQUEST_TOKEN_URL}
+        requestTokenUrl={
+          process.env.REACT_APP_API_URL +
+          process.env.REACT_APP_API_REQUEST_TOKEN_ROUTE
+        }
       />
     );
     return <div class="auth-container">{content}</div>;
