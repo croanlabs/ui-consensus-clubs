@@ -12,7 +12,23 @@ class Candidate extends Component {
   }
 
   onClick() {
-    this.setState({active: true});
+    if (this.state.active) {
+      this.setState({active: false});
+    } else {
+      this.setState({active: true});
+    }
+  }
+
+  onMouseEnter() {
+    this.setState({showExpand: true});
+  }
+
+  onMouseLeave() {
+    if (this.state.active) {
+      this.setState({showExpand: true});
+    } else {
+      this.setState({showExpand: false});
+    }
   }
 
   render() {
@@ -20,19 +36,28 @@ class Candidate extends Component {
     if (this.state.active) {
       extraComponent = <CandidateExpanded candidate={this.props.candidate} />;
     }
-
+    let expand;
+    if (this.state.showExpand) {
+      expand = (
+        <div className="arrow-trigger">
+          <i>
+            <img
+              src={downTriggerArrow}
+              alt="Expanded"
+              className={`${this.state.active ? 'up' : 'down'}-arrow`}
+            />
+          </i>
+        </div>
+      );
+    }
     return (
-      <li className={`card ${this.props.color}`} onClick={this.onClick.bind(this)}>
+      <li
+        className={`card ${this.props.color}`}
+        onClick={this.onClick.bind(this)}
+        onMouseEnter={this.onMouseEnter.bind(this)}
+        onMouseLeave={this.onMouseLeave.bind(this)}>
         <div className="card-container">
-          <div className="arrow-trigger">
-            <i>
-              <img
-                src={downTriggerArrow}
-                alt="Expanded"
-                className="down-arrow"
-              />
-            </i>
-          </div>
+          {expand}
           <div className="flex-sb">
             <div className="profile flex">
               <div className="number">{this.props.corr + 1}</div>

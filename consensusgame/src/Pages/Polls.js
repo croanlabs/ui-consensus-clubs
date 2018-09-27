@@ -114,7 +114,7 @@ class Polls extends Component {
                     placeholder="Find Candidate..."
                   />
                 </div>
-                <Candidates poll={this.state.poll} />
+                <Candidates candidates={this.state.poll ? this.state.poll.candidates : []} />
               </div>
               <div label="My Positions">
                 <div className="search-bar">
