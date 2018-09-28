@@ -24,11 +24,7 @@ class Candidate extends Component {
   }
 
   onMouseLeave() {
-    if (this.state.active) {
-      this.setState({showExpand: true});
-    } else {
-      this.setState({showExpand: false});
-    }
+    this.setState({showExpand: false});
   }
 
   render() {

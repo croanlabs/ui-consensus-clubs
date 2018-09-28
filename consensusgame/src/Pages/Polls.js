@@ -106,15 +106,9 @@ class Polls extends Component {
           <div className="container">
             <Tabs>
               <div label="All Candidates">
-                <div className="search-bar">
-                  <img src={searchIcon} alt="Find" />
-                  <input
-                    type="search"
-                    className="find"
-                    placeholder="Find Candidate..."
-                  />
-                </div>
-                <Candidates candidates={this.state.poll ? this.state.poll.candidates : []} />
+                <Candidates
+                  candidates={this.state.poll ? this.state.poll.candidates : []}
+                />
               </div>
               <div label="My Positions">
                 <div className="search-bar">
