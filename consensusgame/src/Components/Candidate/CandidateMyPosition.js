@@ -3,8 +3,8 @@ import downArrow from "../../assets/icons/polls/down-arrow.png";
 import upArrow from "../../assets/icons/polls/up-arrow.png";
 import profilePic from "../../assets/images/profile/Aripaul@2x.png";
 import downTriggerArrow from "../../assets/icons/collapse-icon.png";
-import OpinionSupport from "../OpinionSupport/OpinionSupport.js";
-import OpinionOpposition from "../OpinionOpposition/OpinionOpposition.js";
+import Withdraw from "../WithdrawModify/Withdraw";
+import Modify from "../WithdrawModify/Modify";
 
 class Candidate extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class Candidate extends Component {
 
   onClick() {
     if (!this.state.active) {
-      this.setState({ active: true, content: "support" });
+      this.setState({ active: true, content: "withdraw" });
     }
   }
 
@@ -26,12 +26,12 @@ class Candidate extends Component {
     this.setState({ showExpand: false });
   }
 
-  showFormOpposition() {
-    this.setState({ content: "opposition" });
+  showFormModify() {
+    this.setState({ content: "modify" });
   }
 
-  showFormSupport() {
-    this.setState({ content: "support" });
+  showFormWithdraw() {
+    this.setState({ content: "withdraw" });
   }
 
   expandOrContract() {
@@ -40,18 +40,18 @@ class Candidate extends Component {
 
   render() {
     let extraComponent;
-    if (this.state.active && this.state.content == "support") {
+    if (this.state.active && this.state.content == "withdraw") {
       extraComponent = (
-        <OpinionSupport
-          showFormOpposition={this.showFormOpposition.bind(this)}
+        <Withdraw
+          showFormModify={this.showFormModify.bind(this)}
           candidate={this.props.candidate}
         />
       );
     }
-    if (this.state.active && this.state.content == "opposition") {
+    if (this.state.active && this.state.content == "modify") {
       extraComponent = (
-        <OpinionOpposition
-          showFormSupport={this.showFormSupport.bind(this)}
+        <Modify
+          showFormWithdraw={this.showFormWithdraw.bind(this)}
           candidate={this.props.candidate}
         />
       );
@@ -100,16 +100,14 @@ class Candidate extends Component {
                 <i>
                   <img src={upArrow} alt="Rating Up" />
                 </i>
-                <span>{this.props.candidate["total_tokens_confidence"]}</span>
+                <span className="merit-num">837 Merits</span>
               </div>
-              <div className="down flex">
+              {/* <div className="down flex">
                 <i>
                   <img src={downArrow} alt="Rating Down" />
                 </i>
-                <span>
-                  {this.props.candidate["total_tokens_no_confidence"]}
-                </span>
-              </div>
+                <span>214 Merits</span>
+              </div> */}
             </div>
           </div>
           {extraComponent}

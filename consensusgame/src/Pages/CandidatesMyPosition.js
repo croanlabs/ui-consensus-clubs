@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Candidate from "../Components/Candidate/Candidate";
+import CandidateMyPosition from "../Components/Candidate/CandidateMyPosition";
 import searchIcon from "../assets/icons/search-icon.png";
 
 class Candidates extends Component {
@@ -43,7 +43,7 @@ class Candidates extends Component {
               candidate.twitter_user.toLowerCase().indexOf(searchLower) >= 0
             ) {
               return (
-                <Candidate
+                <CandidateMyPosition
                   corr={index}
                   color={colors[index % colors.length]}
                   candidate={candidate}

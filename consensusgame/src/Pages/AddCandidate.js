@@ -1,137 +1,156 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import NumericInput from "react-numeric-input";
-import Profile from "./Profile";
+// import Twit from "twit";
+// import { twitter } from "../config.json";
+import axios from "axios";
+import { apiAddCandidate } from "../config.json";
+import plusIcon from "../assets/icons/polls/plus.png";
+import { apiPolls } from "../config.json";
+import Congratulations from "../Components/Congratulations/Congratulations";
 
 class AddCandidate extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      newCandidate: {}
+      name: "",
+      description: "",
+      twitterUser: "",
+      amountMerits: 0,
+      search: "",
+      items: [],
+      active: false,
+      added: false
     };
+    this.handleAddCandidate = this.handleAddCandidate.bind(this);
   }
 
-  static defaultProps = {
-    twitteraccounts: [
-      "@nmnmnm",
-      "@cryptobobby",
-      "@ninja",
-      "@consensusclubs",
-      "@crypton",
-      "Unable to find"
-    ]
+  handleShowForm = () =>
+    this.setState(prevState => {
+      return { active: !prevState.active };
+    });
+
+  updateSearch(e) {
+    this.setState({ search: e.target.value });
+  }
+  handleChangeName(e) {
+    this.setState({ name: e.target.value });
+  }
+  handleChangeDescription(e) {
+    this.setState({ description: e.target.value });
+  }
+  handleChangeTwitterUser(e) {
+    this.setState({ twitterUser: e.target.value });
+  }
+  handleChangeAmountMerits(e) {
+    this.setState({ amountMerits: e.target.value });
+  }
+  handleAddCandidate = async e => {
+    const obj = {
+      name: this.state.name,
+      description: this.state.description,
+      twitterUser: this.state.twitterUser,
+      confidence: true,
+      amountMerits: this.state.amountMerits
+    };
+    e.preventDefault();
+    await axios.post(
+      `${apiPolls + "/" + this.props.poll.id + "/user-add-candidate"}`,
+      obj
+    );
+    this.setState({ active: true, added: true });
   };
 
-  handleSubmit(e) {
-    let id = 4;
-    if (this.refs.twitter.value === "") {
-      alert("Please enter twitter id");
-    } else {
-      this.setState(
-        {
-          newCandidate: {
-            id: id,
-            name: this.refs.name.value,
-            twitter: this.refs.twitter.value,
-            confidence: this.refs.confidence.value,
-            noconfidence: "0"
-            // description: this.refs.description.value
-          }
-        },
-        function() {
-          //console.log(this.state)
-          this.props.addCandidate(this.state.newCandidate);
-        }
-      );
-    }
-    e.preventDefault();
+  handleOk() {
+    this.setState({ active: false, added: false });
   }
 
   render() {
-    let twitterOptions = this.props.twitteraccounts.map(twitter => {
+    let filteredTwitterUsers = this.state.items.filter(item => {
       return (
-        <option key={twitter} value={twitter}>
-          {twitter}
-        </option>
+        item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
       );
     });
 
-    // + mark icon
+    // const T = new Twit(twitter);
+    // const params = {
+    //   q: this.state.search,
+    //   count: 10
+    // };
 
-    // adding candidate form
+    // T.get("users/search", params, getData);
+    // function getData(err, data, response) {
+    //   console.log(data);
+    // }
+    let showForm;
+    this.state.active
+      ? !this.state.added
+        ? (showForm = (
+            <form onSubmit={this.handleAddCandidate}>
+              <label>
+                Name:
+                <input
+                  type="text"
+                  name={this.state.name}
+                  onChange={this.handleChangeName.bind(this)}
+                />
+              </label>
+              <br />
+              <label>
+                Description:
+                <input
+                  type="text"
+                  description={this.state.description}
+                  onChange={this.handleChangeDescription.bind(this)}
+                />
+              </label>
+              <br />
+              <label>
+                Twitter:
+                <input
+                  type="text"
+                  twitterUser={this.state.twitterUser}
+                  onChange={this.handleChangeTwitterUser.bind(this)}
+                />
+              </label>
+              <br />
+              <label>
+                Merits:
+                <input
+                  type="number"
+                  amountMerits={this.state.amountMerits}
+                  onChange={this.handleChangeAmountMerits.bind(this)}
+                />
+              </label>
+              <br />
+              <input type="submit" value="Submit" />
+            </form>
+          ))
+        : (showForm = (
+            <div>
+              <Congratulations handleAddOk={this.handleOk.bind(this)} />
+            </div>
+          ))
+      : null;
 
     return (
-      <div>
-        <a href="#">
-          <h4>Add New Candidate</h4>
-        </a>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          {/* <div>
-            <label>Name</label>
-            <br />
-            <input type="text" ref="name" />
-          </div>
-          <br /> */}
-          {/* <label>Twitter</label>
-          <br />
-          <select ref="twitter">{twitterOptions}</select> */}
-          {/* <div>
-            <label>Description</label>
-            <br />
-            <input type="text" ref="description" />
-          </div>
-          <br /> */}
-          {/* <p>How much do you want to stake?</p> */}
+      <React.Fragment>
+        <p className="add-new-candidate flex" onClick={this.handleShowForm}>
+          <i className="icon">
+            <img src={plusIcon} alt="Add New Candidate" />
+          </i>
+          <span>Add New Candidate</span>
+        </p>
+        {showForm}
 
-          {/* !!! max has to be user's merits !!! */}
-          {/* <input type="number" step={10} ref="confidence" /> */}
-          {/* <NumericInput
-            type="number"
-            ref="confidence"
-            min={10}
-            max={1000}
-            value={300}
-            step={10}
-          /> */}
-          {/* <input
-            type="submit"
-            value="Submit"
-            style={{ margin: "0 0 0 10px" }}
-          /> */}
-        </form>
-      </div>
+        {/* <ul className="list-unstyled">
+          {filteredTwitterUsers.map(item => (
+            <li key={item.id} style={{ color: "black" }}>
+              <p>{item.name}</p>
+            </li>
+          ))}
+        </ul> */}
+      </React.Fragment>
     );
   }
 }
 
-// AddInvestor.propTypes = {
-//   twitteraccounts: PropTypes.array,
-//   addInvestor: PropTypes.func
-// };
-
 export default AddCandidate;
-
-// var { isLoaded, candidates } = this.state;
-
-//     let candidate;
-//     if (this.props.candidates) {
-//       candidate = this.props.candidates.map(candidate => {
-//         return (
-//           <div>
-//             <Candidate
-//               onConf={this.upVoteInvestor.bind(this)}
-//               onNoConf={this.downVoteInvestor.bind(this)}
-//               key={candidate.name}
-//               candidate={candidate}
-//             />
-//             <AddCandidate addCandidate={this.handleAddCandidate.bind(this)} />
-//           </div>
-//         );
-//       });
-//     }
-//     return (
-//       <div className="candidates">
-//         <br />
-//         <br />
-//         {candidate}
-//       </div>
