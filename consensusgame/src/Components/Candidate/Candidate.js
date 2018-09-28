@@ -5,6 +5,8 @@ import profilePic from "../../assets/images/profile/Aripaul@2x.png";
 import downTriggerArrow from "../../assets/icons/collapse-icon.png";
 import OpinionSupport from "../OpinionSupport/OpinionSupport.js";
 import OpinionOpposition from "../OpinionOpposition/OpinionOpposition.js";
+import { numberToString } from "../../utils/Numbers";
+import "./Candidate.scss";
 
 class Candidate extends Component {
   constructor() {
@@ -75,46 +77,53 @@ class Candidate extends Component {
       );
     }
     return (
-      <li
-        className={`card ${this.props.color}`}
-        onClick={this.onClick.bind(this)}
-        onMouseEnter={this.onMouseEnter.bind(this)}
-        onMouseLeave={this.onMouseLeave.bind(this)}
-      >
-        <div className="card-container">
-          {expand}
-          <div className="flex-sb">
-            <div className="profile flex">
-              <div className="number">{this.props.corr + 1}</div>
-              <div className="image-cropper">
-                <img src={profilePic} alt="Metem" className="profile-pic" />
+      <div className="candidate">
+        <li
+          className={`card ${this.props.color}`}
+          onClick={this.onClick.bind(this)}
+          onMouseEnter={this.onMouseEnter.bind(this)}
+          onMouseLeave={this.onMouseLeave.bind(this)}
+        >
+          <div className="card-container">
+            {expand}
+            <div className="flex-sb">
+              <div className="profile flex">
+                <div className="number">{this.props.corr + 1}</div>
+                <div className="image-cropper">
+                  <img src={profilePic} alt="Metem" className="profile-pic" />
+                </div>
+                <div className="name">
+                  <h2>{this.props.candidate.name}</h2>
+                  <h3>{this.props.candidate["twitter_user"]}</h3>
+                </div>
               </div>
-              <div className="name">
-                <h2>{this.props.candidate.name}</h2>
-                <h3>{this.props.candidate["twitter_user"]}</h3>
+              <div className="rating flex">
+                <div className="up flex">
+                  <i>
+                    <img src={upArrow} alt="Rating Up" />
+                  </i>
+                  <span className="merits-total">
+                    {numberToString(
+                      this.props.candidate.total_merits_confidence
+                    )}
+                  </span>
+                </div>
+                <div className="down flex">
+                  <i>
+                    <img src={downArrow} alt="Rating Down" />
+                  </i>
+                  <span className="merits-total">
+                    {numberToString(
+                      this.props.candidate.total_merits_no_confidence
+                    )}
+                  </span>
+                </div>
               </div>
             </div>
-
-            <div className="rating flex">
-              <div className="up flex">
-                <i>
-                  <img src={upArrow} alt="Rating Up" />
-                </i>
-                <span>{this.props.candidate["total_tokens_confidence"]}</span>
-              </div>
-              <div className="down flex">
-                <i>
-                  <img src={downArrow} alt="Rating Down" />
-                </i>
-                <span>
-                  {this.props.candidate["total_tokens_no_confidence"]}
-                </span>
-              </div>
-            </div>
+            {extraComponent}
           </div>
-          {extraComponent}
-        </div>
-      </li>
+        </li>
+      </div>
     );
   }
 }
