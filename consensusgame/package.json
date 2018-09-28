@@ -48,6 +48,7 @@
     "react-dev-utils": "^5.0.2",
     "react-dom": "^16.4.2",
     "react-numeric-input": "^2.2.3",
+    "react-rangeslider": "^2.2.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-twitter-auth": "0.0.12",

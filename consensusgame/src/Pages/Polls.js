@@ -5,7 +5,6 @@ import AddPoll from './AddPoll';
 import Pagination from '../Components/Pagination';
 import Tabs from '../Components/Tabs/Tabs';
 import Congrats from '../Components/Congratulations/Congratulations';
-import Merits from '../Components/Merits/Merits';
 import WithdrawModify from '../Components/WithdrawModify/WithdrawModify';
 import {Paginate} from '../utils/Paginate';
 import {apiPolls} from '../config.json';

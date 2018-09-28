@@ -1,0 +1,54 @@
+@import "../../assets/scss/variables";
+.opinion-support {
+    margin: 4em auto;
+    width: 80%;
+    text-align: center;
+    .info {
+        display: flex;
+        align-items: center;
+        img {
+            height: 14px;
+        }
+        span {
+            font-style: italic;
+            font-size: 1em;
+            margin-left: 0.5em;
+        }
+    }
+
+    .opposition img {
+      height: 20px;
+      margin-right: 0.5em;
+    }
+
+    .slider {
+        p {
+            padding: 2em 0;
+        }
+        .merits-box {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            border: 1px solid $light-grey;
+            padding: 1em 4em;
+            color: $green;
+            font-family: SFProMedium;
+            width: 120px;
+            margin: 1em auto 2em;
+            .large-text {
+                font-size: 2em;
+            }
+            .small-text {
+                font-size: 1em;
+            }
+        }
+    }
+
+    p.arrow-opinion {
+      margin: 2em;  
+    }
+
+    p.oppose {
+      martin: 2em;
+    }
+}

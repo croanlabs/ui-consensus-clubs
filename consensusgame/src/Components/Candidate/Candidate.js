@@ -3,7 +3,8 @@ import downArrow from '../../assets/icons/polls/down-arrow.png';
 import upArrow from '../../assets/icons/polls/up-arrow.png';
 import profilePic from '../../assets/images/profile/Aripaul@2x.png';
 import downTriggerArrow from '../../assets/icons/collapse-icon.png';
-import CandidateExpanded from '../CandidateExpanded/CandidateExpanded.js';
+import OpinionSupport from '../OpinionSupport/OpinionSupport.js';
+import OpinionOpposition from '../OpinionOpposition/OpinionOpposition.js';
 
 class Candidate extends Component {
   constructor() {
@@ -12,10 +13,8 @@ class Candidate extends Component {
   }
 
   onClick() {
-    if (this.state.active) {
-      this.setState({active: false});
-    } else {
-      this.setState({active: true});
+    if (!this.state.active) {
+      this.setState({active: true, content: 'support'});
     }
   }
 
@@ -27,15 +26,40 @@ class Candidate extends Component {
     this.setState({showExpand: false});
   }
 
+  showFormOpposition() {
+    this.setState({content: 'opposition'});
+  }
+
+  showFormSupport() {
+    this.setState({content: 'support'});
+  }
+
+  expandOrContract() {
+    this.setState({ active: !this.state.active });
+  }
+
   render() {
     let extraComponent;
-    if (this.state.active) {
-      extraComponent = <CandidateExpanded candidate={this.props.candidate} />;
+    if (this.state.active && this.state.content == 'support') {
+      extraComponent = (
+        <OpinionSupport
+          showFormOpposition={this.showFormOpposition.bind(this)}
+          candidate={this.props.candidate} />
+      );
     }
+    if (this.state.active && this.state.content == 'opposition') {
+      extraComponent = (
+        <OpinionOpposition
+          showFormSupport={this.showFormSupport.bind(this)}
+          candidate={this.props.candidate}
+        />
+      );
+    }
+
     let expand;
     if (this.state.showExpand) {
       expand = (
-        <div className="arrow-trigger">
+        <div className="arrow-trigger" onClick={this.expandOrContract.bind(this)}>
           <i>
             <img
               src={downTriggerArrow}

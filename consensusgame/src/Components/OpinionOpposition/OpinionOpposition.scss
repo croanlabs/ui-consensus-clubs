@@ -1,5 +1,5 @@
 @import "../../assets/scss/variables";
-.merits {
+.opinion-opposition {
     margin: 4em auto;
     width: 80%;
     text-align: center;
@@ -15,6 +15,12 @@
             margin-left: 0.5em;
         }
     }
+
+    .support img {
+      height: 20px;
+      margin-right: 0.5em;
+    }
+
     .slider {
         p {
             padding: 2em 0;
@@ -36,5 +42,13 @@
                 font-size: 1em;
             }
         }
+    }
+
+    p.arrow-opinion {
+      margin: 2em;  
+    }
+
+    p.oppose {
+      martin: 2em;
     }
 }
