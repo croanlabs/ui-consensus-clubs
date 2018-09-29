@@ -52,5 +52,5 @@
 }
 
 .triangle {
-    @include triangle(10px, right, $blue);
+    @include triangle(7px, right, $blue);
 }
