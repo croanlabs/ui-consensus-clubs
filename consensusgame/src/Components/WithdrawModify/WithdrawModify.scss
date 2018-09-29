@@ -1,4 +1,34 @@
 @import "../../assets/scss/variables";
+
+.rangeslider {
+  background: $red;
+  .rangeslider__handle {
+    border-color: $red;
+    background: $red;
+  }
+  &.rangeslider-horizontal {
+    height: 3px;
+    .rangeslider__handle {
+      width: 20px;
+      height: 20px;
+      border-radius: 20px;
+      border-color: $red;
+      background: $red;
+      &:after {
+        left: 0;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+        border-color: $red;
+        background: $red;
+      }
+    }
+    .rangeslider__fill {
+      background-color: $light-grey;
+    }
+  }
+}
 .withdraw-modify {
   text-align: center;
   margin: 2em auto 5em;
