@@ -1,0 +1,36 @@
+.twitter-autosuggest {
+  position: relative;
+
+  .search-icon {
+    color: black;
+    left: 1em;
+    position: absolute;
+    top: 2.2em;
+    transform: translateY(-50%);
+    width: 20px;
+  }
+
+  input {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 1rem 1rem 1rem 3rem;
+    color: #999;
+    border-radius: 3px;
+    font-size: 1.2em;
+  }
+
+  .card {
+    border-left: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+
+    .card-container {
+      margin: 0.2em 0.2em 0.2em 0.5em;
+    }
+
+    img {
+      height: 3em;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Candidate from "../Components/Candidate/Candidate";
-import searchIcon from "../assets/icons/search-icon.png";
+import searchIcon from "../assets/icons/coloursearch-icon.png";
 
 class Candidates extends Component {
   constructor() {
