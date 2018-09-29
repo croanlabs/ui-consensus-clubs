@@ -38,13 +38,8 @@ body {
   font-size: 12px;
   letter-spacing: 0.03em;
   color: #4a4a4a;
-  background-image: linear-gradient(
-    to right, 
-    white 0%,
-    white 50%, 
-    #334bc9 50%, 
-    #334bc9 100%
-  );
+  background: transparent url(assets/images/bg-image.png) 0 0 no-repeat;
+  background-size: cover;
 }
 
 @media only screen and (max-width: 979px) {
