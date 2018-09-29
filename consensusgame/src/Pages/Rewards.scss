@@ -1,8 +1,13 @@
 @import "../assets/scss/mixins";
 
-.msg {
-    margin: 0 1rem;
-    p {
-        margin: 0.2em 0;
+.rewards {
+    .card-container {
+        margin: 1.5em 2em;
+    }
+    .msg {
+        margin: 0 1rem;
+        p {
+            margin: 0.2em 0;
+        }
     }
 }

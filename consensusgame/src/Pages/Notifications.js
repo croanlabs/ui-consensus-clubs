@@ -4,6 +4,7 @@ import newIcon from "../assets/icons/notifications/new.png";
 import voteIcon from "../assets/icons/votetime-icon.png";
 import thumbsDownIcon from "../assets/icons/thumbdown-icon.png";
 import referralIcon from "../assets/icons/referralsuccess-icon.png";
+import successIcon from "../assets/icons/successfulcon-icon.png";
 import "./Notifications.scss";
 {/* todo: need to hook up these icons to array below...
 import thumbsUpIcon from "../assets/icons/notifications/thumbs-up.png";
@@ -37,7 +38,7 @@ class Notifications extends Component {
         title: "Congrates! Successful Consensus!",
         description: "@cburniske is up 25.2%",
         time: "14 Aug",
-        icon: "trend"
+        icon: successIcon
       },
       {
         title: "Oops! Weak Consensus",
