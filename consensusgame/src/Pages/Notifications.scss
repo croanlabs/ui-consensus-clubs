@@ -2,6 +2,9 @@
 @import "../assets/scss/variables";
 
 .notifications {
+    .card-container {
+        margin: 1.5em 2em;
+    }
 
     .messages {
         align-items: center;

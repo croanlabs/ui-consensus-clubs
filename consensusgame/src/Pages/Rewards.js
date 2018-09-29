@@ -36,7 +36,7 @@ class Rewards extends Component {
       }
     ];
     return (
-      <div className="layout">
+      <div className="rewards layout">
         <aside className="col">
           <h1 className="lg-vspace">Rewards</h1>
           <h6>Get merit points on completing the rewards</h6>
