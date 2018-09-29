@@ -87,7 +87,7 @@ class Candidate extends Component {
             <div className="profile flex">
               <div className="number">{this.props.corr + 1}</div>
               <div className="image-cropper">
-                <img src={profilePic} alt="Metem" className="profile-pic" />
+                <img src={this.props.candidate.profile_picture_url || profilePic} alt="Metem" className="profile-pic" />
               </div>
               <div className="name">
                 <h2>{this.props.candidate.name}</h2>
