@@ -45,7 +45,7 @@ body {
 @media only screen and (max-width: 979px) {
   body {
     background: white url(assets/images/bg-image-mobile.png) 0 0 repeat-y;
-    background-size: contain;
+    background-size: cover;
   }
 }
 

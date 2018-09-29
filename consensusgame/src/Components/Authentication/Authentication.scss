@@ -1,7 +1,18 @@
 .auth-container {
   display: table-cell;
 
+  button {
+    padding: 0.5em 1em;
+  }
+
   a.nav-link {
     display: inline;
+  }
+
+  @media only screen and (max-width: 979px) {
+    button {
+      padding: 0.3em 1em;
+      font-size: 1em;
+    }
   }
 }

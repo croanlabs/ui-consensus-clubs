@@ -54,7 +54,7 @@ class Authentication extends Component {
         }
       />
     );
-    return <div class="auth-container">{content}</div>;
+    return <div className="auth-container">{content}</div>;
   }
 }
 
