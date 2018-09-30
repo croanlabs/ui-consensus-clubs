@@ -53,7 +53,11 @@ class AddCandidate extends Component {
     };
     e.preventDefault();
     await axios.post(
-      `${apiPolls + '/' + this.props.poll.id + '/user-add-candidate'}`,
+      `${process.env.REACT_APP_API_URL +
+        process.env.REACT_APP_API_POLLS +
+        '/' +
+        this.props.poll.id +
+        '/user-add-candidate'}`,
       obj,
     );
     this.setState({active: true, added: true});
