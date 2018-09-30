@@ -8,6 +8,11 @@
     top: 2.2em;
     transform: translateY(-50%);
     width: 20px;
+
+
+    @media only screen and (max-width: 979px) {
+      top: 2em;
+    }
   }
 
   input {
@@ -27,6 +32,10 @@
 
     .card-container {
       margin: 0.2em 0.2em 0.2em 0.5em;
+
+      .profile img {
+        border: none;
+      }
     }
 
     img {
