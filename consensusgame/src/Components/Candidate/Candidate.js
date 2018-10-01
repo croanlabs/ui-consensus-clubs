@@ -11,12 +11,12 @@ import "./Candidate.scss";
 class Candidate extends Component {
   constructor() {
     super();
-    this.state = { active: false };
+    this.state = { active: false, confidence: true };
   }
 
   onClick() {
     if (!this.state.active) {
-      this.setState({ active: true, content: "support" });
+      this.setState({ active: true, confidence: true });
     }
   }
 
@@ -29,11 +29,11 @@ class Candidate extends Component {
   }
 
   showFormOpposition() {
-    this.setState({ content: "opposition" });
+    this.setState({ confidence: false });
   }
 
   showFormSupport() {
-    this.setState({ content: "support" });
+    this.setState({ confidence: true });
   }
 
   expandOrContract() {
@@ -42,18 +42,22 @@ class Candidate extends Component {
 
   render() {
     let extraComponent;
-    if (this.state.active && this.state.content == "support") {
+    if (this.state.active && this.state.confidence == true) {
       extraComponent = (
         <OpinionSupport
           showFormOpposition={this.showFormOpposition.bind(this)}
+          confidence={this.state.confidence}
+          poll={this.props.poll}
           candidate={this.props.candidate}
         />
       );
     }
-    if (this.state.active && this.state.content == "opposition") {
+    if (this.state.active && this.state.confidence == false) {
       extraComponent = (
         <OpinionOpposition
           showFormSupport={this.showFormSupport.bind(this)}
+          confidence={this.state.confidence}
+          poll={this.props.poll}
           candidate={this.props.candidate}
         />
       );
@@ -90,7 +94,11 @@ class Candidate extends Component {
               <div className="profile flex">
                 <div className="number">{this.props.corr + 1}</div>
                 <div className="image-cropper">
-                  <img src={this.props.candidate.profile_picture_url || profilePic} alt="img" className="profile-pic" />
+                  <img
+                    src={this.props.candidate.profile_picture_url || profilePic}
+                    alt="img"
+                    className="profile-pic"
+                  />
                 </div>
                 <div className="name">
                   <h2>{this.props.candidate.name}</h2>

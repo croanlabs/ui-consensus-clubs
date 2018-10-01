@@ -90,6 +90,7 @@ class Polls extends Component {
             <Tabs>
               <div label="All Candidates">
                 <Candidates
+                  poll={this.state.poll}
                   candidates={this.state.poll ? this.state.poll.candidates : []}
                 />
               </div>

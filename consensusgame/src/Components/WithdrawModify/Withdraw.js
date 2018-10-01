@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import infoIcon from "../../assets/icons/info-icon.png";
 import "./WithdrawModify.scss";
-import Slider from "react-rangeslider";
 
 class Withdraw extends Component {
   onClickModify() {
@@ -30,7 +29,6 @@ class Withdraw extends Component {
             <label for="switch_right">Modify</label>
           </div>
         </form>
-        <Slider />
         <div className="container">
           <p className="current-value">Current Value</p>
           <p className="merits-count">1,231 Merits</p>

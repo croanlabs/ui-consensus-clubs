@@ -46,6 +46,7 @@ class Candidates extends Component {
                 <Candidate
                   corr={index}
                   color={colors[index % colors.length]}
+                  poll={this.props.poll}
                   candidate={candidate}
                 />
               );

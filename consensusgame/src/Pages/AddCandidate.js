@@ -1,44 +1,50 @@
-import React, {Component} from 'react';
-import axios from 'axios';
-import {apiAddCandidate} from '../config.json';
-import plusIcon from '../assets/icons/polls/plus.png';
-import {apiPolls} from '../config.json';
-import Congratulations from '../Components/Congratulations/Congratulations';
-import TwitterUserInput from '../Components/TwitterUserInput/TwitterUserInput';
-import Slider from 'react-rangeslider';
-import 'react-rangeslider/lib/index.css';
+import React, { Component } from "react";
+import axios from "axios";
+import { apiAddCandidate } from "../config.json";
+import plusIcon from "../assets/icons/polls/plus.png";
+import { apiPolls } from "../config.json";
+import Congratulations from "../Components/Congratulations/Congratulations";
+import TwitterUserInput from "../Components/TwitterUserInput/TwitterUserInput";
+import MeritsSlider from "../Components/MeritsSlider/MeritsSlider";
+import "react-rangeslider/lib/index.css";
 
 class AddCandidate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      description: '',
-      twitterUser: '',
-      amountMerits: 0,
-      search: '',
+      name: "",
+      description: "",
+      twitterUser: "",
+      amountMerits: 50,
+      search: "",
       items: [],
       active: false,
-      added: false,
+      added: false
     };
     this.handleAddCandidate = this.handleAddCandidate.bind(this);
   }
+  updateMeritsSlider = value => {
+    this.setState({ amountMerits: value });
+  };
+  updateMeritsInput = e => {
+    this.setState({ amountMerits: parseInt(e.target.value) });
+  };
 
   handleShowForm = () =>
     this.setState(prevState => {
-      return {active: !prevState.active};
+      return { active: !prevState.active };
     });
 
   updateSearch(e) {
-    this.setState({search: e.target.value});
+    this.setState({ search: e.target.value });
   }
 
   handleChangeTwitterUser(e) {
-    this.setState({twitterUser: e.target.value});
+    this.setState({ twitterUser: e.target.value });
   }
 
   handleChangeAmountMerits(e) {
-    this.setState({amountMerits: e.target.value});
+    this.setState({ amountMerits: e.target.value });
   }
 
   handleAddCandidate = async e => {
@@ -49,18 +55,18 @@ class AddCandidate extends Component {
       twitterId: this.state.twitterId,
       profilePictureUrl: this.state.profilePictureUrl,
       confidence: true,
-      amountMerits: this.state.amountMerits,
+      amountMerits: this.state.amountMerits
     };
     e.preventDefault();
     await axios.post(
       `${process.env.REACT_APP_API_URL +
         process.env.REACT_APP_API_POLLS +
-        '/' +
+        "/" +
         this.props.poll.id +
-        '/user-add-candidate'}`,
-      obj,
+        "/user-add-candidate"}`,
+      obj
     );
-    this.setState({active: true, added: true});
+    this.setState({ active: true, added: true });
   };
 
   handleCandidateSelected(suggestion) {
@@ -70,12 +76,12 @@ class AddCandidate extends Component {
       twitterUser: suggestion.screen_name,
       profilePictureUrl: suggestion.profile_image_url_https,
       description: suggestion.description,
-      twitterId: 15160966,
+      twitterId: 15160966
     });
   }
 
   handleOk() {
-    this.setState({active: false, added: false});
+    this.setState({ active: false, added: false });
   }
 
   render() {
@@ -94,11 +100,11 @@ class AddCandidate extends Component {
                 onSuggestionSelected={this.handleCandidateSelected.bind(this)}
               />
               <div className="slider">
-                <Slider />
-                <div className="merits-box">
-                  <span className="large-text">50</span>{' '}
-                  <span className="small-text">Merits</span>
-                </div>
+                <MeritsSlider
+                  amountMerits={this.state.amountMerits}
+                  passMeritsFromSlider={this.updateMeritsSlider}
+                  passMeritsFromInput={this.updateMeritsInput}
+                />
               </div>
               <input type="submit" value="Submit" />
             </form>

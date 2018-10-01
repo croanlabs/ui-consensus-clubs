@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import infoIcon from "../../assets/icons/info-icon.png";
 import "./WithdrawModify.scss";
-import Slider from "react-rangeslider";
+import MeritsSlider from "../../Components/MeritsSlider/MeritsSlider";
 
 class Modify extends Component {
   onClickWithdraw() {
@@ -31,10 +31,7 @@ class Modify extends Component {
           </div>
         </form>
         <div className="slider">
-          <Slider />
-          <div className="merits-box">
-            <span className="small-text">1231</span>{" "}
-          </div>
+          <MeritsSlider />
           <button>Decrease</button>
         </div>
       </div>
