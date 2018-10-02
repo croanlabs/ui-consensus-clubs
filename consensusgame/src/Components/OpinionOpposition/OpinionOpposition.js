@@ -39,6 +39,7 @@ class OpinionOpposition extends Component {
       obj
     );
   };
+
   onClickSupport() {
     this.props.showFormSupport();
   }
@@ -55,30 +56,34 @@ class OpinionOpposition extends Component {
             The default merit points are set to 50, do you want to change below?
           </span>
         </p>
-        <div className="slider">
-          <MeritsSlider
-            amountMerits={this.state.amountMerits}
-            passMeritsFromSlider={this.updateMeritsSlider}
-            passMeritsFromInput={this.updateMeritsInput}
-          />
-        </div>
-        <p className="arrow-opinion">
-          <i>
-            <img src={downArrow} alt="Rating Down" />
-          </i>
-        </p>
-        <button onClick={this.handleStakeCandidate.bind(this)}>
-          I oppose {this.props.candidate.twitter_user}
-        </button>
+        <div className="candidate">
+          <form onSubmit={this.handleStakeCandidate}>
+            <div className="slider">
+              <MeritsSlider
+                amountMerits={this.state.amountMerits}
+                passMeritsFromSlider={this.updateMeritsSlider}
+                passMeritsFromInput={this.updateMeritsInput}
+              />
+            </div>
+            <p className="arrow-opinion">
+              <i>
+                <img src={downArrow} alt="Rating Down" />
+              </i>
+            </p>
+            <button onClick={this.handleStakeCandidate.bind(this)}>
+              I oppose {this.props.candidate.twitter_user}
+            </button>
+          </form>
 
-        <p className="support">
-          <i>
-            <img src={upArrow} alt="Rating Up" />
-          </i>
-          <span onClick={this.onClickSupport.bind(this)}>
-            Do you support {this.props.candidate.twitter_user}
-          </span>
-        </p>
+          <p className="support">
+            <i>
+              <img src={upArrow} alt="Rating Up" />
+            </i>
+            <span onClick={this.onClickSupport.bind(this)}>
+              Do you support {this.props.candidate.twitter_user}
+            </span>
+          </p>
+        </div>
       </div>
     );
   }

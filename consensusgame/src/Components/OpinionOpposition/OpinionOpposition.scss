@@ -20,11 +20,27 @@
     height: 20px;
     margin-right: 0.5em;
   }
+  .rangeslider {
+    .rangeslider__handle {
+      border-color: $red;
+      background: $red;
+    }
+    &.rangeslider-horizontal {
+      .rangeslider__handle {
+        border-color: $red;
+        background: $red;
+        &:after {
+          border-color: $red;
+          background: $red;
+        }
+      }
+      .rangeslider__fill {
+        background-color: $red;
+      }
+    }
+  }
 
   .slider {
-    p {
-      padding: 2em 0;
-    }
     .merits-box {
       display: flex;
       align-items: baseline;
@@ -35,6 +51,11 @@
       font-family: SFProMedium;
       width: 120px;
       margin: 1em auto 2em;
+      input {
+        border: none;
+        width: 3em;
+        color: $red;
+      }
       .large-text {
         font-size: 2em;
       }
@@ -48,7 +69,7 @@
     margin: 2em;
   }
 
-  p.oppose {
+  p.support {
     margin: 2em;
   }
 }

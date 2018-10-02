@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-rangeslider";
+import "../../../src/assets/scss/_slider.scss";
 
 class MeritsSlider extends Component {
   render() {
@@ -15,15 +16,14 @@ class MeritsSlider extends Component {
           onChange={this.props.passMeritsFromSlider}
         />
         <div className="merits-box">
-          <span className="large-text">
-            <input
-              type="number"
-              value={amountMerits}
-              onChange={this.handleOnChangeNumber}
-              step="10"
-              onChange={this.props.passMeritsFromInput}
-            />
-          </span>{" "}
+          <input
+            type="number"
+            className="large-text"
+            value={amountMerits}
+            onChange={this.handleOnChangeNumber}
+            step="10"
+            onChange={this.props.passMeritsFromInput}
+          />
           <span className="small-text">Merits</span>
         </div>
       </React.Fragment>

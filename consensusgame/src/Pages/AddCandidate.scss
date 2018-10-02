@@ -1,0 +1,111 @@
+@import "../assets/scss/variables";
+.add-candidate {
+  margin-top: 2em;
+  margin-bottom: 4em;
+  .add-new-candidate-form {
+    form {
+      .add-candidate-submit {
+        margin-bottom: 30px;
+        color: $grey-blue;
+        font-size: 20px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .anotherCandidate {
+        display: block;
+        margin: auto;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .info {
+        margin: 60px 0 30px 0;
+        text-align: center;
+        span {
+          font-size: 1em;
+          margin-left: 0.5em;
+        }
+      }
+      margin: 4em auto;
+      width: 80%;
+      text-align: center;
+    }
+    p {
+      color: $h1-color;
+      text-align: center;
+      font-size: 3.5em;
+      font-weight: bold;
+      padding: 0 1em 0 1em;
+    }
+    .selectedTwitterUser {
+      text-align: center;
+      .image-cropper {
+        img {
+          height: 90px;
+          margin-right: 1em;
+          border-radius: 50%;
+        }
+      }
+      .name {
+        h2 {
+          font-size: 20px;
+          padding-top: 10px;
+        }
+        h3 {
+          font-size: 15px;
+          padding-top: 5px;
+        }
+      }
+    }
+  }
+}
+
+.rangeslider {
+  .rangeslider__handle {
+    border-color: $teal;
+    background: $teal;
+  }
+  &.rangeslider-horizontal {
+    .rangeslider__handle {
+      border-color: $teal;
+      background: $teal;
+      &:after {
+        border-color: $teal;
+        background: $teal;
+      }
+    }
+    .rangeslider__fill {
+      background-color: $teal;
+    }
+  }
+}
+
+.slider {
+  .merits-box {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    border: none;
+    padding: 1em 4em;
+    color: $teal;
+    font-family: SFProMedium;
+    width: 120px;
+    margin: 1em auto 2em;
+    input {
+      border: none;
+      width: 3em;
+      color: $teal;
+      border: 1px solid $light-grey;
+      border-radius: 10px;
+      width: 90px;
+      padding-left: 0.5em;
+      height: 2em;
+      text-align: right;
+    }
+    .small-text {
+      font-size: 1em;
+      padding-left: 0.5em;
+    }
+  }
+}

@@ -1,13 +1,13 @@
 export function numberToString(number) {
   let result;
-  let scale = '';
+  let scale = "";
   if (number > 500000) {
     result = number / 1000000;
-    scale = 'M';
+    scale = "M";
   } else {
     if (number > 500) {
       result = number / 1000;
-      scale ='K';
+      scale = "K";
     } else {
       result = number;
     }

@@ -5,6 +5,7 @@ import downArrow from "../../assets/icons/polls/down-arrow.png";
 import upArrow from "../../assets/icons/polls/up-arrow.png";
 import MeritsSlider from "../MeritsSlider/MeritsSlider";
 import "react-rangeslider/lib/index.css";
+
 import axios from "axios";
 
 class OpinionSupport extends Component {

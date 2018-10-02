@@ -7,6 +7,7 @@ import Congratulations from "../Components/Congratulations/Congratulations";
 import TwitterUserInput from "../Components/TwitterUserInput/TwitterUserInput";
 import MeritsSlider from "../Components/MeritsSlider/MeritsSlider";
 import "react-rangeslider/lib/index.css";
+import "./AddCandidate.scss";
 
 class AddCandidate extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class AddCandidate extends Component {
       search: "",
       items: [],
       active: false,
+      selected: false,
       added: false
     };
     this.handleAddCandidate = this.handleAddCandidate.bind(this);
@@ -76,64 +78,101 @@ class AddCandidate extends Component {
       twitterUser: suggestion.screen_name,
       profilePictureUrl: suggestion.profile_image_url_https,
       description: suggestion.description,
-      twitterId: 15160966
+      twitterId: 15160966,
+      selected: true
     });
   }
 
   handleOk() {
-    this.setState({ active: false, added: false });
+    this.setState({ active: false, selected: false, added: false });
   }
+  chooseAnotherCandidate = () => {
+    this.setState({ selected: false });
+  };
 
   render() {
-    let filteredTwitterUsers = this.state.items.filter(item => {
-      return (
-        item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-      );
-    });
-
+    let addCandidateButton;
+    !this.state.active
+      ? (addCandidateButton = (
+          <p className="add-new-candidate flex" onClick={this.handleShowForm}>
+            <i className="icon">
+              <img src={plusIcon} alt="Add New Candidate" />
+            </i>
+            <span>Add a new candidate</span>
+          </p>
+        ))
+      : null;
+    const suggestTitle = <p>Add a new candidate</p>;
     let showForm;
     this.state.active
-      ? !this.state.added
-        ? (showForm = (
-            <form onSubmit={this.handleAddCandidate}>
-              <TwitterUserInput
-                onSuggestionSelected={this.handleCandidateSelected.bind(this)}
-              />
-              <div className="slider">
-                <MeritsSlider
-                  amountMerits={this.state.amountMerits}
-                  passMeritsFromSlider={this.updateMeritsSlider}
-                  passMeritsFromInput={this.updateMeritsInput}
-                />
+      ? this.state.selected
+        ? !this.state.added
+          ? (showForm = (
+              <div className="add-new-candidate-form card">
+                {suggestTitle}
+                <form onSubmit={this.handleAddCandidate}>
+                  <div className="selectedTwitterUser">
+                    <div className="image-cropper">
+                      <img
+                        src={this.state.profilePictureUrl}
+                        alt="Metem"
+                        className="profile-pic"
+                      />
+                    </div>
+                    <div className="name">
+                      <h2>{this.state.name}</h2>
+                      <h3>@{this.state.twitterUser}</h3>
+                    </div>
+                  </div>
+                  <div className="info">
+                    <span>Adjust the slider to set the merit points</span>
+                  </div>
+                  <div className="slider">
+                    <MeritsSlider
+                      amountMerits={this.state.amountMerits}
+                      passMeritsFromSlider={this.updateMeritsSlider}
+                      passMeritsFromInput={this.updateMeritsInput}
+                    />
+                  </div>
+                  {/* <div className="buttons"> */}
+                  <div
+                    className="add-candidate-submit"
+                    onClick={this.handleAddCandidate}
+                  >
+                    <span>Add @{this.state.twitterUser}</span>
+                  </div>
+                  <div
+                    className="anotherCandidate"
+                    onClick={this.chooseAnotherCandidate}
+                  >
+                    Choose another candidate
+                  </div>
+                  {/* </div> */}
+                </form>
               </div>
-              <input type="submit" value="Submit" />
-            </form>
-          ))
+            ))
+          : (showForm = (
+              <div>
+                <Congratulations handleAddOk={this.handleOk.bind(this)} />
+              </div>
+            ))
         : (showForm = (
-            <div>
-              <Congratulations handleAddOk={this.handleOk.bind(this)} />
+            <div className="add-new-candidate-form card">
+              <form onSubmit={this.handleAddCandidate}>
+                {suggestTitle}
+                <TwitterUserInput
+                  onSuggestionSelected={this.handleCandidateSelected.bind(this)}
+                />
+              </form>
             </div>
           ))
       : null;
 
     return (
-      <React.Fragment>
-        <p className="add-new-candidate flex" onClick={this.handleShowForm}>
-          <i className="icon">
-            <img src={plusIcon} alt="Add New Candidate" />
-          </i>
-          <span>Add New Candidate</span>
-        </p>
+      <div className="add-candidate">
+        {addCandidateButton}
         {showForm}
-
-        {/* <ul className="list-unstyled">
-          {filteredTwitterUsers.map(item => (
-            <li key={item.id} style={{ color: "black" }}>
-              <p>{item.name}</p>
-            </li>
-          ))}
-        </ul> */}
-      </React.Fragment>
+      </div>
     );
   }
 }
