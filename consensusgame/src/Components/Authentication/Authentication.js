@@ -1,21 +1,39 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import TwitterLogin from 'react-twitter-auth';
+import Cookies from 'universal-cookie';
 import '../NavBar/NavBar.scss';
 import './Authentication.scss';
 
 class Authentication extends Component {
   constructor() {
     super();
+
+    let cookies = new Cookies();
+    let user = cookies.get('user');
+    if (user) {
+      this.state = {user};
+    } else {
+      this.state = {};
+    }
   }
 
-  onSuccess = response => {
+  onSuccess = async response => {
     const token = response.headers.get('x-auth-token');
-    response.json().then(user => {
-      if (token) {
-        this.props.updateAuthInfo(true, user, token);
-      }
-    });
+    if (token) {
+      // Add cookies for token and user info
+      let cookies = new Cookies();
+      cookies.set('token', token, {
+        // FIXME Set httpOnly.
+        //httpOnly: true,
+        path: '/',
+      });
+
+      const user = await response.json();
+      cookies.set('user', JSON.stringify(user), {httpOnly: false, path: '/'});
+
+      this.setState({user});
+    }
   };
 
   onFailed = error => {
@@ -23,21 +41,16 @@ class Authentication extends Component {
   };
 
   logout = () => {
-    this.props.updateUserInfo(false, null, '');
+    let cookies = new Cookies();
+    cookies;
   };
 
   render() {
-    let content = this.props.authInfo.isAuthenticated ? (
+    let content = this.state.user ? (
       <div>
         <Link className="nav-link" to="/profile">
           <div class="profile-pic">
-            <img
-              src={
-                this.props.authInfo.user.externalInfo._json
-                  .profile_image_url_https
-              }
-              alt="Profile"
-            />
+            <img src={this.state.user.profileImageUrl} alt="Profile" />
           </div>
         </Link>
       </div>

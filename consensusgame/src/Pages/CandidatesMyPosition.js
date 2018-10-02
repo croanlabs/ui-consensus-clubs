@@ -1,15 +1,29 @@
-import React, { Component } from "react";
-import CandidateMyPosition from "../Components/Candidate/CandidateMyPosition";
-import searchIcon from "../assets/icons/search-icon.png";
+import React, {Component} from 'react';
+import axios from 'axios';
+import CandidateMyPosition from '../Components/Candidate/CandidateMyPosition';
+import searchIcon from '../assets/icons/search-icon.png';
 
-class Candidates extends Component {
+class CandidatesMyPosition extends Component {
   constructor() {
     super();
-    this.state = { searchValue: "" };
+    this.state = {searchValue: ''};
+  }
+
+  async componentDidMount() {
+    // TODO move this query to other place, it's being called all the time.
+    const {data: opinions} = await axios(
+      {
+        method: 'get',
+        baseURL: process.env.REACT_APP_API_URL,
+        url: process.env.REACT_APP_API_OPINIONS,
+        withCredentials: true,
+      }
+    );
+    this.setState({opinions});
   }
 
   search(ev) {
-    this.setState({ searchValue: ev.target.value });
+    this.setState({searchValue: ev.target.value});
   }
 
   render() {
@@ -18,7 +32,7 @@ class Candidates extends Component {
     if (count === 0) return <p>There are no candidates yet.</p>;
 
     // FIXME Move colors somewhere else
-    const colors = ["yellow", "teal", "purple", "red", "green"];
+    const colors = ['yellow', 'teal', 'purple', 'red', 'green'];
 
     return (
       <div>
@@ -36,7 +50,7 @@ class Candidates extends Component {
         {/* If total candidates needed uncomment next line*/}
         <ul className="list-unstyled">
           {this.props.candidates.map((candidate, index) => {
-            let search = this.state.searchValue || "";
+            let search = this.state.searchValue || '';
             const searchLower = search.toLowerCase();
             if (
               candidate.name.toLowerCase().indexOf(searchLower) >= 0 ||
@@ -59,4 +73,4 @@ class Candidates extends Component {
   }
 }
 
-export default Candidates;
+export default CandidatesMyPosition;

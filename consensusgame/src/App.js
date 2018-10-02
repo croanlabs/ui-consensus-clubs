@@ -14,20 +14,6 @@ Dotenv.config();
 class App extends Component {
   constructor() {
     super();
-    let authInfo = localStorage.getItem('authInfo');
-    if (authInfo) {
-      this.state = JSON.parse(authInfo);
-    } else {
-      this.state = {isAuthenticated: false, user: null, token: ''};
-    }
-  }
-
-  updateAuthInfo(isAuthenticated, user, token) {
-    localStorage.setItem(
-      'authInfo',
-      JSON.stringify({isAuthenticated, user, token}),
-    );
-    this.setState({isAuthenticated, user, token});
   }
 
   render() {
@@ -36,16 +22,14 @@ class App extends Component {
         <div className="right-half"></div>
         <header>
           <nav className="wrapper">
-            <NavBar
-              updateAuthInfo={this.updateAuthInfo.bind(this)}
-              authInfo={this.state}
-            />
+            <NavBar />
           </nav>
         </header>
         <main className="wrapper">
           <Switch>
             <Route path="/polls/:id" render={props => <Polls {...props} />} />
             <Route path="/polls" render={props => <Polls {...props} />} />
+
             <Route path="/notifications" component={Notifications} />
             <Route path="/rewards" component={Rewards} />
             <Route path="/score" component={Score} />

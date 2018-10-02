@@ -45,10 +45,7 @@ class NavBar extends Component {
             </Link>
           </li>
           <li>
-            <Authentication
-              updateAuthInfo={this.props.updateAuthInfo}
-              authInfo={this.props.authInfo}
-            />
+            <Authentication/>
           </li>
         </ul>
       </div>
