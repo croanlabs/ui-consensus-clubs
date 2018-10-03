@@ -3,20 +3,19 @@ import downArrow from "../../assets/icons/polls/down-arrow.png";
 import upArrow from "../../assets/icons/polls/up-arrow.png";
 import profilePic from "../../assets/images/profile/Aripaul@2x.png";
 import downTriggerArrow from "../../assets/icons/collapse-icon.png";
-import OpinionSupport from "../OpinionSupport/OpinionSupport.js";
-import OpinionOpposition from "../OpinionOpposition/OpinionOpposition.js";
+import NewOpinion from "../NewOpinion/NewOpinion";
 import { numberToString } from "../../utils/Numbers";
 import "./Candidate.scss";
 
 class Candidate extends Component {
   constructor() {
     super();
-    this.state = { active: false, confidence: true };
+    this.state = { active: false };
   }
 
   onClick() {
     if (!this.state.active) {
-      this.setState({ active: true, confidence: true });
+      this.setState({ active: true });
     }
   }
 
@@ -28,35 +27,15 @@ class Candidate extends Component {
     this.setState({ showExpand: false });
   }
 
-  showFormOpposition() {
-    this.setState({ confidence: false });
-  }
-
-  showFormSupport() {
-    this.setState({ confidence: true });
-  }
-
   expandOrContract() {
     this.setState({ active: !this.state.active });
   }
 
   render() {
     let extraComponent;
-    if (this.state.active && this.state.confidence == true) {
+    if (this.state.active) {
       extraComponent = (
-        <OpinionSupport
-          showFormOpposition={this.showFormOpposition.bind(this)}
-          confidence={this.state.confidence}
-          poll={this.props.poll}
-          candidate={this.props.candidate}
-        />
-      );
-    }
-    if (this.state.active && this.state.confidence == false) {
-      extraComponent = (
-        <OpinionOpposition
-          showFormSupport={this.showFormSupport.bind(this)}
-          confidence={this.state.confidence}
+        <NewOpinion
           poll={this.props.poll}
           candidate={this.props.candidate}
         />

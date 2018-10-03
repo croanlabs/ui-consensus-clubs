@@ -11,21 +11,23 @@ class OpinionOpposition extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      amountMerits: 50
+      amountMerits: 50,
+      confidence: true,
     };
   }
 
   updateMeritsSlider = value => {
     this.setState({ amountMerits: value });
-  };
+  }
+
   updateMeritsInput = e => {
     this.setState({ amountMerits: parseInt(e.target.value) });
-  };
+  }
+
   handleStakeCandidate = async e => {
-    // console.log(typeof this.state.volume);
     const obj = {
       commitmentMerits: this.state.amountMerits,
-      confidence: this.props.confidence
+      confidence: this.state.confidence
     };
     e.preventDefault();
     await axios.post(
