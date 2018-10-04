@@ -25,7 +25,14 @@ class CandidatesMyPosition extends Component {
   }
 
   render() {
-    const resultOpinions = this.state.opinions.filter(opinion => {
+    const opinionsSelectedPoll = this.state.opinions.filter(
+      opinion => opinion.candidate.poll_id == this.props.pollId,
+    );
+
+    if (opinionsSelectedPoll.length === 0)
+      return <p>You have not voiced any opinion on this poll yet.</p>;
+
+    const resultOpinions = opinionsSelectedPoll.filter(opinion => {
       let candidate = opinion.candidate;
       let search = this.state.searchValue || '';
       const searchLower = search.toLowerCase();
@@ -33,11 +40,8 @@ class CandidatesMyPosition extends Component {
         candidate.poll_id == this.props.pollId &&
         (candidate.name.toLowerCase().indexOf(searchLower) >= 0 ||
           candidate.twitter_user.toLowerCase().indexOf(searchLower) >= 0)
-      )
+      );
     });
-
-    if (resultOpinions.length === 0)
-      return <p>You have not voiced any opinion on this poll yet.</p>;
 
     // FIXME Move colors somewhere else
     const colors = ['yellow', 'teal', 'purple', 'red', 'green'];
