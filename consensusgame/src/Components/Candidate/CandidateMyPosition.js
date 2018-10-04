@@ -6,6 +6,7 @@ import downTriggerArrow from '../../assets/icons/collapse-icon.png';
 import Withdraw from '../WithdrawModify/Withdraw';
 import Modify from '../WithdrawModify/Modify';
 import appToken from '../../utils/AppToken';
+import './CandidateMyPosition.scss';
 
 class CandidateMyPosition extends Component {
   constructor() {
@@ -25,6 +26,7 @@ class CandidateMyPosition extends Component {
       merits,
       candidate: this.props.opinion.candidate,
       opinion: this.props.opinion,
+      arrowConfidence: this.props.opinion.confidence ? 'up' : 'down',
     });
   }
 
@@ -55,6 +57,9 @@ class CandidateMyPosition extends Component {
   }
 
   render() {
+    if (!this.state.candidate) {
+      return null;
+    }
     let extraComponent;
     if (this.state.active && this.state.content == 'withdraw') {
       extraComponent = (
@@ -91,7 +96,7 @@ class CandidateMyPosition extends Component {
     }
     return (
       <li
-        className={`card ${this.props.color}`}
+        className={`card ${this.props.color} candidate-my-position`}
         onClick={this.onClick.bind(this)}
         onMouseEnter={this.onMouseEnter.bind(this)}
         onMouseLeave={this.onMouseLeave.bind(this)}>
@@ -103,7 +108,7 @@ class CandidateMyPosition extends Component {
               <div className="image-cropper">
                 <img
                   src={
-                    this.state.candidate
+                    this.state.candidate.profile_picture_url
                       ? this.state.candidate.profile_picture_url
                       : profilePic
                   }
@@ -112,19 +117,18 @@ class CandidateMyPosition extends Component {
                 />
               </div>
               <div className="name">
-                <h2>{this.state.candidate ? this.state.candidate.name : ''}</h2>
-                <h3>
-                  {this.state.candidate
-                    ? this.state.candidate.twitter_user
-                    : ''}
-                </h3>
+                <h2>{this.state.candidate.name}</h2>
+                <h3>{this.state.candidate.twitter_user}</h3>
               </div>
             </div>
 
-            <div className="rating flex">
-              <div className="up flex">
+            <div className="rating rating-opinion flex">
+              <div className={`merits-box-opinions ${this.state.arrowConfidence} flex`}>
                 <i>
-                  <img src={upArrow} alt="Rating Up" />
+                  <img
+                    src={this.state.opinion.confidence ? upArrow : downArrow}
+                    alt={`Rating${this.state.arrowConfidence}`}
+                  />
                 </i>
                 <span className="merit-num">
                   {this.state.merits ? this.state.merits : 0}

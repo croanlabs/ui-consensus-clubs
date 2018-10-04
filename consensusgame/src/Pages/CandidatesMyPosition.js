@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import CandidateMyPosition from '../Components/Candidate/CandidateMyPosition';
-import searchIcon from '../assets/icons/search-icon.png';
+import searchIcon from '../assets/icons/coloursearch-icon.png';
 
 class CandidatesMyPosition extends Component {
   constructor() {

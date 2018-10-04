@@ -1,0 +1,11 @@
+@import "../../assets/scss/variables";
+.candidate-my-position {
+  .rating.rating-opinion .merits-box-opinions {
+    align-items: center;
+    margin-right: 0;
+
+    &.down .merit-num {
+      color: $red;
+    }
+  }
+}
