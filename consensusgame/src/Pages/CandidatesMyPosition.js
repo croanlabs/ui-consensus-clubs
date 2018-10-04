@@ -6,20 +6,18 @@ import searchIcon from '../assets/icons/search-icon.png';
 class CandidatesMyPosition extends Component {
   constructor() {
     super();
-    this.state = {searchValue: ''};
+    this.state = {searchValue: '', opinions: []};
   }
 
   async componentDidMount() {
     // TODO move this query to other place, it's being called all the time.
-    const {data: opinions} = await axios(
-      {
-        method: 'get',
-        baseURL: process.env.REACT_APP_API_URL,
-        url: process.env.REACT_APP_API_OPINIONS,
-        withCredentials: true,
-      }
-    );
-    this.setState({opinions});
+    const {data: resp} = await axios({
+      method: 'get',
+      baseURL: process.env.REACT_APP_API_URL,
+      url: process.env.REACT_APP_API_OPINIONS,
+      withCredentials: true,
+    });
+    await this.setState({opinions: resp.rows});
   }
 
   search(ev) {
@@ -27,9 +25,19 @@ class CandidatesMyPosition extends Component {
   }
 
   render() {
-    const count = this.props.candidates ? this.props.candidates.length : 0;
+    const resultOpinions = this.state.opinions.filter(opinion => {
+      let candidate = opinion.candidate;
+      let search = this.state.searchValue || '';
+      const searchLower = search.toLowerCase();
+      return (
+        candidate.poll_id == this.props.pollId &&
+        (candidate.name.toLowerCase().indexOf(searchLower) >= 0 ||
+          candidate.twitter_user.toLowerCase().indexOf(searchLower) >= 0)
+      )
+    });
 
-    if (count === 0) return <p>There are no candidates yet.</p>;
+    if (resultOpinions.length === 0)
+      return <p>You have not voiced any opinion on this poll yet.</p>;
 
     // FIXME Move colors somewhere else
     const colors = ['yellow', 'teal', 'purple', 'red', 'green'];
@@ -47,25 +55,15 @@ class CandidatesMyPosition extends Component {
           />
         </div>
         <br />
-        {/* If total candidates needed uncomment next line*/}
         <ul className="list-unstyled">
-          {this.props.candidates.map((candidate, index) => {
-            let search = this.state.searchValue || '';
-            const searchLower = search.toLowerCase();
-            if (
-              candidate.name.toLowerCase().indexOf(searchLower) >= 0 ||
-              candidate.twitter_user.toLowerCase().indexOf(searchLower) >= 0
-            ) {
-              return (
-                <CandidateMyPosition
-                  corr={index}
-                  color={colors[index % colors.length]}
-                  candidate={candidate}
-                />
-              );
-            } else {
-              return null;
-            }
+          {resultOpinions.map((opinion, index) => {
+            return (
+              <CandidateMyPosition
+                corr={index}
+                color={colors[index % colors.length]}
+                opinion={opinion}
+              />
+            );
           })}
         </ul>
       </div>

@@ -1,74 +1,78 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { apiAddCandidate } from "../config.json";
-import plusIcon from "../assets/icons/polls/plus.png";
-import { apiPolls } from "../config.json";
-import Congratulations from "../Components/Congratulations/Congratulations";
-import TwitterUserInput from "../Components/TwitterUserInput/TwitterUserInput";
-import MeritsSlider from "../Components/MeritsSlider/MeritsSlider";
-import "react-rangeslider/lib/index.css";
-import "./AddCandidate.scss";
+import React, {Component} from 'react';
+import axios from 'axios';
+import {apiAddCandidate} from '../config.json';
+import plusIcon from '../assets/icons/polls/plus.png';
+import {apiPolls} from '../config.json';
+import Congratulations from '../Components/Congratulations/Congratulations';
+import TwitterUserInput from '../Components/TwitterUserInput/TwitterUserInput';
+import MeritsSlider from '../Components/MeritsSlider/MeritsSlider';
+import 'react-rangeslider/lib/index.css';
+import './AddCandidate.scss';
 
 class AddCandidate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      description: "",
-      twitterUser: "",
+      name: '',
+      description: '',
+      twitterUser: '',
       amountMerits: 50,
-      search: "",
+      search: '',
       items: [],
       active: false,
       selected: false,
-      added: false
+      added: false,
     };
     this.handleAddCandidate = this.handleAddCandidate.bind(this);
   }
   updateMeritsSlider = value => {
-    this.setState({ amountMerits: value });
+    this.setState({amountMerits: value});
   };
   updateMeritsInput = e => {
-    this.setState({ amountMerits: parseInt(e.target.value) });
+    this.setState({amountMerits: parseInt(e.target.value)});
   };
 
   handleShowForm = () =>
     this.setState(prevState => {
-      return { active: !prevState.active };
+      return {active: !prevState.active};
     });
 
   updateSearch(e) {
-    this.setState({ search: e.target.value });
+    this.setState({search: e.target.value});
   }
 
   handleChangeTwitterUser(e) {
-    this.setState({ twitterUser: e.target.value });
+    this.setState({twitterUser: e.target.value});
   }
 
   handleChangeAmountMerits(e) {
-    this.setState({ amountMerits: e.target.value });
+    this.setState({amountMerits: e.target.value});
   }
 
   handleAddCandidate = async e => {
-    const obj = {
-      name: this.state.name,
-      description: this.state.description,
-      twitterUser: this.state.twitterUser,
-      twitterId: this.state.twitterId,
-      profilePictureUrl: this.state.profilePictureUrl,
-      confidence: true,
-      amountMerits: this.state.amountMerits
+    const url =
+      process.env.REACT_APP_API_POLLS +
+      '/' +
+      this.props.poll.id +
+      '/user-add-candidate';
+    const conf = {
+      method: 'post',
+      baseURL: process.env.REACT_APP_API_URL,
+      url,
+      withCredentials: true,
+      data: {
+        name: this.state.name,
+        description: this.state.description,
+        twitterUser: this.state.twitterUser,
+        twitterId: this.state.twitterId,
+        profilePictureUrl: this.state.profilePictureUrl,
+        confidence: true,
+        amountMerits: this.state.amountMerits,
+      },
     };
     e.preventDefault();
-    await axios.post(
-      `${process.env.REACT_APP_API_URL +
-        process.env.REACT_APP_API_POLLS +
-        "/" +
-        this.props.poll.id +
-        "/user-add-candidate"}`,
-      obj
-    );
-    this.setState({ active: true, added: true });
+    await axios(conf);
+    this.setState({active: true, added: true});
   };
 
   handleCandidateSelected(suggestion) {
@@ -79,15 +83,15 @@ class AddCandidate extends Component {
       profilePictureUrl: suggestion.profile_image_url_https,
       description: suggestion.description,
       twitterId: 15160966,
-      selected: true
+      selected: true,
     });
   }
 
   handleOk() {
-    this.setState({ active: false, selected: false, added: false });
+    this.setState({active: false, selected: false, added: false});
   }
   chooseAnotherCandidate = () => {
-    this.setState({ selected: false });
+    this.setState({selected: false});
   };
 
   render() {
@@ -137,14 +141,12 @@ class AddCandidate extends Component {
                   {/* <div className="buttons"> */}
                   <div
                     className="add-candidate-submit"
-                    onClick={this.handleAddCandidate}
-                  >
+                    onClick={this.handleAddCandidate}>
                     <span>Add @{this.state.twitterUser}</span>
                   </div>
                   <div
                     className="anotherCandidate"
-                    onClick={this.chooseAnotherCandidate}
-                  >
+                    onClick={this.chooseAnotherCandidate}>
                     Choose another candidate
                   </div>
                   {/* </div> */}

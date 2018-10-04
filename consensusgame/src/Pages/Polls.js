@@ -96,7 +96,7 @@ class Polls extends Component {
               </div>
               <div label="My Positions">
                 <CandidatesMyPosition
-                  candidates={this.state.poll ? this.state.poll.candidates : []}
+                  pollId={ this.state.poll ? this.state.poll.id : -1 }
                 />
               </div>
             </Tabs>
