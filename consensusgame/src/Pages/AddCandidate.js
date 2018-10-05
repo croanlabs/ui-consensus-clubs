@@ -1,62 +1,62 @@
-import React, {Component} from 'react';
-import axios from 'axios';
-import {apiAddCandidate} from '../config.json';
-import plusIcon from '../assets/icons/polls/plus.png';
-import {apiPolls} from '../config.json';
-import Congratulations from '../Components/Congratulations/Congratulations';
-import TwitterUserInput from '../Components/TwitterUserInput/TwitterUserInput';
-import MeritsSlider from '../Components/MeritsSlider/MeritsSlider';
-import 'react-rangeslider/lib/index.css';
-import './AddCandidate.scss';
+import React, { Component } from "react";
+import axios from "axios";
+import plusIcon from "../assets/icons/polls/plus.png";
+import Congratulations from "../Components/Congratulations/Congratulations";
+import TwitterUserInput from "../Components/TwitterUserInput/TwitterUserInput";
+import MeritsSlider from "../Components/MeritsSlider/MeritsSlider";
+import "react-rangeslider/lib/index.css";
+import "./AddCandidate.scss";
 
 class AddCandidate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      description: '',
-      twitterUser: '',
+      name: "",
+      description: "",
+      twitterUser: "",
       amountMerits: 50,
-      search: '',
+      search: "",
       items: [],
       active: false,
       selected: false,
-      added: false,
+      added: false
     };
     this.handleAddCandidate = this.handleAddCandidate.bind(this);
   }
+
   updateMeritsSlider = value => {
-    this.setState({amountMerits: value});
+    this.setState({ amountMerits: value });
   };
+
   updateMeritsInput = e => {
-    this.setState({amountMerits: parseInt(e.target.value)});
+    this.setState({ amountMerits: parseInt(e.target.value) });
   };
 
   handleShowForm = () =>
     this.setState(prevState => {
-      return {active: !prevState.active};
+      return { active: !prevState.active };
     });
 
   updateSearch(e) {
-    this.setState({search: e.target.value});
+    this.setState({ search: e.target.value });
   }
 
   handleChangeTwitterUser(e) {
-    this.setState({twitterUser: e.target.value});
+    this.setState({ twitterUser: e.target.value });
   }
 
   handleChangeAmountMerits(e) {
-    this.setState({amountMerits: e.target.value});
+    this.setState({ amountMerits: e.target.value });
   }
 
   handleAddCandidate = async e => {
     const url =
       process.env.REACT_APP_API_POLLS +
-      '/' +
+      "/" +
       this.props.poll.id +
-      '/user-add-candidate';
+      "/user-add-candidate";
     const conf = {
-      method: 'post',
+      method: "post",
       baseURL: process.env.REACT_APP_API_URL,
       url,
       withCredentials: true,
@@ -67,12 +67,12 @@ class AddCandidate extends Component {
         twitterId: this.state.twitterId,
         profilePictureUrl: this.state.profilePictureUrl,
         confidence: true,
-        amountMerits: this.state.amountMerits,
-      },
+        amountMerits: this.state.amountMerits
+      }
     };
     e.preventDefault();
     await axios(conf);
-    this.setState({active: true, added: true});
+    this.setState({ active: true, added: true });
   };
 
   handleCandidateSelected(suggestion) {
@@ -83,22 +83,31 @@ class AddCandidate extends Component {
       profilePictureUrl: suggestion.profile_image_url_https,
       description: suggestion.description,
       twitterId: 15160966,
-      selected: true,
+      selected: true
     });
   }
 
   handleOk() {
-    this.setState({active: false, selected: false, added: false});
+    this.setState({
+      active: false,
+      selected: false,
+      added: false,
+      amountMerits: 50
+    });
   }
+
   chooseAnotherCandidate = () => {
-    this.setState({selected: false});
+    this.setState({ selected: false });
   };
 
   render() {
     let addCandidateButton;
     !this.state.active
       ? (addCandidateButton = (
-          <p className="add-new-candidate flex" onClick={this.handleShowForm}>
+          <p
+            className="add-new-candidate-button flex"
+            onClick={this.handleShowForm}
+          >
             <i className="icon">
               <img src={plusIcon} alt="Add New Candidate" />
             </i>
@@ -138,15 +147,16 @@ class AddCandidate extends Component {
                       passMeritsFromInput={this.updateMeritsInput}
                     />
                   </div>
-                  {/* <div className="buttons"> */}
                   <div
                     className="add-candidate-submit"
-                    onClick={this.handleAddCandidate}>
+                    onClick={this.handleAddCandidate}
+                  >
                     <span>Add @{this.state.twitterUser}</span>
                   </div>
                   <div
                     className="anotherCandidate"
-                    onClick={this.chooseAnotherCandidate}>
+                    onClick={this.chooseAnotherCandidate}
+                  >
                     Choose another candidate
                   </div>
                   {/* </div> */}

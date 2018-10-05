@@ -1,28 +1,27 @@
-import React, {Component} from 'react';
-import Autosuggest from 'react-autosuggest';
-import axios from 'axios';
-import searchIcon from '../../assets/icons/coloursearch-icon.png';
-import './TwitterUserInput.scss';
+import React from "react";
+import Autosuggest from "react-autosuggest";
+import axios from "axios";
+import searchIcon from "../../assets/icons/coloursearch-icon.png";
+import "./TwitterUserInput.scss";
 
 class TwitterUserInput extends React.Component {
   constructor() {
     super();
-
     this.state = {
-      value: '',
-      suggestions: [],
+      value: "",
+      suggestions: []
     };
   }
 
-  onChange(event, {newValue}) {
+  onChange(event, { newValue }) {
     this.setState({
-      value: newValue,
+      value: newValue
     });
   }
 
-  async onSuggestionsFetchRequested({value}) {
+  async onSuggestionsFetchRequested({ value }) {
     this.setState({
-      suggestions: await this.getSuggestions(value),
+      suggestions: await this.getSuggestions(value)
     });
   }
 
@@ -32,21 +31,21 @@ class TwitterUserInput extends React.Component {
     }
     let request = {
       params: {
-        q: value,
-      },
+        q: value
+      }
     };
-    const {data: suggestions} = await axios.get(
+    const { data: suggestions } = await axios.get(
       `${process.env.REACT_APP_API_URL}${
         process.env.REACT_APP_TWITTER_USER_SEARCH
       }`,
-      request,
+      request
     );
     return suggestions;
   }
 
   onSuggestionsClearRequested() {
     this.setState({
-      suggestions: [],
+      suggestions: []
     });
   }
 
@@ -83,26 +82,26 @@ class TwitterUserInput extends React.Component {
   }
 
   render() {
-    const {value, suggestions} = this.state;
+    const { value, suggestions } = this.state;
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
-      placeholder: 'Search on Twitter',
+      placeholder: "Search on Twitter",
       value,
       onChange: this.onChange.bind(this),
-      className: 'find',
+      className: "find"
     };
 
     return (
       <div className="twitter-autosuggest">
-        <img className='search-icon' src={searchIcon} alt="Find" />
+        <img className="search-icon" src={searchIcon} alt="Find" />
         <Autosuggest
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested.bind(
-            this,
+            this
           )}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested.bind(
-            this,
+            this
           )}
           onSuggestionSelected={this.onSuggestionSelected.bind(this)}
           getSuggestionValue={this.getSuggestionValue}

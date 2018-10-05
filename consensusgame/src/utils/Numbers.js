@@ -12,7 +12,7 @@ export function numberToString(number) {
       result = number;
     }
   }
-  if (parseInt(result, 10) != result) {
+  if (parseInt(result, 10) !== result) {
     result = result.toFixed(1);
   }
   result = `${result}${scale}`;

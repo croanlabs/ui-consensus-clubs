@@ -1,0 +1,48 @@
+@import "../assets/scss/variables";
+
+.candidates {
+  .search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    img {
+      position: absolute;
+      left: 1em;
+      color: $navy;
+      font-weight: 700;
+      width: 20px;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid #ccc;
+      padding: 1rem 1rem 1rem 3rem;
+      color: #999;
+      border-radius: 3px;
+      margin: 0;
+      font-size: 1.2em;
+    }
+  }
+
+  .total-candidates {
+    width: 100%;
+    text-align: center;
+    color: $light-grey;
+    padding: 1rem 0;
+    font-size: 14px;
+  }
+
+  @media only screen and (max-width: 979px) {
+    .total-candidates {
+      color: $grey;
+      padding: 2rem 0;
+    }
+  }
+
+  @media only screen and (max-width: 479px) {
+    .total-candidates {
+      font-size: 10px;
+    }
+  }
+}

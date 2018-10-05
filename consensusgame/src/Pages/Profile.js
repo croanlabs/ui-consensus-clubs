@@ -12,27 +12,6 @@ class Profile extends Component {
       one_year: "+25.1"
     };
 
-    const ongoingVotes = [
-      {
-        id: 1,
-        candidateName: "@fredwilson",
-        voted: true,
-        removeYes: true
-      },
-      {
-        id: 2,
-        candidateName: "@aridavidpaul",
-        voted: true,
-        removeYes: false
-      },
-      {
-        id: 3,
-        candidateName: "@scamcoin",
-        voted: false,
-        removeYes: null
-      }
-    ];
-
     return (
       <div className="layout">
         <aside className="col">
@@ -69,7 +48,6 @@ class Profile extends Component {
                 <div>Closed Votes</div>
                 <div>Ongoing Votes</div>
               </div>
-
             </div>
           </div>
         </section>

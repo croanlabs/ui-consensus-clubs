@@ -1,4 +1,5 @@
 @import "../../assets/scss/variables";
+
 .opinion-expression {
   margin: 4em auto;
   width: 80%;
@@ -17,43 +18,25 @@
     }
   }
 
-  .oppose img, .support img {
-    height: 20px;
-    margin-right: 0.5em;
-  }
+  .candidate {
+    p.arrow-opinion {
+      margin: 2em;
+    }
 
-  .slider {
-    .merits-box {
+    p.oppose,
+    p.support {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: center;
-      padding: 1em 4em;
-      font-family: SFProMedium;
-      width: 120px;
-      margin: 1em auto 2em;
-      input {
-        border: none;
-        width: 3em;
-        border: 1px solid $light-grey;
-        border-radius: 10px;
-        width: 90px;
-        padding-left: 0.5em;
-        height: 2em;
-        text-align: right;
+      margin: 2em 0;
+      img {
+        height: 20px;
+        margin-right: 0.5em;
       }
-      .small-text {
-        font-size: 1.3em;
-        padding-left: 0.5em;
+      &:hover {
+        cursor: pointer;
       }
     }
-  }
-
-  p.arrow-opinion {
-    margin: 2em;
-  }
-
-  p.oppose, p.support {
-    margin: 2em;
   }
 
   &.opinion-support {
@@ -78,33 +61,33 @@
       color: $teal;
       input {
         color: $teal;
-      }  
+      }
     }
   }
 
   &.opinion-opposition {
     .rangeslider .rangeslider__handle {
+      border-color: $red;
+      background: $red;
+    }
+    .rangeslider.rangeslider-horizontal {
+      .rangeslider__handle {
         border-color: $red;
         background: $red;
-      }
-    .rangeslider.rangeslider-horizontal {
-        .rangeslider__handle {
+        &:after {
           border-color: $red;
           background: $red;
-          &:after {
-            border-color: $red;
-            background: $red;
-          }
         }
-        .rangeslider__fill {
-          background-color: $red;
-        }
+      }
+      .rangeslider__fill {
+        background-color: $red;
+      }
     }
     .slider .merits-box {
       color: $red;
       input {
         color: $red;
-      }  
+      }
     }
   }
 }

@@ -1,13 +1,11 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {twitterLogInUrl} from '../../config.json';
-import menuLogo from '../../assets/images/logo.svg';
-import homeIcon from '../../assets/icons/svg/home-active.svg';
-import notificationsIcon from '../../assets/icons/svg/notifications-inactive.svg';
-import rewardIcon from '../../assets/icons/svg/rewards-inactive.svg';
-import profilePic from '../../assets/images/profile-pic.jpg';
-import Authentication from '../Authentication/Authentication.js';
-import './NavBar.scss';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import menuLogo from "../../assets/images/logo.svg";
+import homeIcon from "../../assets/icons/svg/home-active.svg";
+import notificationsIcon from "../../assets/icons/svg/notifications-inactive.svg";
+import rewardIcon from "../../assets/icons/svg/rewards-inactive.svg";
+import Authentication from "../Authentication/Authentication.js";
+import "./NavBar.scss";
 
 class NavBar extends Component {
   render() {
@@ -22,7 +20,7 @@ class NavBar extends Component {
         <ul>
           <li>
             <Link className="nav-link" to="/polls">
-              <div class="icon">
+              <div className="icon">
                 <img src={homeIcon} alt="Home" />
               </div>
               <div className="name">Home</div>
@@ -30,7 +28,7 @@ class NavBar extends Component {
           </li>
           <li>
             <Link className="nav-link" to="/notifications">
-              <div class="icon">
+              <div className="icon">
                 <img src={notificationsIcon} alt="Home" />
               </div>
               <div className="name">Notifications</div>
@@ -38,14 +36,14 @@ class NavBar extends Component {
           </li>
           <li>
             <Link className="nav-link" to="/rewards">
-              <div class="icon">
+              <div className="icon">
                 <img src={rewardIcon} alt="Home" />
               </div>
               <div className="name">Reward</div>
             </Link>
           </li>
           <li>
-            <Authentication/>
+            <Authentication />
           </li>
         </ul>
       </div>

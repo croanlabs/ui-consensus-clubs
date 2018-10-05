@@ -35,10 +35,7 @@ class Candidate extends Component {
     let extraComponent;
     if (this.state.active) {
       extraComponent = (
-        <NewOpinion
-          poll={this.props.poll}
-          candidate={this.props.candidate}
-        />
+        <NewOpinion poll={this.props.poll} candidate={this.props.candidate} />
       );
     }
 
@@ -69,7 +66,7 @@ class Candidate extends Component {
         >
           <div className="card-container">
             {expand}
-            <div className="flex-sb">
+            <div className="flex-sb" onClick={this.expandOrContract.bind(this)}>
               <div className="profile flex">
                 <div className="number">{this.props.corr + 1}</div>
                 <div className="image-cropper">
@@ -84,6 +81,7 @@ class Candidate extends Component {
                   <h3>{this.props.candidate["twitter_user"]}</h3>
                 </div>
               </div>
+
               <div className="rating flex">
                 <div className="up flex">
                   <i>

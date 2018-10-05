@@ -25,7 +25,6 @@ class Score extends Component {
   }
 
   render() {
-    const { users } = this.state;
     return (
       <div className="layout">
         <aside className="col">

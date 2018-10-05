@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import arrowIcon from "../assets/icons/polls/next@2x.svg";
+import React from "react";
+import arrowIcon from "../../assets/icons/polls/next@2x.svg";
+import "./Pagination.scss";
 
 const Pagination = props => {
   const { onNextPage, onPreviousPage, currentPage, itemCount } = props;
@@ -10,11 +11,8 @@ const Pagination = props => {
     nextArrowClassName = "invisible";
   }
   return (
-    // 1, 2, 3 buttons
     <nav aria-label="Page navigation example">
       <ul className="pagination">
-        {/* arrow buttons */}
-
         <li className={currentPage === 1 ? "invisible" : ""}>
           <a onClick={() => onPreviousPage(currentPage)} aria-label="Previous">
             <img

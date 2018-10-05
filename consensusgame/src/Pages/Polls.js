@@ -3,19 +3,13 @@ import Candidates from "./Candidates";
 import CandidatesMyPosition from "./CandidatesMyPosition";
 import PropTypes from "prop-types";
 import AddPoll from "./AddPoll";
-import Pagination from "../Components/Pagination";
+import Pagination from "../Components/Pagination/Pagination";
 import Tabs from "../Components/Tabs/Tabs";
 import Congrats from "../Components/Congratulations/Congratulations";
 import { Paginate } from "../utils/Paginate";
 import { apiPolls } from "../config.json";
 import axios from "axios";
-import profilePic from "../assets/images/profile/Aripaul@2x.png";
-import downArrow from "../assets/icons/polls/down-arrow.png";
-import upArrow from "../assets/icons/polls/up-arrow.png";
-import searchIcon from "../assets/icons/search-icon.png";
-import downTriggerArrow from "../assets/icons/collapse-icon.png";
 import "./Polls.scss";
-// import { Link } from "react-router-dom";
 import AddCandidate from "./AddCandidate";
 
 class Polls extends Component {
@@ -56,6 +50,8 @@ class Polls extends Component {
     const { length: count } = this.state.polls;
 
     const polls = Paginate(allPolls, currentPage);
+    const colors = ["yellow", "teal", "purple", "red", "green", "blue"];
+
     return (
       <div className="layout polls">
         <aside className="col">
@@ -92,11 +88,13 @@ class Polls extends Component {
                 <Candidates
                   poll={this.state.poll}
                   candidates={this.state.poll ? this.state.poll.candidates : []}
+                  colors={colors}
                 />
               </div>
               <div label="My Positions">
                 <CandidatesMyPosition
-                  pollId={ this.state.poll ? this.state.poll.id : -1 }
+                  pollId={this.state.poll ? this.state.poll.id : -1}
+                  colors={colors}
                 />
               </div>
             </Tabs>

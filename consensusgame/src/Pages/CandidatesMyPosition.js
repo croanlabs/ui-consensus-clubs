@@ -1,32 +1,36 @@
-import React, {Component} from 'react';
-import axios from 'axios';
-import CandidateMyPosition from '../Components/Candidate/CandidateMyPosition';
-import searchIcon from '../assets/icons/coloursearch-icon.png';
+import React, { Component } from "react";
+import axios from "axios";
+import CandidateMyPosition from "../Components/Candidate/CandidateMyPosition";
+import searchIcon from "../assets/icons/coloursearch-icon.png";
+import "./Candidates.scss";
 
 class CandidatesMyPosition extends Component {
   constructor() {
     super();
-    this.state = {searchValue: '', opinions: []};
+    this.state = { searchValue: "", opinions: [] };
   }
 
   async componentDidMount() {
     // TODO move this query to other place, it's being called all the time.
-    const {data: resp} = await axios({
-      method: 'get',
+    const { data: resp } = await axios({
+      method: "get",
       baseURL: process.env.REACT_APP_API_URL,
       url: process.env.REACT_APP_API_OPINIONS,
-      withCredentials: true,
+      withCredentials: true
     });
-    await this.setState({opinions: resp.rows});
+    await this.setState({ opinions: resp.rows });
   }
 
   search(ev) {
-    this.setState({searchValue: ev.target.value});
+    this.setState({ searchValue: ev.target.value });
   }
 
   render() {
+    const { length: count } = this.state.opinions;
+    const { colors } = this.props;
+
     const opinionsSelectedPoll = this.state.opinions.filter(
-      opinion => opinion.candidate.poll_id == this.props.pollId,
+      opinion => opinion.candidate.poll_id == this.props.pollId
     );
 
     if (opinionsSelectedPoll.length === 0)
@@ -34,7 +38,7 @@ class CandidatesMyPosition extends Component {
 
     const resultOpinions = opinionsSelectedPoll.filter(opinion => {
       let candidate = opinion.candidate;
-      let search = this.state.searchValue || '';
+      let search = this.state.searchValue || "";
       const searchLower = search.toLowerCase();
       return (
         candidate.poll_id == this.props.pollId &&
@@ -43,11 +47,8 @@ class CandidatesMyPosition extends Component {
       );
     });
 
-    // FIXME Move colors somewhere else
-    const colors = ['yellow', 'teal', 'purple', 'red', 'green'];
-
     return (
-      <div>
+      <div className="candidates">
         <div className="search-bar">
           <img src={searchIcon} alt="Find" />
           <input
@@ -58,11 +59,15 @@ class CandidatesMyPosition extends Component {
             onChange={this.search.bind(this)}
           />
         </div>
-        <br />
+        <div className="total-candidates">
+          {/* FIXME count should be changed to candidates of my position */}
+          <span>Total Candidates - {count}</span>
+        </div>
         <ul className="list-unstyled">
           {resultOpinions.map((opinion, index) => {
             return (
               <CandidateMyPosition
+                key={opinion.id}
                 corr={index}
                 color={colors[index % colors.length]}
                 opinion={opinion}

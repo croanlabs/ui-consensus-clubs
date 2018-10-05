@@ -1,105 +1,116 @@
 @import "variables";
 
 .card {
-    width: 100%;
-    border: 1px solid white;
-    border-left: 6px solid $yellow;
-    background: white;
-    border-radius: 5px;
-    color: #333;
-    margin-bottom: 1em;
+  width: 100%;
+  border: 1px solid white;
+  border-left: 6px solid $yellow;
+  background: white;
+  border-radius: 5px;
+  color: #333;
+  margin-bottom: 1em;
 
-    .card-container { 
-        position: relative;
-        margin: 1em;
-        .arrow-trigger {
-            position: absolute;
-            right: -2.5em;
-            top: 1.7em;
-            width: 30px;
-            height: 30px;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            img {
-                height: 12px;
-            }
-            .down-arrow {
-                transform: rotate(180deg);
-            }
-        }
-        .number {
-            font-size: 1.5rem;
-            margin-right: 1rem;
-        }
-        
-        .info {
-            width: 90%;
-            text-align: center;
-            margin: 2em auto;
-            line-height: 1.5;
-        }
+  .card-container {
+    position: relative;
+    margin: 1em;
+    .arrow-trigger {
+      position: absolute;
+      right: -2.5em;
+      top: 1.7em;
+      width: 30px;
+      height: 30px;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      img {
+        height: 12px;
+      }
+      .down-arrow {
+        transform: rotate(180deg);
+      }
+    }
+    .number {
+      font-size: 1.5rem;
+      margin-right: 1rem;
     }
 
-    &.yellow {
-        border-left-color: $yellow;
-        
-        .profile {
-            img {
-                border-color: lighten($yellow, 10%);
-            }
-            .number {
-                color: $yellow;
-            }
-        }
+    .info {
+      width: 90%;
+      text-align: center;
+      margin: 2em auto;
+      line-height: 1.5;
     }
-    
-    &.teal {
-        border-left-color: $teal;
-        .profile {
-            img {
-                border-color: lighten($teal, 10%);
-            }
-            
-            .number {
-                color: $teal;
-            }
-        }
-    }
+  }
 
-    &.purple {
-        border-left-color: $purple;
-        .profile {
-            img {
-                border-color: $purple;
-            }
-            .number {
-                color: $purple;
-            }
-        }
-    }
+  &.yellow {
+    border-left-color: $yellow;
 
-    &.red {
-        border-left-color: $red;
-        .profile {
-            img {
-                border-color: $red;
-            }
-            .number {
-                color: $red;
-            }
-        }
+    .profile {
+      img {
+        border-color: lighten($yellow, 10%);
+      }
+      .number {
+        color: $yellow;
+      }
     }
+  }
 
-    &.green {
-        border-left-color: $green;
-        .profile {
-            img {
-                border-color: $green;
-            }
-            .number {
-                color: $green;
-            }
-        }
+  &.teal {
+    border-left-color: $teal;
+    .profile {
+      img {
+        border-color: lighten($teal, 10%);
+      }
+      .number {
+        color: $teal;
+      }
     }
+  }
+
+  &.purple {
+    border-left-color: $purple;
+    .profile {
+      img {
+        border-color: $purple;
+      }
+      .number {
+        color: $purple;
+      }
+    }
+  }
+
+  &.red {
+    border-left-color: $red;
+    .profile {
+      img {
+        border-color: $red;
+      }
+      .number {
+        color: $red;
+      }
+    }
+  }
+
+  &.green {
+    border-left-color: $green;
+    .profile {
+      img {
+        border-color: $green;
+      }
+      .number {
+        color: $green;
+      }
+    }
+  }
+
+  &.blue {
+    border-left-color: $blue3;
+    .profile {
+      img {
+        border-color: $blue3;
+      }
+      .number {
+        color: $blue3;
+      }
+    }
+  }
 }

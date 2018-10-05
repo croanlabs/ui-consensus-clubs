@@ -19,23 +19,32 @@
   }
 }
 .slider {
-  p {
-    padding: 2em 0;
-  }
+  padding: 1em 0 0 0;
+
   .merits-box {
     display: flex;
     align-items: baseline;
     justify-content: center;
-    border: 1px solid $light-grey;
     padding: 1em 4em;
     font-family: SFProMedium;
     width: 120px;
     margin: 1em auto 2em;
+    input {
+      font-size: 4em;
+      width: 3.5em;
+      height: 5em;
+      border: 1px solid $light-grey;
+      border-radius: 10px;
+      padding-left: 0.5em;
+      text-align: right;
+    }
     .large-text {
-      font-size: 2em;
+      font-size: 2.1em;
+      padding-right: 0.3em;
     }
     .small-text {
-      font-size: 1em;
+      font-size: 1.3em;
+      padding-left: 0.5em;
     }
   }
 }

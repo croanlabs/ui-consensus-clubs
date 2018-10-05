@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Candidate from "../Components/Candidate/Candidate";
 import searchIcon from "../assets/icons/coloursearch-icon.png";
+import "./Candidates.scss";
 
 class Candidates extends Component {
   constructor() {
@@ -17,11 +18,10 @@ class Candidates extends Component {
 
     if (count === 0) return <p>There are no candidates yet.</p>;
 
-    // FIXME Move colors somewhere else
-    const colors = ["yellow", "teal", "purple", "red", "green"];
+    const { colors } = this.props;
 
     return (
-      <div>
+      <div className="candidates">
         <div className="search-bar">
           <img src={searchIcon} alt="Find" />
           <input
@@ -32,8 +32,9 @@ class Candidates extends Component {
             onChange={this.search.bind(this)}
           />
         </div>
-        <br />
-        {/* If total candidates needed uncomment next line*/}
+        <div className="total-candidates">
+          <span>Total Candidates - {count}</span>
+        </div>
         <ul className="list-unstyled">
           {this.props.candidates.map((candidate, index) => {
             let search = this.state.searchValue || "";
@@ -44,6 +45,7 @@ class Candidates extends Component {
             ) {
               return (
                 <Candidate
+                  key={candidate.id}
                   corr={index}
                   color={colors[index % colors.length]}
                   poll={this.props.poll}

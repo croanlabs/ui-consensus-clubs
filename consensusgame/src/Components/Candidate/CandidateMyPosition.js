@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
-import downArrow from '../../assets/icons/polls/down-arrow.png';
-import upArrow from '../../assets/icons/polls/up-arrow.png';
-import profilePic from '../../assets/images/profile/Aripaul@2x.png';
-import downTriggerArrow from '../../assets/icons/collapse-icon.png';
-import Withdraw from '../WithdrawModify/Withdraw';
-import Modify from '../WithdrawModify/Modify';
-import appToken from '../../utils/AppToken';
-import './CandidateMyPosition.scss';
+import React, { Component } from "react";
+import downArrow from "../../assets/icons/polls/down-arrow.png";
+import upArrow from "../../assets/icons/polls/up-arrow.png";
+import profilePic from "../../assets/images/profile/Aripaul@2x.png";
+import downTriggerArrow from "../../assets/icons/collapse-icon.png";
+import Withdraw from "../WithdrawModify/Withdraw";
+import Modify from "../WithdrawModify/Modify";
+import appToken from "../../utils/AppToken";
+import "./CandidateMyPosition.scss";
 
 class CandidateMyPosition extends Component {
   constructor() {
     super();
 
-    this.state = {active: false};
+    this.state = { active: false };
   }
 
   componentDidMount() {
@@ -26,34 +26,34 @@ class CandidateMyPosition extends Component {
       merits,
       candidate: this.props.opinion.candidate,
       opinion: this.props.opinion,
-      arrowConfidence: this.props.opinion.confidence ? 'up' : 'down',
+      arrowConfidence: this.props.opinion.confidence ? "up" : "down"
     });
   }
 
   onClick() {
     if (!this.state.active) {
-      this.setState({active: true, content: 'withdraw'});
+      this.setState({ active: true, content: "withdraw" });
     }
   }
 
   onMouseEnter() {
-    this.setState({showExpand: true});
+    this.setState({ showExpand: true });
   }
 
   onMouseLeave() {
-    this.setState({showExpand: false});
+    this.setState({ showExpand: false });
   }
 
   showFormModify() {
-    this.setState({content: 'modify'});
+    this.setState({ content: "modify" });
   }
 
   showFormWithdraw() {
-    this.setState({content: 'withdraw'});
+    this.setState({ content: "withdraw" });
   }
 
   expandOrContract() {
-    this.setState({active: !this.state.active});
+    this.setState({ active: !this.state.active });
   }
 
   render() {
@@ -61,15 +61,16 @@ class CandidateMyPosition extends Component {
       return null;
     }
     let extraComponent;
-    if (this.state.active && this.state.content == 'withdraw') {
+    if (this.state.active && this.state.content == "withdraw") {
       extraComponent = (
         <Withdraw
           showFormModify={this.showFormModify.bind(this)}
           candidate={this.props.opinion.candidate}
+          amountOfStakedMerits={this.state.merits}
         />
       );
     }
-    if (this.state.active && this.state.content == 'modify') {
+    if (this.state.active && this.state.content == "modify") {
       extraComponent = (
         <Modify
           showFormWithdraw={this.showFormWithdraw.bind(this)}
@@ -83,62 +84,70 @@ class CandidateMyPosition extends Component {
       expand = (
         <div
           className="arrow-trigger"
-          onClick={this.expandOrContract.bind(this)}>
+          onClick={this.expandOrContract.bind(this)}
+        >
           <i>
             <img
               src={downTriggerArrow}
               alt="Expanded"
-              className={`${this.state.active ? 'up' : 'down'}-arrow`}
+              className={`${this.state.active ? "up" : "down"}-arrow`}
             />
           </i>
         </div>
       );
     }
     return (
-      <li
-        className={`card ${this.props.color} candidate-my-position`}
-        onClick={this.onClick.bind(this)}
-        onMouseEnter={this.onMouseEnter.bind(this)}
-        onMouseLeave={this.onMouseLeave.bind(this)}>
-        <div className="card-container">
-          {expand}
-          <div className="flex-sb">
-            <div className="profile flex">
-              <div className="number">{this.props.corr + 1}</div>
-              <div className="image-cropper">
-                <img
-                  src={
-                    this.state.candidate.profile_picture_url
-                      ? this.state.candidate.profile_picture_url
-                      : profilePic
-                  }
-                  alt="Metem"
-                  className="profile-pic"
-                />
-              </div>
-              <div className="name">
-                <h2>{this.state.candidate.name}</h2>
-                <h3>{this.state.candidate.twitter_user}</h3>
-              </div>
-            </div>
-
-            <div className="rating rating-opinion flex">
-              <div className={`merits-box-opinions ${this.state.arrowConfidence} flex`}>
-                <i>
+      <div className="candidate">
+        <li
+          className={`card ${this.props.color} candidate-my-position`}
+          onClick={this.onClick.bind(this)}
+          onMouseEnter={this.onMouseEnter.bind(this)}
+          onMouseLeave={this.onMouseLeave.bind(this)}
+        >
+          <div className="card-container">
+            {expand}
+            <div className="flex-sb">
+              <div className="profile flex">
+                <div className="number">{this.props.corr + 1}</div>
+                <div className="image-cropper">
                   <img
-                    src={this.state.opinion.confidence ? upArrow : downArrow}
-                    alt={`Rating${this.state.arrowConfidence}`}
+                    src={
+                      this.state.candidate.profile_picture_url
+                        ? this.state.candidate.profile_picture_url
+                        : profilePic
+                    }
+                    alt="Metem"
+                    className="profile-pic"
                   />
-                </i>
-                <span className="merit-num">
-                  {this.state.merits ? this.state.merits : 0}
-                </span>
+                </div>
+                <div className="name">
+                  <h2>{this.state.candidate.name}</h2>
+                  <h3>{this.state.candidate.twitter_user}</h3>
+                </div>
+              </div>
+
+              <div className="rating rating-opinion flex">
+                <div
+                  className={`merits-box-opinions ${
+                    this.state.arrowConfidence
+                  } flex`}
+                >
+                  <i>
+                    <img
+                      src={this.state.opinion.confidence ? upArrow : downArrow}
+                      alt={`Rating${this.state.arrowConfidence}`}
+                    />
+                  </i>
+                  <span className="merit-num">
+                    {this.state.merits ? this.state.merits : 0} Merits
+                  </span>
+                </div>
               </div>
             </div>
+            {extraComponent}
           </div>
-          {extraComponent}
-        </div>
-      </li>
+        </li>
+      </div>
     );
   }
 }
