@@ -1,8 +1,57 @@
 @import "../../assets/scss/buttons";
+@import "../../assets/scss/variables";
 
 .auth-container {
   display: table-cell;
 
+  .profile-pic {
+    &:hover {
+      cursor: pointer;
+    }
+    img {
+      border-radius: 50%;
+    }
+  }
+  .user-total-merits {
+    font-size: 20px;
+    color: $teal;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+
+  .profile-pic,
+  .user-total-merits {
+    display: inline-block;
+  }
+
+  ul.profile-menu {
+    text-align: center;
+    height: 400px;
+    background: white;
+    position: fixed;
+    width: 300px;
+    top: 95px;
+    right: 140px;
+    z-index: 1;
+    padding-top: 5px;
+    :after {
+      width: 0px;
+      height: 0px;
+      position: absolute;
+      top: 0%;
+      right: 80px;
+      content: "";
+      transform: translate(0%, -100%);
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 13px solid white;
+    }
+    li {
+      display: block;
+      font-size: 20px;
+      margin: 35px 0;
+    }
+  }
   button {
     padding: 0.5em 1em;
   }

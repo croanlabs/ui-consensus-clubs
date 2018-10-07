@@ -2,105 +2,104 @@
 @import "../../assets/scss/variables";
 /* Remove margins and padding from the list, and add a black background color */
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 50px;
-    margin: 0;
-    overflow: hidden;
-    @media only screen and (min-width: 980px) {
-        height: 100px;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  margin: 0;
+  overflow: hidden;
+  @media only screen and (min-width: 980px) {
+    height: 80px;
+  }
 }
 
 /* Float the list items side by side */
-.navbar ul li { 
-    display: inline-block; 
+.navbar ul li {
+  display: inline-block;
 }
 
 /* Style the links inside the list items */
 .navbar ul li a {
-    display: inline-block;
-    color: #666;
-    text-align: center;
-    padding: 14px 12px;
-    text-decoration: none;
-    font-family: $font-light;
-    transition: 0.3s;
+  display: inline-block;
+  color: #666;
+  text-align: center;
+  padding: 14px 12px;
+  text-decoration: none;
+  font-family: $font-light;
+  transition: 0.3s;
 }
 
 .navbar-brand {
-    padding-left: 0;
-    margin-right: 24px;
-    font-family: $font-medium;
-    text-decoration: none;
-    color: $navy;
-    font-size: 2em;
-    display: flex;
-    align-items: center;
+  padding-left: 0;
+  margin-right: 24px;
+  font-family: $font-medium;
+  text-decoration: none;
+  color: $navy;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  img {
+    height: 70px;
+  }
+
+  .logo-text {
+    display: none;
+  }
+
+  @media only screen and (max-width: 979px) {
     img {
-        height: 70px;
+      height: 30px;
     }
-
     .logo-text {
-        display: none;
+      display: none;
     }
-
-    @media only screen and (max-width: 979px) {
-        img {
-            height: 30px;
-        }
-        .logo-text {
-            display: none;
-        }
-    }
-
+  }
 }
 
 .navbar ul li:last-child a {
-    padding-right: 0;
+  padding-right: 0;
 }
 
 .navbar ul li:last-child {
-    margin-right: 0;
+  margin-right: 0;
 }
 
 .navbar ul li .white {
-    color: white;
+  color: white;
 }
 
 /* Change background color of links on hover */
-.navbar ul li a:hover {color: #111;}
+.navbar ul li a:hover {
+  color: #111;
+}
 
 /* Hide the list item that contains the link that should open and close the topnav on small screens */
 .navbar ul li {
-    margin-right: 2em;
-    @media only screen and (max-width: 979px) {
-        margin-right: 1em;
+  margin-right: 2em;
+  @media only screen and (max-width: 979px) {
+    margin-right: 1em;
+  }
+  .nav-link {
+    font-size: 1em;
+    img {
+      height: 15px;
     }
-    .nav-link {
-        font-size: 1em;
+    .profile-pic {
+      img {
+        border-radius: 50%;
+        display: inline;
+        height: 25px;
+      }
+    }
+    @media only screen and (min-width: 980px) {
+      img {
+        height: 35px;
+      }
+      .profile-pic {
         img {
-            height: 15px;
+          height: 50px;
         }
-        .profile-pic {
-            img {
-                border-radius: 50%;
-                display: inline;
-                height: 25px;
-            }
-        }
-        @media only screen and (min-width: 980px) {
-            img {
-                height: 35px;
-            }
-            .profile-pic {
-                img {
-                    height: 50px;
-                }
-            }
-        }
+      }
     }
+  }
 }
-
-

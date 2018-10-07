@@ -1,6 +1,6 @@
-@import 'assets/scss/layout';
-@import 'assets/scss/card';
-@import 'assets/scss/variables';
+@import "assets/scss/layout";
+@import "assets/scss/card";
+@import "assets/scss/variables";
 
 /* Wrapper */
 .wrapper {
@@ -18,7 +18,7 @@ header {
 
 @media only screen and (min-width: 980px) {
   header {
-    height: 100px;
+    height: 80px;
   }
 }
 
