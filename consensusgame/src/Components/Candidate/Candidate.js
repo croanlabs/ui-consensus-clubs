@@ -6,16 +6,19 @@ import downTriggerArrow from "../../assets/icons/collapse-icon.png";
 import NewOpinion from "../NewOpinion/NewOpinion";
 import { numberToString } from "../../utils/Numbers";
 import "./Candidate.scss";
+import "../../assets/scss/_card.scss";
 
 class Candidate extends Component {
   constructor() {
     super();
-    this.state = { active: false };
+    this.state = { showExpand: false };
   }
-
-  onClick() {
-    if (!this.state.active) {
-      this.setState({ active: true });
+  expandOrContract() {
+    if (!this.props.expanded) {
+      this.props.handleOnExpanded(this.props.candidate.id);
+    } else {
+      // -1 is fake candidate id which does not exist
+      this.props.handleOnExpanded(-1);
     }
   }
 
@@ -27,13 +30,10 @@ class Candidate extends Component {
     this.setState({ showExpand: false });
   }
 
-  expandOrContract() {
-    this.setState({ active: !this.state.active });
-  }
-
   render() {
     let extraComponent;
-    if (this.state.active) {
+    //if (this.state.active) {
+    if (this.props.expanded) {
       extraComponent = (
         <NewOpinion poll={this.props.poll} candidate={this.props.candidate} />
       );
@@ -50,7 +50,7 @@ class Candidate extends Component {
             <img
               src={downTriggerArrow}
               alt="Expanded"
-              className={`${this.state.active ? "up" : "down"}-arrow`}
+              className={`${this.props.expanded ? "up" : "down"}-arrow`}
             />
           </i>
         </div>
@@ -60,7 +60,7 @@ class Candidate extends Component {
       <div className="candidate">
         <li
           className={`card ${this.props.color}`}
-          onClick={this.onClick.bind(this)}
+          onClick={this.expandOrContract.bind(this)}
           onMouseEnter={this.onMouseEnter.bind(this)}
           onMouseLeave={this.onMouseLeave.bind(this)}
         >

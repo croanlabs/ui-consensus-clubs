@@ -28,9 +28,18 @@
         transform: rotate(180deg);
       }
     }
-    .number {
-      font-size: 1.5rem;
-      margin-right: 1rem;
+
+    .profile {
+      img {
+        height: 70px;
+        margin-right: 1em;
+        border: 3px solid;
+        border-radius: 50%;
+      }
+      .number {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+      }
     }
 
     .info {
@@ -45,7 +54,7 @@
     border-left-color: $yellow;
 
     .profile {
-      img {
+      img.profile-pic {
         border-color: lighten($yellow, 10%);
       }
       .number {
@@ -57,7 +66,7 @@
   &.teal {
     border-left-color: $teal;
     .profile {
-      img {
+      img.profile-pic {
         border-color: lighten($teal, 10%);
       }
       .number {
@@ -69,7 +78,7 @@
   &.purple {
     border-left-color: $purple;
     .profile {
-      img {
+      img.profile-pic {
         border-color: $purple;
       }
       .number {
@@ -81,7 +90,7 @@
   &.red {
     border-left-color: $red;
     .profile {
-      img {
+      img.profile-pic {
         border-color: $red;
       }
       .number {
@@ -93,7 +102,7 @@
   &.green {
     border-left-color: $green;
     .profile {
-      img {
+      img.profile-pic {
         border-color: $green;
       }
       .number {
@@ -105,7 +114,7 @@
   &.blue {
     border-left-color: $blue3;
     .profile {
-      img {
+      img.profile-pic {
         border-color: $blue3;
       }
       .number {

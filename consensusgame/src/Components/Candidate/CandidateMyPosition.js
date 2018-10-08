@@ -97,7 +97,7 @@ class CandidateMyPosition extends Component {
       );
     }
     return (
-      <div className="candidate">
+      <div className="candidate-myposition">
         <li
           className={`card ${this.props.color} candidate-my-position`}
           onClick={this.onClick.bind(this)}
