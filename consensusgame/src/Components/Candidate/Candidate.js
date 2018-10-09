@@ -32,10 +32,13 @@ class Candidate extends Component {
 
   render() {
     let extraComponent;
-    //if (this.state.active) {
     if (this.props.expanded) {
       extraComponent = (
-        <NewOpinion poll={this.props.poll} candidate={this.props.candidate} />
+        <NewOpinion
+          poll={this.props.poll}
+          candidate={this.props.candidate}
+          handleAfterStaked={this.expandOrContract.bind(this)}
+        />
       );
     }
 
@@ -60,7 +63,6 @@ class Candidate extends Component {
       <div className="candidate">
         <li
           className={`card ${this.props.color}`}
-          onClick={this.expandOrContract.bind(this)}
           onMouseEnter={this.onMouseEnter.bind(this)}
           onMouseLeave={this.onMouseLeave.bind(this)}
         >
@@ -78,7 +80,7 @@ class Candidate extends Component {
                 </div>
                 <div className="name">
                   <h2>{this.props.candidate.name}</h2>
-                  <h3>{this.props.candidate["twitter_user"]}</h3>
+                  <h3>{this.props.candidate.twitter_user}</h3>
                 </div>
               </div>
 

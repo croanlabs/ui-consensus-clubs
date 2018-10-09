@@ -69,6 +69,12 @@
       font-size: 2.5em;
       padding: 0.5em 0 1em;
       margin: 0;
+      &.up {
+        color: $teal;
+      }
+      &.down {
+        color: $red;
+      }
     }
     .withdraw-support {
       color: $blue2;

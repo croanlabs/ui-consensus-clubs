@@ -11,8 +11,7 @@ import "./CandidateMyPosition.scss";
 class CandidateMyPosition extends Component {
   constructor() {
     super();
-
-    this.state = { active: false };
+    this.state = { showExpand: false, content: "withdraw" };
   }
 
   componentDidMount() {
@@ -29,10 +28,12 @@ class CandidateMyPosition extends Component {
       arrowConfidence: this.props.opinion.confidence ? "up" : "down"
     });
   }
-
-  onClick() {
-    if (!this.state.active) {
-      this.setState({ active: true, content: "withdraw" });
+  expandOrContract() {
+    if (!this.props.expanded) {
+      this.props.handleOnExpanded(this.props.opinion.candidate.id);
+    } else {
+      // -1 is fake candidate id which does not exist
+      this.props.handleOnExpanded(-1);
     }
   }
 
@@ -52,29 +53,30 @@ class CandidateMyPosition extends Component {
     this.setState({ content: "withdraw" });
   }
 
-  expandOrContract() {
-    this.setState({ active: !this.state.active });
-  }
-
   render() {
+    const { arrowConfidence } = this.state;
     if (!this.state.candidate) {
       return null;
     }
     let extraComponent;
-    if (this.state.active && this.state.content == "withdraw") {
+    if (this.props.expanded && this.state.content == "withdraw") {
       extraComponent = (
         <Withdraw
           showFormModify={this.showFormModify.bind(this)}
           candidate={this.props.opinion.candidate}
           amountOfStakedMerits={this.state.merits}
+          arrowConfidence={this.state.arrowConfidence}
+          handleAfterStaked={this.expandOrContract.bind(this)}
         />
       );
     }
-    if (this.state.active && this.state.content == "modify") {
+    if (this.props.expanded && this.state.content == "modify") {
       extraComponent = (
         <Modify
           showFormWithdraw={this.showFormWithdraw.bind(this)}
           candidate={this.props.opinion.candidate}
+          amountOfStakedMerits={this.state.merits}
+          handleAfterStaked={this.expandOrContract.bind(this)}
         />
       );
     }
@@ -90,33 +92,34 @@ class CandidateMyPosition extends Component {
             <img
               src={downTriggerArrow}
               alt="Expanded"
-              className={`${this.state.active ? "up" : "down"}-arrow`}
+              className={`${this.props.expanded ? "up" : "down"}-arrow`}
             />
           </i>
         </div>
       );
     }
+
+    let meritsAmount;
+    meritsAmount = parseInt(
+      this.state.merits ? this.state.merits : 0,
+      10
+    ).toLocaleString();
     return (
       <div className="candidate-myposition">
         <li
           className={`card ${this.props.color} candidate-my-position`}
-          onClick={this.onClick.bind(this)}
           onMouseEnter={this.onMouseEnter.bind(this)}
           onMouseLeave={this.onMouseLeave.bind(this)}
         >
           <div className="card-container">
             {expand}
-            <div className="flex-sb">
+            <div className="flex-sb" onClick={this.expandOrContract.bind(this)}>
               <div className="profile flex">
                 <div className="number">{this.props.corr + 1}</div>
                 <div className="image-cropper">
                   <img
-                    src={
-                      this.state.candidate.profile_picture_url
-                        ? this.state.candidate.profile_picture_url
-                        : profilePic
-                    }
-                    alt="Metem"
+                    src={this.state.candidate.profile_picture_url || profilePic}
+                    alt="img"
                     className="profile-pic"
                   />
                 </div>
@@ -127,19 +130,15 @@ class CandidateMyPosition extends Component {
               </div>
 
               <div className="rating rating-opinion flex">
-                <div
-                  className={`merits-box-opinions ${
-                    this.state.arrowConfidence
-                  } flex`}
-                >
+                <div className="merits-box-opinions flex">
                   <i>
                     <img
                       src={this.state.opinion.confidence ? upArrow : downArrow}
-                      alt={`Rating${this.state.arrowConfidence}`}
+                      alt={`Rating ${arrowConfidence}`}
                     />
                   </i>
-                  <span className="merit-num">
-                    {this.state.merits ? this.state.merits : 0} Merits
+                  <span className={`merit-num ${arrowConfidence}`}>
+                    {meritsAmount} Merits
                   </span>
                 </div>
               </div>

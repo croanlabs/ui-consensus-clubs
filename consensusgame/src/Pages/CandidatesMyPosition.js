@@ -25,6 +25,10 @@ class CandidatesMyPosition extends Component {
     this.setState({ searchValue: ev.target.value });
   }
 
+  onCandidateExpanded(idExpandedCandidate) {
+    this.setState({ idExpandedCandidate });
+  }
+
   render() {
     const { length: count } = this.state.opinions;
     const { colors } = this.props;
@@ -71,6 +75,10 @@ class CandidatesMyPosition extends Component {
                 corr={index}
                 color={colors[index % colors.length]}
                 opinion={opinion}
+                handleOnExpanded={this.onCandidateExpanded.bind(this)}
+                expanded={
+                  opinion.candidate.id == this.state.idExpandedCandidate
+                }
               />
             );
           })}

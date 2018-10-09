@@ -4,6 +4,7 @@ import infoIcon from "../../assets/icons/info-icon.png";
 import downArrow from "../../assets/icons/polls/down-arrow.png";
 import upArrow from "../../assets/icons/polls/up-arrow.png";
 import MeritsSlider from "../MeritsSlider/MeritsSlider";
+import Congratulations from "../Congratulations/Congratulations";
 import "react-rangeslider/lib/index.css";
 import axios from "axios";
 
@@ -12,7 +13,8 @@ class NewOpinion extends Component {
     super(props, context);
     this.state = {
       amountMerits: 50,
-      confidence: true
+      confidence: true,
+      staked: false
     };
   }
 
@@ -43,14 +45,25 @@ class NewOpinion extends Component {
     };
     e.preventDefault();
     await axios(conf);
+    this.setState({ staked: true });
   };
 
   onClickChangeConfidence() {
     this.setState({ confidence: !this.state.confidence });
   }
 
+  handleStakeOk = () => {
+    this.props.handleAfterStaked();
+    this.setState({
+      amountMerits: 50,
+      confidence: true,
+      staked: false
+    });
+  };
+
   render() {
-    return (
+    let newOpinionShow;
+    newOpinionShow = !this.state.staked ? (
       <div
         className={`opinion-expression ${
           this.state.confidence ? "opinion-support" : "opinion-opposition"
@@ -102,7 +115,15 @@ class NewOpinion extends Component {
           </p>
         </div>
       </div>
+    ) : (
+      <Congratulations
+        userTwitterName={this.props.candidate.twitter_user}
+        handleOk={this.handleStakeOk.bind(this)}
+        message={this.state.confidence ? "supported" : "opposed"}
+      />
     );
+
+    return <div>{newOpinionShow}</div>;
   }
 }
 

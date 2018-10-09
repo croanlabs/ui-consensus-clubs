@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Congratulations from "../Congratulations/Congratulations";
 import "./WithdrawModify.scss";
 import axios from "axios";
 
@@ -6,7 +7,8 @@ class Withdraw extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      amountOfMeritsGet: 231
+      amountOfMeritsGet: 231,
+      withdrawed: false
     };
   }
   onClickModify() {
@@ -26,25 +28,36 @@ class Withdraw extends Component {
         "2/candidates/3/redeem"}`,
       obj
     );
+    this.setState({ withdrawed: true });
   };
+
+  handleWithdrawOk = () => {
+    this.props.handleAfterStaked();
+    this.setState({ withdrawed: false });
+  };
+
   render() {
     const { amountOfMeritsGet } = this.state;
-    const { amountOfStakedMerits } = this.props;
-    let percentageOfGainLoss = amountOfMeritsGet / amountOfStakedMerits;
+    const { amountOfStakedMerits, arrowConfidence } = this.props;
+
+    // calculate the percentage of gain / loss
+    let amountOfGain = amountOfMeritsGet - amountOfStakedMerits;
+    let amountOfLoss = amountOfStakedMerits - amountOfMeritsGet;
     let showPercentageOfGainLoss;
 
     showPercentageOfGainLoss =
-      percentageOfGainLoss > 1 ? (
+      amountOfMeritsGet >= amountOfStakedMerits ? (
         <span className="gain">
-          {((percentageOfGainLoss - 1) * 100).toFixed(1) + "% gain"}
+          {((amountOfGain / amountOfStakedMerits) * 100).toFixed(1) + "% gain"}
         </span>
       ) : (
         <span className="loss">
-          {(percentageOfGainLoss * 100).toFixed(1) + "% loss"}
+          {((amountOfLoss / amountOfStakedMerits) * 100).toFixed(1) + "% loss"}
         </span>
       );
 
-    return (
+    let withdrawShow;
+    withdrawShow = !this.state.withdrawed ? (
       <div className="withdraw-modify">
         <form class="form">
           <div class="switch-field">
@@ -68,16 +81,27 @@ class Withdraw extends Component {
         </form>
         <div className="container">
           <p className="current-value">Current Value</p>
-          <p className="merits-count">{amountOfMeritsGet} Merits</p>
+          <p className={`merits-count ${arrowConfidence}`}>
+            {amountOfMeritsGet} Merits
+          </p>
           <p
             className="withdraw-support"
             onClick={this.handleWithdrawMerits.bind(this)}
           >
-            Withdraw my support for an {showPercentageOfGainLoss}
+            Withdraw my {arrowConfidence === "up" ? "support" : "oppose"} for an{" "}
+            {showPercentageOfGainLoss}
           </p>
         </div>
       </div>
+    ) : (
+      <Congratulations
+        userTwitterName={this.props.candidate.twitter_user}
+        handleOk={this.handleWithdrawOk.bind(this)}
+        message="withdrawed"
+      />
     );
+
+    return <div>{withdrawShow}</div>;
   }
 }
 

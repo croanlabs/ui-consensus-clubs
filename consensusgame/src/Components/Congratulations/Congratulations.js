@@ -5,13 +5,16 @@ import "./Congratulations.scss";
 class Congratulations extends Component {
   render() {
     return (
-      <div className="congratulations card yellow">
-        <div className="card-container">
+      <div className="congratulations">
+        <div className="card-container congrats">
           <img src={congratsIcon} alt="Success" />
           <h2>Congratulations!</h2>
-          <p>@kylesamani has been successfully added to the list</p>
+          <p>
+            @{this.props.userTwitterName} has been successfully{" "}
+            {this.props.message}
+          </p>
         </div>
-        <p onClick={this.props.handleAddOk}>
+        <p onClick={this.props.handleOk}>
           <button>OK</button>
         </p>
       </div>

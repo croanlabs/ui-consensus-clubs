@@ -38,32 +38,30 @@
   }
 
   .rating {
-    .up,
-    .down {
+    .merits-box-opinions {
       align-items: center;
       margin-left: 1em;
-      margin-right: 0;
+      margin-right: 2em;
       font-weight: 600;
+      min-width: 150px;
+
+      img {
+        height: 30px;
+        margin-right: 0.5em;
+      }
 
       .merit-num {
         font-size: 1.5em;
         font-family: SFProMedium;
-        color: $teal;
-        margin-right: 2em;
+
+        &.up {
+          color: $teal;
+        }
+
+        &.down {
+          color: $red;
+        }
       }
-    }
-
-    .up .merit-num {
-      color: $teal;
-    }
-
-    .down .merit-num {
-      color: $red;
-    }
-
-    img {
-      height: 30px;
-      margin-right: 0.5em;
     }
   }
 }

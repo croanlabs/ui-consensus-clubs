@@ -58,8 +58,10 @@
       }
     }
     .slider .merits-box {
-      color: $teal;
-      input {
+      input.large-text {
+        color: $teal;
+      }
+      .small-text {
         color: $teal;
       }
     }
@@ -84,8 +86,10 @@
       }
     }
     .slider .merits-box {
-      color: $red;
-      input {
+      input.large-text {
+        color: $red;
+      }
+      .small-text {
         color: $red;
       }
     }

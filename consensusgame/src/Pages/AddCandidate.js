@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import plusIcon from "../assets/icons/polls/plus.png";
+import cancelButton from "../assets/icons/remove-icon.png";
 import Congratulations from "../Components/Congratulations/Congratulations";
 import TwitterUserInput from "../Components/TwitterUserInput/TwitterUserInput";
 import MeritsSlider from "../Components/MeritsSlider/MeritsSlider";
@@ -32,10 +33,13 @@ class AddCandidate extends Component {
     this.setState({ amountMerits: parseInt(e.target.value) });
   };
 
-  handleShowForm = () =>
-    this.setState(prevState => {
-      return { active: !prevState.active };
-    });
+  handleShowForm = () => {
+    this.setState({ active: true });
+  };
+
+  handleHideForm = () => {
+    this.setState({ active: false });
+  };
 
   updateSearch(e) {
     this.setState({ search: e.target.value });
@@ -87,7 +91,7 @@ class AddCandidate extends Component {
     });
   }
 
-  handleOk() {
+  handleAddOk() {
     this.setState({
       active: false,
       selected: false,
@@ -159,19 +163,29 @@ class AddCandidate extends Component {
                   >
                     Choose another candidate
                   </div>
-                  {/* </div> */}
                 </form>
               </div>
             ))
           : (showForm = (
-              <div>
-                <Congratulations handleAddOk={this.handleOk.bind(this)} />
+              <div className="card">
+                <Congratulations
+                  userTwitterName={this.state.twitterUser}
+                  handleOk={this.handleAddOk.bind(this)}
+                  message="added to the
+                  list"
+                />
               </div>
             ))
         : (showForm = (
             <div className="add-new-candidate-form card">
               <form onSubmit={this.handleAddCandidate}>
                 {suggestTitle}
+                <img
+                  className="cancel-button"
+                  src={cancelButton}
+                  alt="Cancel"
+                  onClick={this.handleHideForm}
+                />
                 <TwitterUserInput
                   onSuggestionSelected={this.handleCandidateSelected.bind(this)}
                 />

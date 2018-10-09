@@ -38,15 +38,13 @@
   }
 
   .rating {
+    min-width: 171px;
+    margin-right: 2em;
     .up,
     .down {
       align-items: center;
-      margin-left: 1em;
+      margin-left: 1.5em;
       font-weight: 600;
-    }
-
-    .down {
-      margin-right: 4em;
     }
     img {
       height: 30px;
@@ -56,6 +54,7 @@
     .merits-total {
       min-width: 2em;
       text-align: left;
+      font-size: 1.3em;
     }
   }
 }
