@@ -2,7 +2,12 @@
 @import "../../assets/scss/variables";
 
 .auth-container {
-  display: table-cell;
+  @media only screen and (min-width: 600px) {
+    display: table-cell;
+  }
+  @media only screen and (max-width: 599px) {
+    padding: 10px 0px;
+  }
 
   .profile-pic {
     &:hover {
@@ -10,13 +15,37 @@
     }
     img {
       border-radius: 50%;
+      height: 35px;
+      transform: translateY(10%);
+    }
+    @media only screen and (min-width: 600px) {
+      img {
+        height: 50px;
+      }
+    }
+    @media only screen and (max-width: 423px) {
+      img {
+        height: 30px;
+      }
     }
   }
   .user-total-merits {
-    font-size: 20px;
-    color: $teal;
+    font-size: 15px;
     font-weight: bold;
-    margin-left: 10px;
+    margin-left: 15px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @media only screen and (min-width: 600px) {
+    .user-total-merits {
+      font-size: 20px;
+    }
+  }
+  @media only screen and (max-width: 423px) {
+    .user-total-merits {
+      margin-left: 10px;
+    }
   }
 
   .profile-pic,
@@ -60,10 +89,13 @@
     display: inline;
   }
 
-  @media only screen and (max-width: 979px) {
+  @media only screen and (max-width: 599px) {
     button {
       padding: 0.3em 1em;
       font-size: 1em;
+      position: relative;
+      top: 65%;
+      transform: translateY(-35%);
     }
   }
 }

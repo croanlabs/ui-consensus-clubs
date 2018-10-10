@@ -8,11 +8,10 @@ import "./Authentication.scss";
 class Authentication extends Component {
   constructor() {
     super();
-
     let cookies = new Cookies();
     let user = cookies.get("user");
     if (user) {
-      this.state = { user, profileMenuOpen: false };
+      this.state = { user, profileMenuOpen: false, amountOfMerits: 1500 };
     } else {
       this.state = {};
     }
@@ -90,12 +89,18 @@ class Authentication extends Component {
         ))
       : null;
 
+    let userTotalMerits;
+    userTotalMerits = parseInt(
+      this.state.amountOfMerits ? this.state.amountOfMerits : 0,
+      10
+    ).toLocaleString();
+
     let content = this.state.user ? (
       <React.Fragment>
         <div class="profile-pic" onClick={this.handleProfileMenuOpen}>
           <img src={this.state.user.profileImageUrl} alt="Profile" />
         </div>
-        <div className="user-total-merits">1000</div>
+        <div className="user-total-merits">{userTotalMerits}</div>
         {ProfileMenu}
       </React.Fragment>
     ) : (
@@ -109,6 +114,7 @@ class Authentication extends Component {
           process.env.REACT_APP_API_URL +
           process.env.REACT_APP_API_REQUEST_TOKEN_ROUTE
         }
+        text="Sign in"
       />
     );
     return <div className="auth-container">{content}</div>;

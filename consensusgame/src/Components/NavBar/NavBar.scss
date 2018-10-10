@@ -1,14 +1,17 @@
 /* Navbar */
 @import "../../assets/scss/variables";
 /* Remove margins and padding from the list, and add a black background color */
+
 .navbar {
+  /* width 0px - 599px */
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 50px;
   margin: 0;
   overflow: hidden;
-  @media only screen and (min-width: 980px) {
+  /* width 600px - 1440 px */
+  @media only screen and (min-width: 600px) {
     height: 80px;
   }
 }
@@ -28,6 +31,11 @@
   font-family: $font-light;
   transition: 0.3s;
 }
+@media only screen and (max-width: 599px) {
+  .navbar ul li a {
+    padding: 14px 10px;
+  }
+}
 
 .navbar-brand {
   padding-left: 0;
@@ -38,20 +46,26 @@
   font-size: 2em;
   display: flex;
   align-items: center;
+
   img {
-    height: 70px;
+    height: 35px;
   }
+}
 
-  .logo-text {
-    display: none;
-  }
-
-  @media only screen and (max-width: 979px) {
+/* width 600px - 1440px */
+@media only screen and (min-width: 600px) {
+  .navbar-brand {
     img {
-      height: 30px;
+      height: 63px;
     }
-    .logo-text {
-      display: none;
+  }
+}
+
+@media only screen and (max-width: 423px) {
+  .navbar-brand {
+    margin-right: 8px;
+    img {
+      height: 25px;
     }
   }
 }
@@ -74,31 +88,50 @@
 }
 
 /* Hide the list item that contains the link that should open and close the topnav on small screens */
+/* width 320px - 423px */
 .navbar ul li {
-  margin-right: 2em;
-  @media only screen and (max-width: 979px) {
-    margin-right: 1em;
-  }
+  margin-right: 0.7em;
   .nav-link {
-    font-size: 1em;
     img {
-      height: 15px;
+      height: 25px;
     }
-    .profile-pic {
+    .name {
+      font-size: 0.8em;
+    }
+  }
+}
+/* width 424px - 599 px */
+@media only screen and (min-width: 424px) {
+  .navbar ul li {
+    margin-right: 2em;
+    .nav-link {
       img {
-        border-radius: 50%;
-        display: inline;
-        height: 25px;
+        height: 30px;
+      }
+      .name {
+        font-size: 1em;
       }
     }
-    @media only screen and (min-width: 980px) {
+  }
+}
+
+/* width 600px - 1440px */
+@media only screen and (min-width: 600px) {
+  .navbar ul li {
+    .nav-link {
       img {
         height: 35px;
       }
-      .profile-pic {
-        img {
-          height: 50px;
-        }
+    }
+  }
+}
+
+/* width 0px - 599px */
+@media only screen and (max-width: 599px) {
+  .navbar ul li {
+    .nav-link {
+      .name {
+        display: none;
       }
     }
   }

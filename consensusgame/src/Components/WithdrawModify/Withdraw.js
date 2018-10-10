@@ -7,7 +7,7 @@ class Withdraw extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      amountOfMeritsGet: 231,
+      amountOfMeritsGet: 1231,
       withdrawed: false
     };
   }
@@ -56,6 +56,12 @@ class Withdraw extends Component {
         </span>
       );
 
+    let currentValue;
+    currentValue = parseInt(
+      this.state.amountOfMeritsGet ? this.state.amountOfMeritsGet : 0,
+      10
+    ).toLocaleString();
+
     let withdrawShow;
     withdrawShow = !this.state.withdrawed ? (
       <div className="withdraw-modify">
@@ -82,7 +88,7 @@ class Withdraw extends Component {
         <div className="container">
           <p className="current-value">Current Value</p>
           <p className={`merits-count ${arrowConfidence}`}>
-            {amountOfMeritsGet} Merits
+            {currentValue} Merits
           </p>
           <p
             className="withdraw-support"

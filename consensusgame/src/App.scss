@@ -1,6 +1,28 @@
 @import "assets/scss/layout";
 @import "assets/scss/variables";
 
+/* Header */
+header {
+  background: white;
+  height: 50px;
+  border-bottom: 1px solid $light-grey;
+  padding-right: 0;
+  padding-left: 0;
+}
+/* width 0px - 599px */
+@media only screen and (max-width: 599px) {
+  header {
+    padding-right: 1em;
+    padding-left: 1em;
+  }
+}
+/* width 600px <= */
+@media only screen and (min-width: 600px) {
+  header {
+    height: 80px;
+  }
+}
+
 /* Wrapper */
 .wrapper {
   padding-right: 2em;
@@ -8,19 +30,14 @@
   margin-right: auto;
   margin-left: auto;
 }
-
-header {
-  background: white;
-  height: 50px;
-  border-bottom: 1px solid $light-grey;
-}
-
-@media only screen and (min-width: 980px) {
-  header {
-    height: 80px;
+/* width 0px - 599px */
+@media only screen and (max-width: 599px) {
+  .wrapper {
+    padding-right: 0;
+    padding-left: 0;
   }
 }
-
+/* width 1440px <= */
 @media only screen and (min-width: 1440px) {
   .wrapper {
     width: 1440px;
@@ -48,6 +65,27 @@ ul {
   }
 }
 
+/* aside for all pages */
+aside {
+  padding: 1em 4em 1em 0;
+  padding-right: 0;
+  padding-left: 0;
+  h1 {
+    margin: 0;
+  }
+  h2 {
+    color: #d4d4d4;
+  }
+}
+/* width 0px - 599px */
+@media only screen and (max-width: 599px) {
+  aside {
+    padding-right: 1em;
+    padding-left: 1em;
+  }
+}
+
+/* section for all pages */
 section {
   padding: 1em 0 1em 4em;
   color: rgba(255, 255, 255, 0.7);
@@ -59,14 +97,9 @@ section {
     padding-bottom: 1em;
   }
 }
-
-aside {
-  padding: 1em 4em 1em 0;
-  h1 {
-    margin: 0;
-  }
-  h2 {
-    color: #d4d4d4;
+@media only screen and (max-width: 979px) {
+  section {
+    padding: 1em 0;
   }
 }
 

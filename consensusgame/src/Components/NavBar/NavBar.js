@@ -15,7 +15,6 @@ class NavBar extends Component {
           <span>
             <img src={menuLogo} alt="Consensus Clubs" />
           </span>
-          <span className="logo-text">Consensus Clubs</span>
         </Link>
         <ul>
           <li>

@@ -135,4 +135,9 @@
       color: $navy;
     }
   }
+  @media only screen and (max-width: 599px) {
+    .add-new-candidate-button {
+      right: 1em;
+    }
+  }
 }
