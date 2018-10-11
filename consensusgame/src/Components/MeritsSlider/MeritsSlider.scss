@@ -19,7 +19,7 @@
   }
 }
 .slider {
-  padding: 1em 0 0 0;
+  padding: 0.5em 0 0 0;
 
   .merits-box {
     display: flex;
@@ -45,5 +45,11 @@
       font-size: 1.3em;
       padding-left: 0.5em;
     }
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  .slider {
+    margin: 0 2.5em;
   }
 }

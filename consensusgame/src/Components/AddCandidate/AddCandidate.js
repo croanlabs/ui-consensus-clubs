@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-import plusIcon from "../assets/icons/polls/plus.png";
-import cancelButton from "../assets/icons/remove-icon.png";
-import Congratulations from "../Components/Congratulations/Congratulations";
-import TwitterUserInput from "../Components/TwitterUserInput/TwitterUserInput";
-import MeritsSlider from "../Components/MeritsSlider/MeritsSlider";
+import plusIcon from "../../assets/icons/polls/plus.png";
+import cancelButton from "../../assets/icons/remove-icon.png";
+import Congratulations from "../Congratulations/Congratulations";
+import TwitterUserInput from "../TwitterUserInput/TwitterUserInput";
+import MeritsSlider from "../MeritsSlider/MeritsSlider";
 import "react-rangeslider/lib/index.css";
 import "./AddCandidate.scss";
 
@@ -38,7 +38,7 @@ class AddCandidate extends Component {
   };
 
   handleHideForm = () => {
-    this.setState({ active: false });
+    this.setState({ active: false, selected: false });
   };
 
   updateSearch(e) {
@@ -126,8 +126,14 @@ class AddCandidate extends Component {
         ? !this.state.added
           ? (showForm = (
               <div className="add-new-candidate-form card">
-                {suggestTitle}
                 <form onSubmit={this.handleAddCandidate}>
+                  {suggestTitle}
+                  <img
+                    className="cancel-button"
+                    src={cancelButton}
+                    alt="Cancel"
+                    onClick={this.handleHideForm}
+                  />
                   <div className="selectedTwitterUser">
                     <div className="image-cropper">
                       <img

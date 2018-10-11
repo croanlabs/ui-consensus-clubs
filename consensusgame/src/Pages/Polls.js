@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import Candidates from "./Candidates";
-import CandidatesMyPosition from "./CandidatesMyPosition";
 import PropTypes from "prop-types";
-import AddPoll from "./AddPoll";
+import axios from "axios";
+import Candidates from "../Components/Candidates/Candidates";
+import CandidatesMyPosition from "../Components/Candidates/CandidatesMyPosition";
+import AddPoll from "../Components/AddPoll/AddPoll";
+import AddCandidate from "../Components/AddCandidate/AddCandidate";
 import Pagination from "../Components/Pagination/Pagination";
 import Tabs from "../Components/Tabs/Tabs";
-import Congrats from "../Components/Congratulations/Congratulations";
 import { Paginate } from "../utils/Paginate";
 import { apiPolls } from "../config.json";
-import axios from "axios";
 import "./Polls.scss";
-import AddCandidate from "./AddCandidate";
 
 class Polls extends Component {
   constructor() {
