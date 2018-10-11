@@ -25,6 +25,7 @@ class Authentication extends Component {
       cookies.set("token", token, {
         // FIXME Set httpOnly.
         //httpOnly: true,
+        domain: process.env.REACT_APP_CONSENSUS_CLUBS_DOMAIN,
         path: "/"
       });
 
