@@ -67,7 +67,6 @@ ul {
 
 /* aside for all pages */
 aside {
-  padding: 1em 4em 1em 0;
   padding-right: 0;
   padding-left: 0;
   h1 {
@@ -80,8 +79,7 @@ aside {
 /* width 0px - 599px */
 @media only screen and (max-width: 599px) {
   aside {
-    padding-right: 1em;
-    padding-left: 1em;
+    padding: 1em 1em;
   }
 }
 

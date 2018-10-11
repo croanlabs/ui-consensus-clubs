@@ -131,13 +131,23 @@
     .add-new-candidate-button {
       position: absolute;
       right: 0;
-      top: -5em;
+      top: -3em;
       color: $navy;
     }
   }
   @media only screen and (max-width: 599px) {
     .add-new-candidate-button {
       right: 1em;
+    }
+  }
+  @media only screen and (max-width: 423px) {
+    .add-new-candidate-button {
+      top: -0.5em;
+    }
+    .add-new-candidate-form {
+      p {
+        font-size: 2em;
+      }
     }
   }
 }

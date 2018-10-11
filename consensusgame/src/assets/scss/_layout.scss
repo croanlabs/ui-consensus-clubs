@@ -2,65 +2,63 @@
 @import "./variables";
 
 .layout {
-    display: block;
-    > .col {
-        width: 100%;
-        position: relative;
-    }
-    section, aside {
-        padding: 1em 0;
-    }
-} 
-
+  display: block;
+  > .col {
+    width: 100%;
+    position: relative;
+  }
+}
 
 /* Responsive: */
 
 @media only screen and (max-width: 979px) {
-    /* 50/50 background split */
-    .left-half {
-        background: url(assets/images/bg-image-mobile.png);
-        width: 100%;
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: 100%;
-        z-index: -1;
-        opacity: 0.2;
-    }
-    .right-half {
-        display: none;
-    }
+  /* 50/50 background split */
+  .left-half {
+    background: url(assets/images/bg-image-mobile.png);
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.2;
+  }
+  .right-half {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 980px) {
-    .layout {
-        display: flex;
-        > .col {
-            width: 50%;
-        }
-        section {
-            padding: 1em 0 1em 4em;
-        }
-    } 
+  .layout {
+    display: flex;
+    > .col {
+      width: 50%;
+    }
+    aside {
+      padding: 1em 4em 1em 0;
+    }
+    section {
+      padding: 1em 0 1em 4em;
+    }
+  }
 
-    .left-half {
-        background: url(assets/images/bg-image.png);
-        width: 50%;
-        position: absolute;
-        left: 0;
-        height: 100%;
-        z-index: -1;
-        opacity: 0.2;
-      }
-      .right-half {
-        background: $blue;
-        width: 50%;
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        height: 100%;
-        z-index: -1;
-      }
-    
+  .left-half {
+    background: url(assets/images/bg-image.png);
+    width: 50%;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.2;
+  }
+  .right-half {
+    background: $blue;
+    width: 50%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    z-index: -1;
+  }
 }
