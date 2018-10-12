@@ -17,6 +17,6 @@ spec:
         image: consensusclubs/ui-consensus-clubs:v1.0.0
         imagePullPolicy: Always
         ports:
-        - containerPort: 3000
+        - containerPort: 80
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "npm run build && NODE_ENV=production node server.js" ]

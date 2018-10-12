@@ -6,8 +6,8 @@ metadata:
     app: ui-master
 spec: 
   ports:
-  - port: 31001
-    targetPort: 3000
+  - port: 80
+    targetPort: 80
   selector:
     app: frontend
   type: LoadBalancer
