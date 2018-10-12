@@ -3,6 +3,10 @@
 
 /* Header */
 header {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100%;
   background: white;
   height: 50px;
   border-bottom: 1px solid $light-grey;
@@ -10,6 +14,7 @@ header {
   padding-left: 0;
 
   nav.wrapper {
+    text-align: center;
     padding-right: 2em;
     padding-left: 2em;
     margin-right: auto;
@@ -36,13 +41,16 @@ header {
 }
 /* width 1440px <= */
 @media only screen and (min-width: 1440px) {
-  .wrapper {
-    width: 1440px;
+  header {
+    nav.wrapper {
+      width: 1440px;
+    }
   }
 }
 
 /* Wrapper */
 main.wrapper {
+  margin-top: 80px;
   padding-right: 2em;
   padding-left: 2em;
   margin-right: auto;
@@ -51,6 +59,7 @@ main.wrapper {
 /* width 0px - 599px */
 @media only screen and (max-width: 599px) {
   main.wrapper {
+    margin-top: 50px;
     padding-right: 0;
     padding-left: 0;
   }
@@ -100,6 +109,12 @@ aside {
     padding: 1em 1em;
   }
 }
+@media only screen and (min-width: 980px) {
+  aside {
+    position: fixed;
+    max-width: 720px;
+  }
+}
 
 /* section for all pages */
 section {
@@ -116,6 +131,11 @@ section {
 @media only screen and (max-width: 979px) {
   section {
     padding: 1em 0;
+  }
+}
+@media only screen and (min-width: 980px) {
+  section {
+    margin-left: 50%;
   }
 }
 
