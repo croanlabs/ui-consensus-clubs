@@ -127,13 +127,13 @@ class AddCandidate extends Component {
           ? (showForm = (
               <div className="add-new-candidate-form card">
                 <form onSubmit={this.handleAddCandidate}>
-                  {suggestTitle}
                   <img
                     className="cancel-button"
                     src={cancelButton}
                     alt="Cancel"
                     onClick={this.handleHideForm}
                   />
+                  {suggestTitle}
                   <div className="selectedTwitterUser">
                     <div className="image-cropper">
                       <img
@@ -185,13 +185,13 @@ class AddCandidate extends Component {
         : (showForm = (
             <div className="add-new-candidate-form card">
               <form onSubmit={this.handleAddCandidate}>
-                {suggestTitle}
                 <img
                   className="cancel-button"
                   src={cancelButton}
                   alt="Cancel"
                   onClick={this.handleHideForm}
                 />
+                {suggestTitle}
                 <TwitterUserInput
                   onSuggestionSelected={this.handleCandidateSelected.bind(this)}
                 />

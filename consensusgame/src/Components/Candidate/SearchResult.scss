@@ -1,0 +1,72 @@
+@import "../../assets/scss/variables";
+
+.result-candidate {
+  .result-item {
+    width: 100%;
+    margin-bottom: 0.3em;
+    padding: 1px 0;
+    background: $blue3;
+    color: white;
+    .card-container {
+      position: relative;
+      margin: 1em;
+      &:hover {
+        cursor: pointer;
+      }
+      .profile {
+        align-items: center;
+        min-width: 0px;
+        .number {
+          font-size: 1.5rem;
+          margin-right: 1rem;
+        }
+        .image-cropper {
+          img {
+            height: 50px;
+            margin-right: 1em;
+            border-radius: 50%;
+            border: 2px solid white;
+          }
+        }
+        .name {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          h2 {
+            font-size: 15px;
+            color: white;
+          }
+          h3 {
+            font-size: 13px;
+            color: white;
+          }
+          h2,
+          h3 {
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+      .rating {
+        min-width: 200px;
+        .up,
+        .down {
+          align-items: center;
+          margin-left: 1.5em;
+          font-weight: 600;
+          i img {
+            height: 35px;
+            margin-right: 0.5em;
+          }
+          .merits-total {
+            min-width: 2em;
+            text-align: left;
+            font-size: 1.7em;
+          }
+        }
+      }
+    }
+  }
+}

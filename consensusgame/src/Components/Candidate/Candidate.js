@@ -31,12 +31,21 @@ class Candidate extends Component {
   }
 
   render() {
+    const {
+      corr,
+      color,
+      poll,
+      candidate,
+      handleOnExpanded,
+      expanded
+    } = this.props;
+
     let extraComponent;
-    if (this.props.expanded) {
+    if (expanded) {
       extraComponent = (
         <NewOpinion
-          poll={this.props.poll}
-          candidate={this.props.candidate}
+          poll={poll}
+          candidate={candidate}
           handleAfterStaked={this.expandOrContract.bind(this)}
         />
       );
@@ -53,7 +62,7 @@ class Candidate extends Component {
             <img
               src={downTriggerArrow}
               alt="Expanded"
-              className={`${this.props.expanded ? "up" : "down"}-arrow`}
+              className={`${expanded ? "up" : "down"}-arrow`}
             />
           </i>
         </div>
@@ -62,7 +71,7 @@ class Candidate extends Component {
     return (
       <div className="candidate">
         <li
-          className={`card ${this.props.color}`}
+          className={`card ${color}`}
           onMouseEnter={this.onMouseEnter.bind(this)}
           onMouseLeave={this.onMouseLeave.bind(this)}
         >
@@ -73,14 +82,14 @@ class Candidate extends Component {
                 <div className="number">{this.props.corr + 1}</div>
                 <div className="image-cropper">
                   <img
-                    src={this.props.candidate.profile_picture_url || profilePic}
+                    src={candidate.profile_picture_url || profilePic}
                     alt="img"
                     className="profile-pic"
                   />
                 </div>
                 <div className="name">
-                  <h2>{this.props.candidate.name}</h2>
-                  <h3>{this.props.candidate.twitter_user}</h3>
+                  <h2>{candidate.name}</h2>
+                  <h3>{candidate.twitter_user}</h3>
                 </div>
               </div>
 
@@ -90,9 +99,7 @@ class Candidate extends Component {
                     <img src={upArrow} alt="Rating Up" />
                   </i>
                   <span className="merits-total">
-                    {numberToString(
-                      this.props.candidate.total_merits_confidence
-                    )}
+                    {numberToString(candidate.total_merits_confidence)}
                   </span>
                 </div>
                 <div className="down flex">
@@ -100,9 +107,7 @@ class Candidate extends Component {
                     <img src={downArrow} alt="Rating Down" />
                   </i>
                   <span className="merits-total">
-                    {numberToString(
-                      this.props.candidate.total_merits_no_confidence
-                    )}
+                    {numberToString(candidate.total_merits_no_confidence)}
                   </span>
                 </div>
               </div>

@@ -24,7 +24,6 @@
       font-size: 1.2em;
     }
   }
-
   .total-candidates {
     width: 100%;
     text-align: center;
@@ -33,13 +32,32 @@
     font-size: 14px;
   }
 
+  ul.list-unstyled {
+    overflow: scroll;
+    max-height: 520px;
+    border: solid 2px white;
+  }
+
+  @media only screen and (min-width: 980px) {
+    ul.mobile-list-unstyled {
+      display: none;
+    }
+  }
+
+  // 0px - 979px
   @media only screen and (max-width: 979px) {
+    .search-results {
+      display: none;
+    }
     .total-candidates {
       color: $grey;
       padding: 2rem 0;
     }
+    ul.list-unstyled {
+      display: none;
+    }
   }
-
+  //0px - 479 px
   @media only screen and (max-width: 479px) {
     .total-candidates {
       font-size: 12px;

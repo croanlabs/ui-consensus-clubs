@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import Candidate from "../Candidate/Candidate";
+import SearchResult from "../Candidate/SearchResult";
 import searchIcon from "../../assets/icons/coloursearch-icon.png";
 import "./Candidates.scss";
 
 class Candidates extends Component {
-  constructor() {
-    super();
-    this.state = { searchValue: "" };
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchValue: ""
+    };
   }
 
   search(ev) {
@@ -22,7 +25,27 @@ class Candidates extends Component {
 
     if (count === 0) return <p>There are no candidates yet.</p>;
 
-    const { colors } = this.props;
+    const { colors, candidates } = this.props;
+
+    let searchResults = (
+      <ul className="search-results">
+        {candidates.map((candidate, index) => {
+          let search = this.state.searchValue || "";
+          if (search === "") {
+            return null;
+          }
+          const searchLower = search.toLowerCase();
+          if (
+            candidate.name.toLowerCase().indexOf(searchLower) >= 0 ||
+            candidate.twitter_user.toLowerCase().indexOf(searchLower) >= 0
+          ) {
+            return <SearchResult corr={index} candidate={candidate} />;
+          } else {
+            return null;
+          }
+        })}
+      </ul>
+    );
 
     return (
       <div className="candidates">
@@ -36,11 +59,37 @@ class Candidates extends Component {
             onChange={this.search.bind(this)}
           />
         </div>
+        {searchResults}
         <div className="total-candidates">
           <span>Total Candidates - {count}</span>
         </div>
         <ul className="list-unstyled">
-          {this.props.candidates.map((candidate, index) => {
+          {/* <InfiniteScroll
+            pageStart={0}
+            hasMore={true || false}
+            loader={
+              <div className="loader" key={0}>
+                Loading ...
+              </div>
+            }
+            useWindow={false}
+          > */}
+          {candidates.map((candidate, index) => {
+            return (
+              <Candidate
+                corr={index}
+                color={colors[index % colors.length]}
+                poll={this.props.poll}
+                candidate={candidate}
+                handleOnExpanded={this.onCandidateExpanded.bind(this)}
+                expanded={candidate.id == this.state.idExpandedCandidate}
+              />
+            );
+          })}
+          {/* </InfiniteScroll> */}
+        </ul>
+        <ul className="mobile-list-unstyled">
+          {candidates.map((candidate, index) => {
             let search = this.state.searchValue || "";
             const searchLower = search.toLowerCase();
             if (
@@ -49,7 +98,6 @@ class Candidates extends Component {
             ) {
               return (
                 <Candidate
-                  key={candidate.id}
                   corr={index}
                   color={colors[index % colors.length]}
                   poll={this.props.poll}

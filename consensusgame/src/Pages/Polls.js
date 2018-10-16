@@ -55,8 +55,7 @@ class Polls extends Component {
       <div className="layout polls">
         <aside className="col">
           <h2>
-            {currentPage}
-            /3
+            {currentPage}/{count}
           </h2>
 
           {/* List each poll */}
