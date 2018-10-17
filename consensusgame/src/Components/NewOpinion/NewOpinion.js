@@ -73,7 +73,7 @@ class NewOpinion extends Component {
       >
         <p className="candidate-info">
           <h2>{candidate.name}</h2>
-          <h3>@{candidate.twitter_user}</h3>
+          <h3>@{candidate.twitterUser}</h3>
           <p>{candidate.description}</p>
         </p>
         <p className="info">
@@ -103,7 +103,7 @@ class NewOpinion extends Component {
             </p>
             <button onClick={this.handleStakeCandidate.bind(this)}>
               I {this.state.confidence ? "support" : "oppose"} @
-              {candidate.twitter_user}
+              {candidate.twitterUser}
             </button>
           </form>
 
@@ -116,14 +116,14 @@ class NewOpinion extends Component {
             </i>
             <span onClick={this.onClickChangeConfidence.bind(this)}>
               Do you {this.state.confidence ? "oppose" : "support"} @
-              {this.props.candidate.twitter_user}
+              {this.props.candidate.twitterUser}
             </span>
           </p>
         </div>
       </div>
     ) : (
       <Congratulations
-        userTwitterName={this.props.candidate.twitter_user}
+        userTwitterName={this.props.candidate.twitterUser}
         handleOk={this.handleStakeOk.bind(this)}
         message={this.state.confidence ? "supported" : "opposed"}
       />

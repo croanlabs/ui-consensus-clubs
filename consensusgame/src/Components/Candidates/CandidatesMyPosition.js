@@ -12,13 +12,13 @@ class CandidatesMyPosition extends Component {
 
   async componentDidMount() {
     // TODO move this query to other place, it's being called all the time.
-    const { data: resp } = await axios({
+    const { data: opinions } = await axios({
       method: "get",
       baseURL: process.env.REACT_APP_API_URL,
       url: process.env.REACT_APP_API_OPINIONS,
       withCredentials: true
     });
-    await this.setState({ opinions: resp.rows });
+    this.setState({ opinions });
   }
 
   search(ev) {
@@ -34,7 +34,7 @@ class CandidatesMyPosition extends Component {
     const { colors } = this.props;
 
     const opinionsSelectedPoll = this.state.opinions.filter(
-      opinion => opinion.candidate.poll_id == this.props.pollId
+      opinion => opinion.candidate.pollId == this.props.pollId
     );
 
     if (opinionsSelectedPoll.length === 0)
@@ -45,9 +45,9 @@ class CandidatesMyPosition extends Component {
       let search = this.state.searchValue || "";
       const searchLower = search.toLowerCase();
       return (
-        candidate.poll_id == this.props.pollId &&
+        candidate.pollId == this.props.pollId &&
         (candidate.name.toLowerCase().indexOf(searchLower) >= 0 ||
-          candidate.twitter_user.toLowerCase().indexOf(searchLower) >= 0)
+          candidate.twitterUser.toLowerCase().indexOf(searchLower) >= 0)
       );
     });
 

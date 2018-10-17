@@ -17,9 +17,9 @@ class CandidateMyPosition extends Component {
   componentDidMount() {
     let op = this.props.opinion;
     let supply = op.confidence
-      ? op.candidate.total_tokens_confidence
-      : op.candidate.total_tokens_no_confidence;
-    let merits = appToken.tokenToMeritsRedeem(op.token_amount, supply);
+      ? op.candidate.totalTokensConfidence
+      : op.candidate.totalTokensOpposition;
+    let merits = appToken.tokenToMeritsRedeem(op.tokenAmount, supply);
 
     this.setState({
       merits,
@@ -118,14 +118,14 @@ class CandidateMyPosition extends Component {
                 <div className="number">{this.props.corr + 1}</div>
                 <div className="image-cropper">
                   <img
-                    src={this.state.candidate.profile_picture_url || profilePic}
+                    src={this.state.candidate.profilePictureUrl || profilePic}
                     alt="img"
                     className="profile-pic"
                   />
                 </div>
                 <div className="name">
                   <h2>{this.state.candidate.name}</h2>
-                  <h3>{this.state.candidate.twitter_user}</h3>
+                  <h3>{this.state.candidate.twitterUser}</h3>
                 </div>
               </div>
 
