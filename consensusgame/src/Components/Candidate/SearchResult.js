@@ -32,14 +32,14 @@ class SearchResult extends Component {
                 <div className="number">{corr + 1}</div>
                 <div className="image-cropper">
                   <img
-                    src={candidate.profile_picture_url || profilePic}
+                    src={candidate.profilePictureUrl || profilePic}
                     alt="img"
                     className="profile-pic"
                   />
                 </div>
                 <div className="name">
                   <h2>{candidate.name}</h2>
-                  <h3>@{candidate.twitter_user}</h3>
+                  <h3>@{candidate.twitterUser}</h3>
                 </div>
               </div>
 
@@ -49,7 +49,7 @@ class SearchResult extends Component {
                     <img src={upArrow} alt="Rating Up" />
                   </i>
                   <span className="merits-total">
-                    {numberToString(candidate.total_merits_confidence)}
+                    {numberToString(candidate.totalMeritsConfidence)}
                   </span>
                 </div>
                 <div className="down flex">
@@ -57,7 +57,7 @@ class SearchResult extends Component {
                     <img src={downArrow} alt="Rating Down" />
                   </i>
                   <span className="merits-total">
-                    {numberToString(candidate.total_merits_no_confidence)}
+                    {numberToString(candidate.totalMeritsNoConfidence)}
                   </span>
                 </div>
               </div>
