@@ -1,27 +1,29 @@
 @import "../../assets/scss/variables";
 
 .candidates {
-  .search-bar {
-    position: relative;
-    display: flex;
-    align-items: center;
+  .search-area {
+    .search-bar {
+      position: relative;
+      display: flex;
+      align-items: center;
 
-    img {
-      position: absolute;
-      left: 1em;
-      color: $navy;
-      font-weight: 700;
-      width: 20px;
-    }
+      img {
+        position: absolute;
+        left: 1em;
+        color: $navy;
+        font-weight: 700;
+        width: 20px;
+      }
 
-    input {
-      width: 100%;
-      border: 1px solid #ccc;
-      padding: 1rem 1rem 1rem 3rem;
-      color: #999;
-      border-radius: 3px;
-      margin: 0;
-      font-size: 1.2em;
+      input {
+        width: 100%;
+        border: 1px solid #ccc;
+        padding: 1rem 1rem 1rem 3rem;
+        color: #999;
+        border-radius: 3px;
+        margin: 0;
+        font-size: 1.2em;
+      }
     }
   }
   .total-candidates {
@@ -35,26 +37,19 @@
   ul.list-unstyled {
     overflow: scroll;
     max-height: 520px;
-    border: solid 2px white;
-  }
-
-  @media only screen and (min-width: 980px) {
-    ul.mobile-list-unstyled {
-      display: none;
-    }
+    padding-right: 20px;
   }
 
   // 0px - 979px
   @media only screen and (max-width: 979px) {
-    .search-results {
-      display: none;
+    .search-area {
+      .search-results {
+        margin: 0;
+      }
     }
     .total-candidates {
       color: $grey;
       padding: 2rem 0;
-    }
-    ul.list-unstyled {
-      display: none;
     }
   }
   //0px - 479 px

@@ -31,14 +31,7 @@ class Candidate extends Component {
   }
 
   render() {
-    const {
-      corr,
-      color,
-      poll,
-      candidate,
-      handleOnExpanded,
-      expanded
-    } = this.props;
+    const { corr, color, poll, candidate, expanded } = this.props;
 
     let extraComponent;
     if (expanded) {
@@ -79,7 +72,7 @@ class Candidate extends Component {
             {expand}
             <div className="flex-sb" onClick={this.expandOrContract.bind(this)}>
               <div className="profile flex">
-                <div className="number">{this.props.corr + 1}</div>
+                <div className="number">{corr + 1}</div>
                 <div className="image-cropper">
                   <img
                     src={candidate.profile_picture_url || profilePic}
@@ -89,7 +82,7 @@ class Candidate extends Component {
                 </div>
                 <div className="name">
                   <h2>{candidate.name}</h2>
-                  <h3>{candidate.twitter_user}</h3>
+                  <h3>@{candidate.twitter_user}</h3>
                 </div>
               </div>
 

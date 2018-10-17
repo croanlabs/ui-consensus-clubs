@@ -6,20 +6,28 @@ import { numberToString } from "../../utils/Numbers";
 import "./SearchResult.scss";
 
 class SearchResult extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
+  }
+  expandOrContract() {
+    if (!this.props.expanded) {
+      this.props.handleOnExpanded(this.props.candidate.id);
+    } else {
+      // -1 is fake candidate id which does not exist
+      this.props.handleOnExpanded(-1);
+    }
   }
 
   // TODO: jump to the candidate (expanded) by clicking
   render() {
-    const { corr, candidate } = this.props;
+    const { corr, candidate, searchValue } = this.props;
 
     return (
       <div className="result-candidate">
         <li className="result-item">
           <div className="card-container">
-            <div className="flex-sb">
+            <div className="flex-sb" onClick={this.expandOrContract.bind(this)}>
               <div className="profile flex">
                 <div className="number">{corr + 1}</div>
                 <div className="image-cropper">
@@ -31,7 +39,7 @@ class SearchResult extends Component {
                 </div>
                 <div className="name">
                   <h2>{candidate.name}</h2>
-                  <h3>{candidate.twitter_user}</h3>
+                  <h3>@{candidate.twitter_user}</h3>
                 </div>
               </div>
 

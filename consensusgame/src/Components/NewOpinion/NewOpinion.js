@@ -62,6 +62,8 @@ class NewOpinion extends Component {
   };
 
   render() {
+    const { candidate } = this.props;
+
     let newOpinionShow;
     newOpinionShow = !this.state.staked ? (
       <div
@@ -69,7 +71,11 @@ class NewOpinion extends Component {
           this.state.confidence ? "opinion-support" : "opinion-opposition"
         }`}
       >
-        <p className="info">{this.props.candidate.description}</p>
+        <p className="candidate-info">
+          <h2>{candidate.name}</h2>
+          <h3>@{candidate.twitter_user}</h3>
+          <p>{candidate.description}</p>
+        </p>
         <p className="info">
           <i>
             <img src={infoIcon} alt="Info" />
@@ -96,8 +102,8 @@ class NewOpinion extends Component {
               </i>
             </p>
             <button onClick={this.handleStakeCandidate.bind(this)}>
-              I {this.state.confidence ? "support" : "oppose"}{" "}
-              {this.props.candidate.twitter_user}
+              I {this.state.confidence ? "support" : "oppose"} @
+              {candidate.twitter_user}
             </button>
           </form>
 
@@ -109,7 +115,7 @@ class NewOpinion extends Component {
               />
             </i>
             <span onClick={this.onClickChangeConfidence.bind(this)}>
-              Do you {this.state.confidence ? "oppose" : "support"}{" "}
+              Do you {this.state.confidence ? "oppose" : "support"} @
               {this.props.candidate.twitter_user}
             </span>
           </p>

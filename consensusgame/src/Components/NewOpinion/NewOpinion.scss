@@ -5,8 +5,18 @@
   width: 80%;
   text-align: center;
 
+  .candidate-info {
+    align-items: center;
+    border: 1px solid lightblue;
+    padding: 1em;
+    h2 {
+      color: black;
+    }
+    h3 {
+      color: grey;
+    }
+  }
   .info {
-    display: flex;
     align-items: center;
     img {
       height: 14px;

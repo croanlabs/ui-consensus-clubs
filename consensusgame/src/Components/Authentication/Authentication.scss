@@ -2,30 +2,49 @@
 @import "../../assets/scss/variables";
 
 .auth-container {
-  @media only screen and (min-width: 600px) {
-    display: table-cell;
-  }
-  @media only screen and (max-width: 599px) {
-    padding: 10px 0px;
-  }
-
   .profile-pic {
+    position: relative;
     &:hover {
       cursor: pointer;
     }
+
     img {
       border-radius: 50%;
       height: 35px;
       transform: translateY(10%);
     }
-    @media only screen and (min-width: 600px) {
-      img {
-        height: 50px;
+
+    ul.profile-menu {
+      text-align: center;
+      height: 400px;
+      background: white;
+      position: absolute;
+      width: 300px;
+      top: 95px;
+      left: -180px;
+      z-index: 1;
+      padding-top: 5px;
+      // triangle white shape on the top
+      :after {
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        top: 0%;
+        right: 80px;
+        content: "";
+        transform: translate(0%, -100%);
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 13px solid white;
       }
-    }
-    @media only screen and (max-width: 423px) {
-      img {
-        height: 30px;
+      li {
+        display: block;
+        font-size: 20px;
+        margin: 35px 0;
+      }
+      &:hover {
+        font-weight: 600;
+        color: black;
       }
     }
   }
@@ -37,50 +56,12 @@
     top: 50%;
     transform: translateY(-50%);
   }
-  @media only screen and (min-width: 600px) {
-    .user-total-merits {
-      font-size: 20px;
-    }
-  }
-  @media only screen and (max-width: 423px) {
-    .user-total-merits {
-      margin-left: 10px;
-    }
-  }
 
   .profile-pic,
   .user-total-merits {
     display: inline-block;
   }
 
-  ul.profile-menu {
-    text-align: center;
-    height: 400px;
-    background: white;
-    position: fixed;
-    width: 300px;
-    top: 95px;
-    right: 140px;
-    z-index: 1;
-    padding-top: 5px;
-    :after {
-      width: 0px;
-      height: 0px;
-      position: absolute;
-      top: 0%;
-      right: 80px;
-      content: "";
-      transform: translate(0%, -100%);
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-bottom: 13px solid white;
-    }
-    li {
-      display: block;
-      font-size: 20px;
-      margin: 35px 0;
-    }
-  }
   button {
     padding: 0.5em 1em;
   }
@@ -88,11 +69,44 @@
   a.nav-link {
     display: inline;
   }
+}
 
-  @media only screen and (max-width: 599px) {
+// 600px -
+@media only screen and (min-width: 600px) {
+  .auth-container {
+    display: table-cell;
+    .profile-pic {
+      img {
+        height: 50px;
+      }
+    }
+    .user-total-merits {
+      font-size: 20px;
+    }
+  }
+}
+
+// 0px - 599px
+@media only screen and (max-width: 599px) {
+  .auth-container {
+    padding: 10px 0px;
     button {
       padding: 0.3em 1em;
       font-size: 1em;
+    }
+  }
+}
+
+// 0px - 423px
+@media only screen and (max-width: 423px) {
+  .auth-container {
+    .profile-pic {
+      img {
+        height: 30px;
+      }
+    }
+    .user-total-merits {
+      margin-left: 10px;
     }
   }
 }

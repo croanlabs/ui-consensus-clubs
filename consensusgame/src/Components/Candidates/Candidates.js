@@ -39,7 +39,14 @@ class Candidates extends Component {
             candidate.name.toLowerCase().indexOf(searchLower) >= 0 ||
             candidate.twitter_user.toLowerCase().indexOf(searchLower) >= 0
           ) {
-            return <SearchResult corr={index} candidate={candidate} />;
+            return (
+              <SearchResult
+                corr={index}
+                candidate={candidate}
+                handleOnExpanded={this.onCandidateExpanded.bind(this)}
+                expanded={candidate.id == this.state.idExpandedCandidate}
+              />
+            );
           } else {
             return null;
           }
@@ -49,17 +56,19 @@ class Candidates extends Component {
 
     return (
       <div className="candidates">
-        <div className="search-bar">
-          <img src={searchIcon} alt="Find" />
-          <input
-            value={this.state.searchValue}
-            type="search"
-            className="find"
-            placeholder="Find Candidate..."
-            onChange={this.search.bind(this)}
-          />
+        <div className="search-area">
+          <div className="search-bar">
+            <img src={searchIcon} alt="Find" />
+            <input
+              value={this.state.searchValue}
+              type="search"
+              className="find"
+              placeholder="Find Candidate..."
+              onChange={this.search.bind(this)}
+            />
+          </div>
+          {searchResults}
         </div>
-        {searchResults}
         <div className="total-candidates">
           <span>Total Candidates - {count}</span>
         </div>
@@ -87,29 +96,6 @@ class Candidates extends Component {
             );
           })}
           {/* </InfiniteScroll> */}
-        </ul>
-        <ul className="mobile-list-unstyled">
-          {candidates.map((candidate, index) => {
-            let search = this.state.searchValue || "";
-            const searchLower = search.toLowerCase();
-            if (
-              candidate.name.toLowerCase().indexOf(searchLower) >= 0 ||
-              candidate.twitter_user.toLowerCase().indexOf(searchLower) >= 0
-            ) {
-              return (
-                <Candidate
-                  corr={index}
-                  color={colors[index % colors.length]}
-                  poll={this.props.poll}
-                  candidate={candidate}
-                  handleOnExpanded={this.onCandidateExpanded.bind(this)}
-                  expanded={candidate.id == this.state.idExpandedCandidate}
-                />
-              );
-            } else {
-              return null;
-            }
-          })}
         </ul>
       </div>
     );

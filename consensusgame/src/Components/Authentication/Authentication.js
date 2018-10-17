@@ -126,9 +126,9 @@ class Authentication extends Component {
           <div className="auth-container">
             <div class="profile-pic" onClick={this.handleProfileMenuOpen}>
               <img src={this.state.user.profileImageUrl} alt="Profile" />
+              {ProfileMenu}
             </div>
             <div className="user-total-merits">{userTotalMerits}</div>
-            {ProfileMenu}
           </div>
         </li>
       </React.Fragment>

@@ -180,8 +180,11 @@ h6 {
 }
 
 .flex-sb {
-  display: flex;
   justify-content: space-between;
+  // candidate list 2 lines when less than 479px
+  @media only screen and (min-width: 480px) {
+    display: flex;
+  }
 }
 
 .lg-vspace {

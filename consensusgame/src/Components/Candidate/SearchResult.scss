@@ -69,4 +69,32 @@
       }
     }
   }
+  // 0px - 979px
+  @media only screen and (max-width: 979px) {
+    .result-item {
+      background: white;
+      color: black;
+      .card-container {
+        .profile {
+          .number {
+            color: $grey;
+          }
+          .image-cropper {
+            img {
+              border: 2px solid $blue3;
+            }
+          }
+          .name {
+            h2,
+            h3 {
+              color: $grey;
+            }
+          }
+        }
+        .rating {
+          min-width: 205px;
+        }
+      }
+    }
+  }
 }
