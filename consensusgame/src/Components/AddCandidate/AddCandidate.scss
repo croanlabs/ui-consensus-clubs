@@ -8,6 +8,7 @@
     margin-bottom: 2em;
     font-size: 1.5em;
     font-family: $font-medium;
+    width: 230px;
 
     i {
       margin-right: 0.5em;
@@ -31,7 +32,7 @@
         float: right;
         margin-top: -20px;
         margin-right: -20px;
-        width: 25px;
+        height: 25px;
       }
 
       .add-candidate-submit {

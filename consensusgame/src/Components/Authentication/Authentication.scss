@@ -1,112 +1,204 @@
-@import "../../assets/scss/buttons";
 @import "../../assets/scss/variables";
 
-.auth-container {
-  .profile-pic {
-    position: relative;
-    &:hover {
-      cursor: pointer;
-    }
-
-    img {
-      border-radius: 50%;
-      height: 35px;
-      transform: translateY(10%);
-    }
-
-    ul.profile-menu {
-      text-align: center;
-      height: 400px;
+ul.navbar-right {
+  li {
+    button.twitter-signin {
+      padding: 0.5em 1em;
+      border: none;
       background: white;
-      position: absolute;
-      width: 300px;
-      top: 95px;
-      left: -180px;
-      z-index: 1;
-      padding-top: 5px;
-      // triangle white shape on the top
-      :after {
-        width: 0px;
-        height: 0px;
-        position: absolute;
-        top: 0%;
-        right: 80px;
-        content: "";
-        transform: translate(0%, -100%);
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 13px solid white;
-      }
-      li {
-        display: block;
-        font-size: 20px;
-        margin: 35px 0;
-      }
-      &:hover {
-        font-weight: 600;
-        color: black;
+      span {
+        letter-spacing: 0.03em;
+        color: #4a4a4a;
+        font-size: 13px;
       }
     }
   }
-  .user-total-merits {
-    font-size: 15px;
-    font-weight: bold;
-    margin-left: 15px;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+
+  li {
+    .unauth-container {
+      .get-started {
+        position: relative;
+        border: 1px solid grey;
+        padding: 1em;
+        border-radius: 5px;
+
+        &:hover {
+          cursor: pointer;
+        }
+        span {
+          font-size: 13px;
+        }
+
+        ul.get-started-menu {
+          padding: 1.5em 3em;
+          text-align: center;
+          height: 350px;
+          width: 500px;
+          background: white;
+          position: absolute;
+          top: 50px;
+          left: -400px;
+          z-index: 1;
+          display: block;
+          font-size: 20px;
+          margin: 35px 0;
+          //triangle white shape on the top
+          :after {
+            width: 0px;
+            height: 0px;
+            position: absolute;
+            top: 0%;
+            right: 60px;
+            content: "";
+            transform: translate(0%, -100%);
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 13px solid white;
+          }
+          img.cancel-button {
+            float: right;
+            margin-top: -15px;
+            margin-right: -45px;
+            height: 13px;
+          }
+          li {
+            display: block;
+            font-size: 20px;
+            margin: 35px 0;
+            h2 {
+              color: black;
+            }
+            p {
+              font-size: 15px;
+              color: #9b9b9b;
+            }
+            button.twitter-signup {
+              border: 1px solid grey;
+              background: white;
+              padding: 0.5em 2em;
+              border-radius: 5px;
+              margin-top: 30px;
+            }
+          }
+        }
+      }
+    }
   }
 
-  .profile-pic,
-  .user-total-merits {
-    display: inline-block;
-  }
+  .auth-container {
+    .profile-pic {
+      position: relative;
+      &:hover {
+        cursor: pointer;
+      }
 
-  button {
-    padding: 0.5em 1em;
-  }
+      img {
+        border-radius: 50%;
+        height: 35px;
+        transform: translateY(10%);
+      }
 
-  a.nav-link {
-    display: inline;
+      ul.profile-menu {
+        text-align: center;
+        height: 400px;
+        background: white;
+        position: absolute;
+        width: 300px;
+        top: 95px;
+        left: -180px;
+        z-index: 1;
+        padding-top: 5px;
+        // triangle white shape on the top
+        :after {
+          width: 0px;
+          height: 0px;
+          position: absolute;
+          top: 0%;
+          right: 80px;
+          content: "";
+          transform: translate(0%, -100%);
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-bottom: 13px solid white;
+        }
+        img.cancel-button {
+          float: right;
+          margin-top: 3px;
+          margin-right: 8px;
+          height: 15px;
+        }
+        li {
+          display: block;
+          font-size: 20px;
+          margin: 35px 0;
+          a.nav-link {
+            display: inline;
+          }
+        }
+        &:hover {
+          font-weight: 600;
+          color: black;
+        }
+      }
+    }
+    .user-total-merits {
+      font-size: 15px;
+      font-weight: bold;
+      margin-left: 15px;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .profile-pic,
+    .user-total-merits {
+      display: inline-block;
+    }
   }
 }
 
 // 600px -
 @media only screen and (min-width: 600px) {
-  .auth-container {
-    display: table-cell;
-    .profile-pic {
-      img {
-        height: 50px;
+  ul.navbar-right {
+    .auth-container {
+      display: table-cell;
+      .profile-pic {
+        img {
+          height: 50px;
+        }
       }
-    }
-    .user-total-merits {
-      font-size: 20px;
+      .user-total-merits {
+        font-size: 20px;
+      }
     }
   }
 }
 
 // 0px - 599px
 @media only screen and (max-width: 599px) {
-  .auth-container {
-    padding: 10px 0px;
+  ul.navbar-right {
     button {
       padding: 0.3em 1em;
       font-size: 1em;
+    }
+    .auth-container {
+      padding: 10px 0px;
     }
   }
 }
 
 // 0px - 423px
 @media only screen and (max-width: 423px) {
-  .auth-container {
-    .profile-pic {
-      img {
-        height: 30px;
+  ul.navbar-right {
+    .auth-container {
+      .profile-pic {
+        img {
+          height: 30px;
+        }
       }
-    }
-    .user-total-merits {
-      margin-left: 10px;
+      .user-total-merits {
+        margin-left: 10px;
+      }
     }
   }
 }

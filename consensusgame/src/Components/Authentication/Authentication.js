@@ -5,16 +5,20 @@ import Cookies from "universal-cookie";
 import homeIcon from "../../assets/icons/svg/home-active.svg";
 import notificationsIcon from "../../assets/icons/svg/notifications-inactive.svg";
 import rewardIcon from "../../assets/icons/svg/rewards-inactive.svg";
+import removeIcon from "../../assets/icons/mobile/remove-icon.png";
 import "../NavBar/NavBar.scss";
 import "./Authentication.scss";
 
 class Authentication extends Component {
   constructor() {
     super();
+    this.handleGetStartedClick = this.handleGetStartedClick.bind(this);
+    this.handleProfileClick = this.handleProfileClick.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
     let cookies = new Cookies();
     let user = cookies.get("user");
     if (user) {
-      this.state = { user, profileMenuOpen: false };
+      this.state = { user, profileMenuOpen: false, getStartedMenuOpen: false };
     } else {
       this.state = {};
     }
@@ -45,20 +49,86 @@ class Authentication extends Component {
 
   logout = () => {
     let cookies = new Cookies();
-    cookies;
+    cookies.remove("token");
+    cookies.remove("user");
+    window.location = "/";
   };
 
-  handleProfileMenuOpen = () => {
-    this.setState(prevState => {
-      return { profileMenuOpen: !prevState.profileMenuOpen };
-    });
-  };
+  handleGetStartedClick() {
+    if (!this.state.getStartedMenuOpen) {
+      // attach/remove event handler
+      document.addEventListener("click", this.handleOutsideClick, false);
+    } else {
+      document.removeEventListener("click", this.handleOutsideClick, false);
+    }
+
+    this.setState(prevState => ({
+      getStartedMenuOpen: !prevState.getStartedMenuOpen
+    }));
+  }
+
+  handleProfileClick() {
+    if (!this.state.profileMenuOpen) {
+      // attach/remove event handler
+      document.addEventListener("click", this.handleOutsideClick, false);
+    } else {
+      document.removeEventListener("click", this.handleOutsideClick, false);
+    }
+
+    this.setState(prevState => ({
+      profileMenuOpen: !prevState.profileMenuOpen
+    }));
+  }
+
+  handleOutsideClick(e) {
+    // ignore clicks on the component itself
+    if (this.node.contains(e.target)) {
+      return;
+    }
+
+    this.handleGetStartedClick();
+    this.handleProfileClick();
+  }
 
   render() {
+    let getStartedMenu;
+    this.state.getStartedMenuOpen
+      ? (getStartedMenu = (
+          <ul className="get-started-menu">
+            <img className="cancel-button" src={removeIcon} alt="remove-icon" />
+            <li>
+              <h2>Join Consensus Clubs!</h2>
+              <p>
+                Create an account to deliver deep community engagement using
+                crypto incentives. Scaling community governance using market
+                mechanisms.
+              </p>
+            </li>
+            <li>
+              <TwitterLogin
+                className="twitter-signup"
+                loginUrl={
+                  process.env.REACT_APP_API_URL +
+                  process.env.REACT_APP_API_LOGIN_ROUTE
+                }
+                onFailure={this.onFailed}
+                onSuccess={this.onSuccess}
+                requestTokenUrl={
+                  process.env.REACT_APP_API_URL +
+                  process.env.REACT_APP_API_REQUEST_TOKEN_ROUTE
+                }
+                text="Sign up with Twitter"
+              />
+            </li>
+          </ul>
+        ))
+      : null;
+
     let ProfileMenu;
     this.state.profileMenuOpen
       ? (ProfileMenu = (
           <ul className="profile-menu">
+            <img src={removeIcon} className="cancel-button" alt="remove-icon" />
             <li>
               <Link className="nav-link" to="/profile">
                 Leader board
@@ -85,7 +155,11 @@ class Authentication extends Component {
               </Link>
             </li>
             <li>
-              <Link className="nav-link" to="/">
+              <Link
+                className="nav-link"
+                to="/"
+                onClick={this.logout.bind(this)}
+              >
                 Sign out
               </Link>
             </li>
@@ -96,7 +170,33 @@ class Authentication extends Component {
     let userTotalMerits;
     userTotalMerits = parseInt(1500, 10).toLocaleString();
 
-    let content = this.state.user ? (
+    let content = !this.state.user ? (
+      <React.Fragment>
+        <li>
+          <TwitterLogin
+            className="twitter-signin"
+            loginUrl={
+              process.env.REACT_APP_API_URL +
+              process.env.REACT_APP_API_LOGIN_ROUTE
+            }
+            onFailure={this.onFailed}
+            onSuccess={this.onSuccess}
+            requestTokenUrl={
+              process.env.REACT_APP_API_URL +
+              process.env.REACT_APP_API_REQUEST_TOKEN_ROUTE
+            }
+          />
+        </li>
+        <li>
+          <div className="unauth-container">
+            <div class="get-started" onClick={this.handleGetStartedClick}>
+              <span>Get started</span>
+              {getStartedMenu}
+            </div>
+          </div>
+        </li>
+      </React.Fragment>
+    ) : (
       <React.Fragment>
         <li>
           <Link className="nav-link" to="/polls">
@@ -124,7 +224,7 @@ class Authentication extends Component {
         </li>
         <li>
           <div className="auth-container">
-            <div class="profile-pic" onClick={this.handleProfileMenuOpen}>
+            <div class="profile-pic" onClick={this.handleProfileClick}>
               <img src={this.state.user.profileImageUrl} alt="Profile" />
               {ProfileMenu}
             </div>
@@ -132,23 +232,17 @@ class Authentication extends Component {
           </div>
         </li>
       </React.Fragment>
-    ) : (
-      <li>
-        <TwitterLogin
-          loginUrl={
-            process.env.REACT_APP_API_URL +
-            process.env.REACT_APP_API_LOGIN_ROUTE
-          }
-          onFailure={this.onFailed}
-          onSuccess={this.onSuccess}
-          requestTokenUrl={
-            process.env.REACT_APP_API_URL +
-            process.env.REACT_APP_API_REQUEST_TOKEN_ROUTE
-          }
-        />
-      </li>
     );
-    return <ul>{content}</ul>;
+    return (
+      <ul
+        className="navbar-right"
+        ref={node => {
+          this.node = node;
+        }}
+      >
+        {content}
+      </ul>
+    );
   }
 }
 
