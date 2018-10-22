@@ -28,59 +28,6 @@ ul.navbar-right {
         span {
           font-size: 13px;
         }
-
-        ul.get-started-menu {
-          padding: 1.5em 3em;
-          text-align: center;
-          height: 350px;
-          width: 500px;
-          background: white;
-          position: absolute;
-          top: 50px;
-          left: -400px;
-          z-index: 1;
-          display: block;
-          font-size: 20px;
-          margin: 35px 0;
-          //triangle white shape on the top
-          :after {
-            width: 0px;
-            height: 0px;
-            position: absolute;
-            top: 0%;
-            right: 60px;
-            content: "";
-            transform: translate(0%, -100%);
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 13px solid white;
-          }
-          img.cancel-button {
-            float: right;
-            margin-top: -15px;
-            margin-right: -45px;
-            height: 13px;
-          }
-          li {
-            display: block;
-            font-size: 20px;
-            margin: 35px 0;
-            h2 {
-              color: black;
-            }
-            p {
-              font-size: 15px;
-              color: #9b9b9b;
-            }
-            button.twitter-signup {
-              border: 1px solid grey;
-              background: white;
-              padding: 0.5em 2em;
-              border-radius: 5px;
-              margin-top: 30px;
-            }
-          }
-        }
       }
     }
   }
@@ -88,14 +35,14 @@ ul.navbar-right {
   .auth-container {
     .profile-pic {
       position: relative;
-      &:hover {
-        cursor: pointer;
-      }
 
       img {
         border-radius: 50%;
         height: 35px;
         transform: translateY(10%);
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       ul.profile-menu {
@@ -126,6 +73,9 @@ ul.navbar-right {
           margin-top: 3px;
           margin-right: 8px;
           height: 15px;
+          &:hover {
+            cursor: pointer;
+          }
         }
         li {
           display: block;
@@ -177,19 +127,45 @@ ul.navbar-right {
 // 0px - 599px
 @media only screen and (max-width: 599px) {
   ul.navbar-right {
-    button {
-      padding: 0.3em 1em;
-      font-size: 1em;
+    li {
+      button.twitter-signin {
+        padding: 0.3em 1em;
+        font-size: 1em;
+        margin-right: -15px;
+        span {
+          font-size: 10px;
+          svg {
+            height: 20px;
+          }
+        }
+      }
     }
-    .auth-container {
-      padding: 10px 0px;
+    li {
+      .unauth-container {
+        .get-started {
+          padding: 0.7em;
+          span {
+            font-size: 10px;
+          }
+        }
+      }
     }
+  }
+
+  .auth-container {
+    padding: 10px 0px;
   }
 }
 
 // 0px - 423px
 @media only screen and (max-width: 423px) {
   ul.navbar-right {
+    li {
+      button.twitter-signin {
+        margin-right: 0;
+      }
+    }
+
     .auth-container {
       .profile-pic {
         img {

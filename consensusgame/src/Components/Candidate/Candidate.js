@@ -39,7 +39,7 @@ class Candidate extends Component {
         <NewOpinion
           poll={poll}
           candidate={candidate}
-          handleAfterStaked={this.expandOrContract.bind(this)}
+          expandOrContract={this.expandOrContract.bind(this)}
         />
       );
     }

@@ -1,54 +1,74 @@
 import React, { Component } from "react";
+import axios from "axios";
+
+import Cookies from "universal-cookie";
+import CandidateMyPosition from "../Components/Candidate/CandidateMyPosition";
+import "./Profile.scss";
 
 class Profile extends Component {
+  constructor() {
+    super();
+    let cookies = new Cookies();
+    let user = cookies.get("user");
+    if (user) {
+      this.state = { user, opinions: [] };
+    } else {
+      this.state = {};
+    }
+  }
+  async componentDidMount() {
+    // TODO move this query to other place, it's being called all the time.
+    const { data: opinions } = await axios({
+      method: "get",
+      baseURL: process.env.REACT_APP_API_URL,
+      url: process.env.REACT_APP_API_OPINIONS,
+      withCredentials: true
+    });
+    this.setState({ opinions });
+  }
+
+  onCandidateExpanded(idExpandedCandidate) {
+    this.setState({ idExpandedCandidate });
+  }
+
   render() {
-    const user = {
-      id: "1",
-      name: "Yoshie",
-      twitter: "@vegangirl",
-      merits: "300",
-      three_month: "-9.3",
-      six_month: "+12.6",
-      one_year: "+25.1"
-    };
+    const { user, opinions } = this.state;
 
     return (
       <div className="layout">
         <aside className="col">
           <h1 className="lg-vspace">Profile</h1>
           <h6>Track your performance here</h6>
-          {/* Add polls link?? */}
         </aside>
 
         <section className="col">
-          <h1>{user.name}</h1>
-
-          <div className="card yellow">
-            <div className="card-container">
-              <h3 className="float-right" style={{ color: "#FFA500" }}>
-                {user.merits} Merits
-              </h3>
-              <p>{user.twitter}</p>
-
-              <div className="flex sb">
-                <div>{user.three_month}%</div>
-                <div>{user.six_month}%</div>
-                <div>{user.one_year}%</div>
-              </div>
-
-              <div className="flex sb">
-                <div>3 month</div>
-                <div>6 month</div>
-                <div>1 year</div>
-              </div>
-
-              {/* Bottom part */}
-              <div className="flex sb">
-                <div>Current Opinion</div>
-                <div>Closed Votes</div>
-                <div>Ongoing Votes</div>
-              </div>
+          <div className="user flex">
+            <div class="user-pic">
+              <img src={user.profileImageUrl} alt="user" className="user-pic" />
             </div>
+            <div className="name">
+              <h2>{user.name}</h2>
+              <h3>@{user.username}</h3>
+            </div>
+            <div className="user-total-merits">1500 Merits</div>
+          </div>
+
+          <div className="candidates">
+            <ul className="list-unstyled">
+              {opinions.map((opinion, index) => {
+                return (
+                  <CandidateMyPosition
+                    key={opinion.id}
+                    corr={index}
+                    opinion={opinion}
+                    handleOnExpanded={this.onCandidateExpanded.bind(this)}
+                    expanded={
+                      opinion.candidate.id == this.state.idExpandedCandidate
+                    }
+                  />
+                );
+              })}
+            </ul>
           </div>
         </section>
       </div>

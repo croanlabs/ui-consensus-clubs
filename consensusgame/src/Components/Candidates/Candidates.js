@@ -37,7 +37,7 @@ class Candidates extends Component {
           const searchLower = search.toLowerCase();
           if (
             candidate.name.toLowerCase().indexOf(searchLower) >= 0 ||
-            candidate.twitter_user.toLowerCase().indexOf(searchLower) >= 0
+            candidate.twitterUser.toLowerCase().indexOf(searchLower) >= 0
           ) {
             return (
               <SearchResult

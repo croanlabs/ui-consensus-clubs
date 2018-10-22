@@ -1,20 +1,30 @@
 import React, { Component } from "react";
-import "./NewOpinion.scss";
+import axios from "axios";
+import Cookies from "universal-cookie";
 import infoIcon from "../../assets/icons/info-icon.png";
 import downArrow from "../../assets/icons/polls/down-arrow.png";
 import upArrow from "../../assets/icons/polls/up-arrow.png";
 import MeritsSlider from "../MeritsSlider/MeritsSlider";
 import Congratulations from "../Congratulations/Congratulations";
+import SignupPopup from "../SignupPopup/SignupPopup";
 import "react-rangeslider/lib/index.css";
-import axios from "axios";
+import "./NewOpinion.scss";
 
 class NewOpinion extends Component {
   constructor(props, context) {
     super(props, context);
+    this.handleSignupClick = this.handleSignupClick.bind(this);
+    this.handleOutsideCloseSignup = this.handleOutsideCloseSignup.bind(this);
+    this.handleStakeCandidate = this.handleStakeCandidate.bind(this);
+
+    let cookies = new Cookies();
+    // let user = cookies.get("user");
     this.state = {
       amountMerits: 50,
       confidence: true,
-      staked: false
+      staked: false,
+      user: cookies.get("user"),
+      getStartedMenuOpen: false
     };
   }
 
@@ -53,7 +63,7 @@ class NewOpinion extends Component {
   }
 
   handleStakeOk = () => {
-    this.props.handleAfterStaked();
+    this.props.expandOrContract();
     this.setState({
       amountMerits: 50,
       confidence: true,
@@ -61,8 +71,62 @@ class NewOpinion extends Component {
     });
   };
 
+  handleSignupClick() {
+    this.setState(prevState => ({
+      getStartedMenuOpen: !prevState.getStartedMenuOpen
+    }));
+  }
+
+  handleOutsideCloseSignup(e) {
+    // ignore clicks on the component itself
+    if (this.signup.contains(e.target)) {
+      return;
+    }
+    this.handleSignupClick();
+  }
+
+  onSuccess = async response => {
+    const token = response.headers.get("x-auth-token");
+    if (token) {
+      // Add cookies for token and user info
+      let cookies = new Cookies();
+      cookies.set("token", token, {
+        // FIXME Set httpOnly.
+        //httpOnly: true,
+        domain: process.env.REACT_APP_CONSENSUS_CLUBS_DOMAIN,
+        path: "/"
+      });
+
+      const user = await response.json();
+      cookies.set("user", JSON.stringify(user), { httpOnly: false, path: "/" });
+
+      this.setState({ user });
+      window.location = "/";
+    }
+  };
+
+  onFailed = error => {
+    // TODO
+    alert(error);
+  };
+
   render() {
     const { candidate } = this.props;
+
+    let getStartedMenu;
+    this.state.getStartedMenuOpen
+      ? (getStartedMenu = (
+          <SignupPopup
+            setRef={signup => {
+              this.signup = signup;
+            }}
+            onFailed={this.onFailed}
+            onSuccess={this.onSuccess}
+            handleOutsideCloseSignup={this.handleOutsideCloseSignup}
+            handleSignupClick={this.handleSignupClick}
+          />
+        ))
+      : null;
 
     let newOpinionShow;
     newOpinionShow = !this.state.staked ? (
@@ -85,7 +149,7 @@ class NewOpinion extends Component {
           </span>
         </p>
         <div className="candidate">
-          <form onSubmit={this.handleStakeCandidate}>
+          <form>
             <div className="slider">
               <MeritsSlider
                 amountMerits={this.state.amountMerits}
@@ -101,7 +165,14 @@ class NewOpinion extends Component {
                 />
               </i>
             </p>
-            <button onClick={this.handleStakeCandidate.bind(this)}>
+            <button
+              onClick={
+                this.state.user
+                  ? this.handleStakeCandidate
+                  : this.handleSignupClick
+              }
+              type="button"
+            >
               I {this.state.confidence ? "support" : "oppose"} @
               {candidate.twitterUser}
             </button>
@@ -129,7 +200,12 @@ class NewOpinion extends Component {
       />
     );
 
-    return <div>{newOpinionShow}</div>;
+    return (
+      <div>
+        {getStartedMenu}
+        {newOpinionShow}
+      </div>
+    );
   }
 }
 

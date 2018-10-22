@@ -53,15 +53,17 @@ class CandidatesMyPosition extends Component {
 
     return (
       <div className="candidates">
-        <div className="search-bar">
-          <img src={searchIcon} alt="Find" />
-          <input
-            value={this.state.searchValue}
-            type="search"
-            className="find"
-            placeholder="Find Candidate..."
-            onChange={this.search.bind(this)}
-          />
+        <div className="search-area">
+          <div className="search-bar">
+            <img src={searchIcon} alt="Find" />
+            <input
+              value={this.state.searchValue}
+              type="search"
+              className="find"
+              placeholder="Find Candidate..."
+              onChange={this.search.bind(this)}
+            />
+          </div>
         </div>
         <div className="total-candidates">
           {/* FIXME count should be changed to candidates of my position */}

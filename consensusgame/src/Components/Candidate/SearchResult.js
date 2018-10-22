@@ -57,7 +57,7 @@ class SearchResult extends Component {
                     <img src={downArrow} alt="Rating Down" />
                   </i>
                   <span className="merits-total">
-                    {numberToString(candidate.totalMeritsNoConfidence)}
+                    {numberToString(candidate.totalMeritsOpposition)}
                   </span>
                 </div>
               </div>
