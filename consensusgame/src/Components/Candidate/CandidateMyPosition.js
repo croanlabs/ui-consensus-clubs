@@ -66,6 +66,7 @@ class CandidateMyPosition extends Component {
           candidate={this.props.opinion.candidate}
           amountOfStakedMerits={this.state.merits}
           arrowConfidence={this.state.arrowConfidence}
+          confidence={this.props.opinion.confidence}
           handleAfterStaked={this.expandOrContract.bind(this)}
         />
       );

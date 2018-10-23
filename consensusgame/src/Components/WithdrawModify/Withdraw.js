@@ -29,7 +29,7 @@ class Withdraw extends Component {
       url,
       withCredentials: true,
       data: {
-        confidence: true,
+        confidence: this.props.confidence,
         percentage: 100
       },
     }
@@ -45,7 +45,7 @@ class Withdraw extends Component {
 
   render() {
     const { amountOfMeritsGet } = this.state;
-    const { amountOfStakedMerits, arrowConfidence } = this.props;
+    const { amountOfStakedMerits, arrowConfidence, confidence } = this.props;
 
     // calculate the percentage of gain / loss
     let amountOfGain = amountOfMeritsGet - amountOfStakedMerits;
@@ -108,7 +108,7 @@ class Withdraw extends Component {
       </div>
     ) : (
       <Congratulations
-        userTwitterName={this.props.candidate.twitter_user}
+        userTwitterName={this.props.candidate.twitterUser}
         handleOk={this.handleWithdrawOk.bind(this)}
         message="withdrawed"
       />
