@@ -16,18 +16,25 @@ class Withdraw extends Component {
   }
 
   handleWithdrawMerits = async e => {
-    const obj = {
-      confidence: true,
-      percentage: 100
-    };
+    const url =
+      process.env.REACT_APP_API_POLLS +
+      "/" +
+      this.props.candidate.pollId +
+      "/candidates/" +
+      this.props.candidate.id +
+      "/redeem";
+    const conf = {
+      method: "post",
+      baseURL: process.env.REACT_APP_API_URL,
+      url,
+      withCredentials: true,
+      data: {
+        confidence: true,
+        percentage: 100
+      },
+    }
     e.preventDefault();
-    await axios.post(
-      `${process.env.REACT_APP_API_URL +
-        process.env.REACT_APP_API_POLLS +
-        "/" +
-        "2/candidates/3/redeem"}`,
-      obj
-    );
+    await axios(conf);
     this.setState({ withdrawed: true });
   };
 
