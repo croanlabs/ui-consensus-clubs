@@ -43,7 +43,6 @@ class Authentication extends Component {
       cookies.set("user", JSON.stringify(user), { httpOnly: false, path: "/" });
 
       this.setState({ user });
-      window.location = "/";
     }
   };
 

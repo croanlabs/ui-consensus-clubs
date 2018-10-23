@@ -4,10 +4,19 @@
   text-align: center;
   margin: 2em auto 5em;
   width: 90%;
+  @media only screen and (max-width: 979px) {
+    margin: 2em auto;
+  }
+  @media only screen and (max-width: 479px) {
+    width: 100%;
+  }
 
   .switch-field {
     padding: 2em 0;
     overflow: hidden;
+    @media only screen and (max-width: 479px) {
+      padding: 1em 0 0 0;
+    }
   }
 
   .switch-field input {

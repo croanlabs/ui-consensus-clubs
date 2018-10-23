@@ -22,11 +22,11 @@ ul.navbar-right {
         padding: 1em;
         border-radius: 5px;
 
-        &:hover {
-          cursor: pointer;
-        }
         span {
           font-size: 13px;
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }
@@ -150,10 +150,19 @@ ul.navbar-right {
         }
       }
     }
-  }
 
-  .auth-container {
-    padding: 10px 0px;
+    .auth-container {
+      padding: 10px 0px;
+      .profile-pic {
+        ul.profile-menu {
+          top: 60px;
+          left: -200px;
+          :after {
+            right: 70px;
+          }
+        }
+      }
+    }
   }
 }
 

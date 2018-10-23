@@ -65,11 +65,7 @@ class AddCandidate extends Component {
       url,
       withCredentials: true,
       data: {
-        name: this.state.name,
-        description: this.state.description,
         twitterUser: this.state.twitterUser,
-        twitterId: this.state.twitterId,
-        profilePictureUrl: this.state.profilePictureUrl,
         confidence: true,
         amountMerits: this.state.amountMerits
       }
@@ -194,6 +190,7 @@ class AddCandidate extends Component {
                 {suggestTitle}
                 <TwitterUserInput
                   onSuggestionSelected={this.handleCandidateSelected.bind(this)}
+                  placeholder={"Search on Twitter"}
                 />
               </form>
             </div>
