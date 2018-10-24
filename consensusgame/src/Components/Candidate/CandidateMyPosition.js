@@ -122,7 +122,7 @@ class CandidateMyPosition extends Component {
                 </div>
                 <div className="name">
                   <h2>{this.state.candidate.name}</h2>
-                  <h3>{this.state.candidate.twitterUser}</h3>
+                  <h3>@{this.state.candidate.twitterUser}</h3>
                 </div>
               </div>
 

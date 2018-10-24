@@ -190,6 +190,7 @@ class AddCandidate extends Component {
                 {suggestTitle}
                 <TwitterUserInput
                   onSuggestionSelected={this.handleCandidateSelected.bind(this)}
+                  placeholder={"Search on Twitter"}
                 />
               </form>
             </div>

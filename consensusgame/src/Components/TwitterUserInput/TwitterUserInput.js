@@ -83,10 +83,11 @@ class TwitterUserInput extends React.Component {
 
   render() {
     const { value, suggestions } = this.state;
+    const { placeholder } = this.props;
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
-      placeholder: "Search on Twitter",
+      placeholder: placeholder,
       value,
       onChange: this.onChange.bind(this),
       className: "find"

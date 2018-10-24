@@ -1,7 +1,7 @@
 @import "../../assets/scss/variables";
 
 .opinion-expression {
-  margin: 4em auto;
+  margin: 2em auto;
   width: 80%;
   text-align: center;
 
@@ -9,14 +9,21 @@
     align-items: center;
     border: 1px solid lightblue;
     padding: 1em;
-    h2 {
-      color: black;
-    }
-    h3 {
-      color: grey;
+    .name {
+      justify-content: center;
+      h2 {
+        color: black;
+      }
+      h3 {
+        color: grey;
+        margin-left: 10px;
+      }
+      @media only screen and (min-width: 600px) {
+        display: flex;
+      }
     }
   }
-  .info {
+  /* .info {
     align-items: center;
     img {
       height: 14px;
@@ -26,11 +33,14 @@
       font-size: 1em;
       margin-left: 0.5em;
     }
-  }
+  } */
 
   .candidate {
     p.arrow-opinion {
-      margin: 2em;
+      img {
+        height: 60px;
+        margin-top: -20px;
+      }
     }
 
     p.oppose,

@@ -1,1 +1,158 @@
 @import "../assets/scss/variables";
+
+section.profile {
+  margin-top: 3em;
+  .background-white {
+    .user {
+      padding: 30px 40px;
+      justify-content: space-between;
+      background: white;
+      border-radius: 5px;
+
+      .user-info {
+        .user-pic {
+          border-radius: 50%;
+          border: 3px solid #b3e488;
+          height: 85px;
+          width: 85px;
+          margin-right: 1.5em;
+          img {
+            height: 80px;
+            border-radius: 50%;
+          }
+        }
+        .name {
+          margin-top: 0.8em;
+          h2 {
+            color: $navy;
+          }
+          .user-total-merits {
+            font-size: 18px;
+            color: $light-green;
+            font-weight: 600;
+            padding-top: 10px;
+          }
+        }
+      }
+      .merits-rate {
+        margin-top: 30px;
+        text-align: right;
+        span {
+          color: grey;
+        }
+        p {
+          color: $teal;
+          font-size: 25px;
+          font-weight: 600;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .candidates-profile {
+    background: white;
+    margin-top: 20px;
+    padding: 1.5rem 2rem 2rem;
+  }
+}
+
+// 980pxn -
+@media only screen and (min-width: 980px) {
+  section.profile {
+    .background-white {
+      position: absolute;
+      overflow: auto;
+      top: 80px;
+      left: 50%;
+      right: 0;
+      height: 150px;
+      width: 50%;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      background-color: white;
+      .user {
+        padding: 35px 50px;
+        max-width: 720px;
+        .user-info {
+          .user-pic {
+            height: 85px;
+            img {
+              height: 80px;
+            }
+          }
+          .name {
+            margin-left: 15px;
+            h2 {
+              color: $navy;
+            }
+            .user-total-merits {
+              font-size: 18px;
+              color: $light-green;
+              font-weight: 600;
+              padding-top: 10px;
+            }
+          }
+        }
+        .merits-rate {
+          margin-top: 20px;
+          text-align: right;
+          span {
+            color: grey;
+          }
+          p {
+            color: $teal;
+            font-size: 25px;
+            font-weight: 600;
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .candidates-profile {
+      margin-top: 160px;
+      ul.list-unstyled {
+        overflow: scroll;
+        max-height: 600px;
+        padding-right: 20px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  section.profile {
+    .background-white {
+      .user {
+        padding: 20px 20px;
+        .user-info {
+          .user-pic {
+            height: 65px;
+            width: 65px;
+            margin-right: 1em;
+            img {
+              height: 60px;
+            }
+          }
+          .name {
+            margin-top: 0;
+            .user-total-merits {
+              padding-top: 8px;
+            }
+          }
+        }
+        .merits-rate {
+          p {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+
+    .candidates-profile {
+      padding: 1rem 2rem 1rem 1rem;
+    }
+  }
+}

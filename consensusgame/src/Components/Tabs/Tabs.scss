@@ -25,7 +25,11 @@
   color: navy;
 }
 
+// 980 px -
 @media only screen and (min-width: 980px) {
+  .tab-list {
+    margin-right: 20px;
+  }
   .tab-list-item {
     color: white;
   }

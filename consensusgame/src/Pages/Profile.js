@@ -33,6 +33,7 @@ class Profile extends Component {
 
   render() {
     const { user, opinions } = this.state;
+    const colors = ["yellow", "teal", "purple", "red", "green", "blue"];
 
     return (
       <div className="layout">
@@ -41,24 +42,37 @@ class Profile extends Component {
           <h6>Track your performance here</h6>
         </aside>
 
-        <section className="col">
-          <div className="user flex">
-            <div class="user-pic">
-              <img src={user.profileImageUrl} alt="user" className="user-pic" />
+        <section className="profile col">
+          <div className="background-white">
+            <div className="user flex">
+              <div class="user-info flex">
+                <div class="user-pic">
+                  <img
+                    src={user.profileImageUrl}
+                    alt="user"
+                    className="user-picture"
+                  />
+                </div>
+                <div className="name">
+                  <h2>{user.name}</h2>
+                  <h3>@{user.username}</h3>
+                  <div className="user-total-merits">1500 Merits</div>
+                </div>
+              </div>
+              <div className="merits-rate">
+                <span>Last 24 Hrs</span>
+                <p>+0.18%</p>
+              </div>
             </div>
-            <div className="name">
-              <h2>{user.name}</h2>
-              <h3>@{user.username}</h3>
-            </div>
-            <div className="user-total-merits">1500 Merits</div>
           </div>
 
-          <div className="candidates">
+          <div className="candidates-profile">
             <ul className="list-unstyled">
               {opinions.map((opinion, index) => {
                 return (
                   <CandidateMyPosition
                     key={opinion.id}
+                    color={colors[index % colors.length]}
                     corr={index}
                     opinion={opinion}
                     handleOnExpanded={this.onCandidateExpanded.bind(this)}

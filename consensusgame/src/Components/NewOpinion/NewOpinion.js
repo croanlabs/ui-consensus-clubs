@@ -136,18 +136,20 @@ class NewOpinion extends Component {
         }`}
       >
         <p className="candidate-info">
-          <h2>{candidate.name}</h2>
-          <h3>@{candidate.twitterUser}</h3>
+          <div className="name">
+            <h2>{candidate.name}</h2>
+            <h3>@{candidate.twitterUser}</h3>
+          </div>
           <p>{candidate.description}</p>
         </p>
-        <p className="info">
+        {/*<p className="info">
           <i>
             <img src={infoIcon} alt="Info" />
           </i>
-          <span>
+           <span>
             The default merit points are set to 50, do you want to change below?
           </span>
-        </p>
+        </p> */}
         <div className="candidate">
           <form>
             <div className="slider">

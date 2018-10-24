@@ -1,13 +1,59 @@
 @import "../assets/scss/mixins";
+@import "../assets/scss/variables";
 
 .rewards {
-    .card-container {
-        margin: 1.5em 2em;
-    }
-    .msg {
-        margin: 0 1rem;
-        p {
-            margin: 0.2em 0;
+  aside {
+    ul {
+      margin-top: 10em;
+      li {
+        .card-container {
+          margin: 1.5em 2em;
         }
+        .msg {
+          margin-right: 1rem;
+          h2 {
+            color: $h2-color3;
+            font-size: 2em;
+          }
+          p {
+            margin: 0.2em 0;
+          }
+        }
+      }
     }
+  }
+  section {
+    .rewards-details {
+      .reward-each-detail {
+        padding-top: 150px;
+        span {
+          color: $yellow;
+          font-size: 20px;
+        }
+        h1 {
+          color: white;
+          margin-top: 20px;
+        }
+        p {
+          font-size: 15px;
+        }
+      }
+
+      .rewards-button {
+        text-align: center;
+        button {
+          margin-top: 5em;
+          letter-spacing: 0.03em;
+          border: 5px solid lightblue;
+          padding: 20px 60px;
+          font-size: 25px;
+          border-radius: 15px;
+          font-weight: 500;
+        }
+        .twitter-autosuggest {
+          margin-top: 5em;
+        }
+      }
+    }
+  }
 }
