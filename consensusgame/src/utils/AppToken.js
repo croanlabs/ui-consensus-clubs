@@ -7,9 +7,7 @@ exp.tokenPrice = supply => {
 
 exp.tokenToMeritsRedeem = (tokenAmount, supply) => {
   const supplyAfter = supply - tokenAmount;
-  return Math.round(
+  return parseInt(
     (supply * exp.tokenPrice(supply) -
-      supplyAfter * exp.tokenPrice(supplyAfter)) /
-      2,
-  );
+      supplyAfter * exp.tokenPrice(supplyAfter)) / 2, 10);
 };

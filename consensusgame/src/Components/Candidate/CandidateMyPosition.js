@@ -64,7 +64,8 @@ class CandidateMyPosition extends Component {
         <Withdraw
           showFormModify={this.showFormModify.bind(this)}
           candidate={this.props.opinion.candidate}
-          amountOfStakedMerits={this.state.merits}
+          originalAmountMerits={this.props.opinion.merits}
+          currentValueMerits={this.state.merits}
           arrowConfidence={this.state.arrowConfidence}
           confidence={this.props.opinion.confidence}
           handleAfterStaked={this.expandOrContract.bind(this)}
@@ -100,11 +101,6 @@ class CandidateMyPosition extends Component {
       );
     }
 
-    let meritsAmount;
-    meritsAmount = parseInt(
-      this.state.merits ? this.state.merits : 0,
-      10
-    ).toLocaleString();
     return (
       <div className="candidate-myposition">
         <li
@@ -139,7 +135,7 @@ class CandidateMyPosition extends Component {
                     />
                   </i>
                   <span className={`merit-num ${arrowConfidence}`}>
-                    {meritsAmount} Merits
+                    {this.props.opinion.merits} Merits
                   </span>
                 </div>
               </div>
