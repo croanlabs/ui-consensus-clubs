@@ -45,14 +45,6 @@ class AddCandidate extends Component {
     this.setState({ search: e.target.value });
   }
 
-  handleChangeTwitterUser(e) {
-    this.setState({ twitterUser: e.target.value });
-  }
-
-  handleChangeAmountMerits(e) {
-    this.setState({ amountMerits: e.target.value });
-  }
-
   handleAddCandidate = async e => {
     const url =
       process.env.REACT_APP_API_POLLS +
@@ -76,7 +68,6 @@ class AddCandidate extends Component {
   };
 
   handleCandidateSelected(suggestion) {
-    console.log(suggestion);
     this.setState({
       name: suggestion.name,
       twitterUser: suggestion.screen_name,
@@ -87,6 +78,10 @@ class AddCandidate extends Component {
     });
   }
 
+  chooseAnotherCandidate = () => {
+    this.setState({ selected: false });
+  };
+
   handleAddOk() {
     this.setState({
       active: false,
@@ -95,10 +90,6 @@ class AddCandidate extends Component {
       amountMerits: 50
     });
   }
-
-  chooseAnotherCandidate = () => {
-    this.setState({ selected: false });
-  };
 
   render() {
     let addCandidateButton;

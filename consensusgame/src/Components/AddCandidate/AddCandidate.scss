@@ -35,6 +35,19 @@
         margin-right: -20px;
         height: 25px;
       }
+      .twitter-autosuggest {
+        .card {
+          .card-container {
+            .profile {
+              .add-icon {
+                img.add-icon {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
 
       .add-candidate-submit {
         margin-bottom: 30px;

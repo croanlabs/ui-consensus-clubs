@@ -2,6 +2,9 @@ import React from "react";
 import Autosuggest from "react-autosuggest";
 import axios from "axios";
 import searchIcon from "../../assets/icons/coloursearch-icon.png";
+import searchIconWhite from "../../assets/icons/rewards/Find Icon@2x.png";
+import addIcon from "../../assets/icons/add.png";
+import deleteButton from "../../assets/icons/remove-icon2.png";
 import "./TwitterUserInput.scss";
 
 class TwitterUserInput extends React.Component {
@@ -43,6 +46,10 @@ class TwitterUserInput extends React.Component {
     return suggestions;
   }
 
+  handleValueClear() {
+    this.setState({ value: "" });
+  }
+
   onSuggestionsClearRequested() {
     this.setState({
       suggestions: []
@@ -55,11 +62,12 @@ class TwitterUserInput extends React.Component {
 
   onSuggestionSelected(event, { suggestion }) {
     this.props.onSuggestionSelected(suggestion);
+    this.setState({ value: "" });
   }
 
   renderSuggestion(suggestion) {
     return (
-      <li className="card green">
+      <li className="card">
         <div className="card-container">
           <div className="flex-sb">
             <div className="profile flex">
@@ -74,6 +82,9 @@ class TwitterUserInput extends React.Component {
                 <h2>{suggestion.name}</h2>
                 <h3>@{suggestion.screen_name}</h3>
               </div>
+              <div className="add-icon">
+                <img src={addIcon} alt="add-icon" className="add-icon" />
+              </div>
             </div>
           </div>
         </div>
@@ -83,19 +94,45 @@ class TwitterUserInput extends React.Component {
 
   render() {
     const { value, suggestions } = this.state;
-    const { placeholder } = this.props;
+    const { placeholder, searchImg } = this.props;
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
-      placeholder: placeholder,
+      placeholder,
       value,
       onChange: this.onChange.bind(this),
       className: "find"
     };
 
+    let searchIcons =
+      searchImg == "white" ? (
+        value.length > 0 ? (
+          // Rewards page
+          <img
+            className="delete-button"
+            src={deleteButton}
+            alt="delete"
+            onClick={this.handleValueClear.bind(this)}
+          />
+        ) : (
+          <img className="search-icon" src={searchIconWhite} alt="Find" />
+        )
+      ) : (
+        // Add Candidate page
+        <React.Fragment>
+          <img
+            className="delete-button"
+            src={deleteButton}
+            alt="delete"
+            onClick={this.handleValueClear.bind(this)}
+          />
+          <img className="search-icon" src={searchIcon} alt="Find" />
+        </React.Fragment>
+      );
+
     return (
       <div className="twitter-autosuggest">
-        <img className="search-icon" src={searchIcon} alt="Find" />
+        {searchIcons}
         <Autosuggest
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested.bind(
