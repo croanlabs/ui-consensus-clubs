@@ -76,8 +76,8 @@ class CandidateMyPosition extends Component {
       extraComponent = (
         <Modify
           showFormWithdraw={this.showFormWithdraw.bind(this)}
-          candidate={this.props.opinion.candidate}
-          amountOfStakedMerits={this.state.merits}
+          opinion={this.props.opinion}
+          currentValueMerits={this.state.merits}
           handleAfterStaked={this.expandOrContract.bind(this)}
         />
       );
@@ -135,7 +135,7 @@ class CandidateMyPosition extends Component {
                     />
                   </i>
                   <span className={`merit-num ${arrowConfidence}`}>
-                    {this.props.opinion.merits} Merits
+                    {Math.round(this.props.opinion.merits)} Merits
                   </span>
                 </div>
               </div>

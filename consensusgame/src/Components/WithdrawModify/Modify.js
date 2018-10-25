@@ -3,12 +3,13 @@ import Congratulations from "../Congratulations/Congratulations";
 import "./WithdrawModify.scss";
 import MeritsSlider from "../MeritsSlider/MeritsSlider";
 import { runInThisContext } from "vm";
+import axios from "axios";
 
 class Modify extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      amountMerits: this.props.amountOfStakedMerits,
+      amountMerits: this.props.currentValueMerits,
       increase: true,
       modified: false
     };
@@ -18,31 +19,32 @@ class Modify extends Component {
     this.setState({
       amountMerits: value
     });
-    // const stakedMerits = this.props.amountMerits;
-    // if (this.state.amountMerits > stakedMerits) {
-    //   this.setState({ increase: true });
-    // } else if (this.state.amountMerits < stakedMerits) {
-    //   this.setState({ increase: false });
-    // }
   };
 
   updateMeritsInput = e => {
     this.setState({ amountMerits: parseInt(e.target.value, 10) });
-    // const stakedMerits = this.props.amountMerits;
-    // if (this.state.amountMerits > stakedMerits) {
-    //   this.setState({ increase: true });
-    // } else if (this.state.amountMerits < stakedMerits) {
-    //   this.setState({ increase: false });
-    // }
   };
 
-  handleIncrease = () => {
-    console.log("increase");
-    this.setState({ modified: true });
-  };
-
-  handleDecrease = () => {
-    console.log("decrease");
+  handleModify = async e => {
+    const url =
+      process.env.REACT_APP_API_POLLS +
+      "/" +
+      this.props.opinion.candidate.pollId +
+      "/candidates/" +
+      this.props.opinion.candidate.id +
+      "/modify";
+    const conf = {
+      method: "post",
+      baseURL: process.env.REACT_APP_API_URL,
+      url,
+      withCredentials: true,
+      data: {
+        confidence: this.props.opinion.confidence,
+        commitmentMerits: this.state.amountMerits,
+      },
+    }
+    e.preventDefault();
+    await axios(conf);
     this.setState({ modified: true });
   };
 
@@ -50,28 +52,13 @@ class Modify extends Component {
     this.props.handleAfterStaked();
     this.setState({
       // the candidate will be deleted?
-      amountMerits: this.props.amountOfStakedMerits,
+      amountMerits: this.props.currentValueMerits,
       incrase: null,
       modified: false
     });
   };
 
   render() {
-    let increaseOrDecrease;
-    // if (this.state.amountMerits > this.props.amountOfStakedMerits) {
-    if (this.state.increase) {
-      increaseOrDecrease = (
-        <button onClick={this.handleIncrease.bind(this)}>Increase</button>
-      );
-    }
-    // } else if ((this.state.amountMerits = this.props.amountOfStakedMerits)) {
-    //   increaseOrDecrease = <p>Increase or decrease your opinion</p>;
-    // } else {
-    //   increaseOrDecrease = (
-    //     <button onClick={this.handleDecrease.bind(this)}>Decrease</button>
-    //   );
-    // }
-
     let modifyShow;
     modifyShow = !this.state.modified ? (
       <div className="withdraw-modify">
@@ -101,12 +88,12 @@ class Modify extends Component {
             passMeritsFromSlider={this.updateMeritsSlider}
             passMeritsFromInput={this.updateMeritsInput}
           />
-          {increaseOrDecrease}
+          <button onClick={this.handleModify.bind(this)}>Confirm</button>
         </div>
       </div>
     ) : (
       <Congratulations
-        userTwitterName={this.props.candidate.twitter_user}
+        userTwitterName={this.props.opinion.candidate.twitterUser}
         handleOk={this.handleModifyOk.bind(this)}
         message={this.state.increase ? "increased" : "decreased"}
       />

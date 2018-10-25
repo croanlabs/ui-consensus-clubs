@@ -21,7 +21,7 @@ class Withdraw extends Component {
       this.props.candidate.pollId +
       "/candidates/" +
       this.props.candidate.id +
-      "/redeem";
+      "/withdraw";
     const conf = {
       method: "post",
       baseURL: process.env.REACT_APP_API_URL,
@@ -29,7 +29,6 @@ class Withdraw extends Component {
       withCredentials: true,
       data: {
         confidence: this.props.confidence,
-        percentage: 100
       },
     }
     e.preventDefault();
