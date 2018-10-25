@@ -155,22 +155,13 @@ class Authentication extends Component {
               </Link>
             </li>
             <li>
-              <Link
+              <a
+                href="https://www.consensusclubs.network/"
                 className="nav-link"
-                to="/"
                 onClick={this.handleProfileClick}
               >
-                Policy
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="nav-link"
-                to="/"
-                onClick={this.handleProfileClick}
-              >
-                Terms {"&"} Conditions
-              </Link>
+                About
+              </a>
             </li>
             <li>
               <Link

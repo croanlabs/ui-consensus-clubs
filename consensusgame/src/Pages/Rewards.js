@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import TwitterUserInput from "../Components/TwitterUserInput/TwitterUserInput";
-import Congratulations from "../Components/Congratulations/Congratulations";
+import CongratulationsRewards from "../Components/Congratulations/CongratulationsRewards";
 import cancelButton from "../assets/icons/rewards/cancel-button@2x.png";
+import completeIcon from "../assets/icons/rewards/rewardscomplete-icon.png";
+import arrowIcon from "../assets/icons/rewards/rewardsarrow-icon.png";
 import "./Rewards.scss";
 import { throws } from "assert";
 
@@ -9,19 +11,31 @@ class Rewards extends Component {
   constructor() {
     super();
     this.state = {
-      name: "",
-      twitterUser: "",
-      search: "",
+      rewards: [
+        {
+          id: 1,
+          points: 100,
+          title: "Retweet Bonus",
+          description:
+            "Download consensus games to solve problems and earn airdrop prizes!"
+        },
+        {
+          id: 2,
+          points: 500,
+          title: "Direct Message",
+          description:
+            "Download consensus games to solve problems and earn airdrop prizes!"
+        }
+      ],
+      // name: "",
+      // twitterUser: "",
+      // search: "",
       retweet: true,
-      allSelectedUsers: []
+      allSelectedUsers: [],
+      retweeted: false,
+      directMessaged: false
     };
     this.handleDirectMessage = this.handleDirectMessage.bind(this);
-  }
-
-  onChange(event, { newValue }) {
-    this.setState({
-      value: newValue
-    });
   }
 
   showRetweet() {
@@ -35,86 +49,106 @@ class Rewards extends Component {
     this.setState({ search: e.target.value });
   }
 
-  chooseAnotherCandidate = () => {
-    this.setState({ selected: false });
-  };
-
   handleCandidateSelected(suggestion) {
     let allSelectedUsers = this.state.allSelectedUsers;
-    allSelectedUsers.push(suggestion.screen_name);
-
+    let twitterUser = suggestion.screen_name;
+    if (allSelectedUsers.indexOf(twitterUser) < 0) {
+      allSelectedUsers.push(twitterUser);
+    }
     this.setState({ allSelectedUsers });
-
-    // clear the value
   }
 
-  removeSelectedUser() {
-    console.log("remove this user");
+  removeSelectedUser(index) {
+    let allSelectedUsers = this.state.allSelectedUsers;
+    allSelectedUsers.splice(index, 1);
+    this.setState({ allSelectedUsers });
+  }
+
+  handleRetweet() {
+    // TODO
+    this.setState({ retweeted: true });
   }
 
   handleDirectMessage() {
-    console.log("DM");
+    // TODO
+    if (this.state.allSelectedUsers.length < 1) {
+      alert("select followers!");
+    } else {
+      this.setState({ directMessaged: true });
+    }
   }
 
-  handleAddOk() {
+  handleRetweetOk() {
     this.setState({
-      active: false,
-      selected: false,
-      added: false
+      retweeted: false
+    });
+  }
+
+  handleDMOk() {
+    this.setState({
+      directMessaged: false,
+      allSelectedUsers: []
     });
   }
 
   render() {
-    const { retweet, allSelectedUsers } = this.state;
+    const {
+      rewards,
+      retweet,
+      allSelectedUsers,
+      retweeted,
+      directMessaged
+    } = this.state;
     const colors = ["yellow", "teal", "purple", "red", "green", "blue"];
-
-    const rewards = [
-      {
-        id: 1,
-        points: 100,
-        title: "Retweet Bonus",
-        description:
-          "Download consensus games to solve problems and earn airdrop prizes!"
-      },
-      {
-        id: 2,
-        points: 500,
-        title: "Direct Message",
-        description:
-          "Download consensus games to solve problems and earn airdrop prizes!"
-      }
-    ];
 
     let selectedTwitterUsers = (
       <ul className="selected-users">
-        {allSelectedUsers.map(selectedUser => (
+        {allSelectedUsers.map((selectedUser, index) => (
           <li>
-            <span>{selectedUser}</span>
+            <span>@{selectedUser}</span>
             <img
               src={cancelButton}
               alt="cancel-buton"
               className="cancel-button"
-              onClick={this.removeSelectedUser}
+              onClick={() => this.removeSelectedUser(index)}
             />
           </li>
         ))}
       </ul>
     );
 
+    const arrowIconImg = (
+      <img src={arrowIcon} alt="arrow-icon" className="arrow-icon" />
+    );
+    let completeIconImg = (
+      <img src={completeIcon} alt="complete-icon" className="complete-icon" />
+    );
+    let retweetIcon = !retweeted ? arrowIconImg : completeIconImg;
+
+    let DmIcon = !directMessaged ? arrowIconImg : completeIconImg;
+
     let rewardsDetails = retweet ? (
-      <React.Fragment>
-        <div className="reward-each-detail">
-          <span className="yellow">100 Merits</span>
-          <h1>Tell Your Twitter Followers</h1>
-          <p>
-            Download consensus games to solve problems and earn airdrop prizes!
-          </p>
-        </div>
-        <div className="rewards-button">
-          <button>Retweet Now</button>
-        </div>
-      </React.Fragment>
-    ) : (
+      !retweeted ? (
+        <React.Fragment>
+          <div className="reward-each-detail">
+            <span className="yellow">100 Merits</span>
+            <h1>Tell Your Twitter Followers</h1>
+            <p>
+              Download consensus games to solve problems and earn airdrop
+              prizes!
+            </p>
+          </div>
+          <div className="rewards-button">
+            <button onClick={this.handleRetweet.bind(this)}>Retweet Now</button>
+          </div>
+        </React.Fragment>
+      ) : (
+        <CongratulationsRewards
+          retweet={retweet}
+          handleOk={this.handleRetweetOk.bind(this)}
+        />
+      )
+    ) : !directMessaged ? (
       <React.Fragment>
         <div className="reward-each-detail">
           <span className="teal">500 Merits</span>
@@ -130,9 +164,17 @@ class Rewards extends Component {
             placeholder=" Add names here"
             searchImg="white"
           />
-          <button>Direct Message Now</button>
+          <button onClick={this.handleDirectMessage.bind(this)}>
+            Direct Message Now
+          </button>
         </div>
       </React.Fragment>
+    ) : (
+      <CongratulationsRewards
+        retweet={retweet}
+        allSelectedUsers={allSelectedUsers}
+        handleOk={this.handleDMOk.bind(this)}
+      />
     );
 
     return (
@@ -151,7 +193,7 @@ class Rewards extends Component {
                     : this.showDM.bind(this)
                 }
               >
-                <div className="card-container flex sb">
+                <div className="card-container flex">
                   <div className={`circle ${colors[index % colors.length]}`}>
                     {reward.points}
                   </div>
@@ -159,7 +201,19 @@ class Rewards extends Component {
                     <h2>{reward.title}</h2>
                     <p>{reward.description}</p>
                   </div>
-                  <i className="triangle" />
+                  {reward.id == 1 ? retweetIcon : DmIcon}
+                  {/* <img
+                    src={
+                      reward.id == 1
+                        ? !retweeted
+                          ? arrowIcon
+                          : completeIcon
+                        : !directMessaged
+                          ? arrowIcon
+                          : completeIcon
+                    }
+                    alt="right-icon"
+                  /> */}
                 </div>
               </li>
             ))}

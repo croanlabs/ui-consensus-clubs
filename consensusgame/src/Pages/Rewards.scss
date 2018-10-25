@@ -8,15 +8,29 @@
       li {
         .card-container {
           margin: 1.5em 2em;
-        }
-        .msg {
-          margin-right: 1rem;
-          h2 {
-            color: $h2-color3;
-            font-size: 2em;
+          align-items: center;
+
+          .msg {
+            margin-right: 1rem;
+            margin-left: 1.5rem;
+            h2 {
+              color: $h2-color3;
+              font-size: 2em;
+            }
+            p {
+              margin: 0.2em 0;
+            }
           }
-          p {
-            margin: 0.2em 0;
+
+          img {
+            height: 15px;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(-50%, -50%);
+            &.complete-icon {
+              height: 28px;
+            }
           }
         }
       }
