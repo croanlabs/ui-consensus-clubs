@@ -19,9 +19,15 @@ class Authentication extends Component {
     this.handleProfileOutsideClick = this.handleProfileOutsideClick.bind(this);
 
     let cookies = new Cookies();
-    let user = cookies.get("user");
+    let user = {
+      username: 'RMS',
+      name: 'Richard Stallman',
+      profileImageUrl: 'http://documentally.com/wp-content/uploads/2011/12/6466311231_985f4e2e3a_o.jpg',
+    };
+    cookies.set('user', user);
     if (user) {
-      this.state = { user, profileMenuOpen: false, getStartedMenuOpen: false };
+      this.state = {
+        user, profileMenuOpen: false, getStartedMenuOpen: false };
     } else {
       this.state = {};
     }
