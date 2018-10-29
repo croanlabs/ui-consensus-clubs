@@ -65,26 +65,28 @@ class CandidatesMyPosition extends Component {
             />
           </div>
         </div>
-        <div className="total-candidates">
-          {/* FIXME count should be changed to candidates of my position */}
-          <span>Total Candidates - {count}</span>
+        <div className="white-box">
+          <div className="total-candidates">
+            {/* FIXME count should be changed to candidates of my position */}
+            <span>Total Candidates - {count}</span>
+          </div>
+          <ul className="list-unstyled">
+            {resultOpinions.map((opinion, index) => {
+              return (
+                <CandidateMyPosition
+                  key={opinion.id}
+                  corr={index}
+                  color={colors[index % colors.length]}
+                  opinion={opinion}
+                  handleOnExpanded={this.onCandidateExpanded.bind(this)}
+                  expanded={
+                    opinion.candidate.id == this.state.idExpandedCandidate
+                  }
+                />
+              );
+            })}
+          </ul>
         </div>
-        <ul className="list-unstyled">
-          {resultOpinions.map((opinion, index) => {
-            return (
-              <CandidateMyPosition
-                key={opinion.id}
-                corr={index}
-                color={colors[index % colors.length]}
-                opinion={opinion}
-                handleOnExpanded={this.onCandidateExpanded.bind(this)}
-                expanded={
-                  opinion.candidate.id == this.state.idExpandedCandidate
-                }
-              />
-            );
-          })}
-        </ul>
       </div>
     );
   }

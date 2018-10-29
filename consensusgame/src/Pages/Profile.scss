@@ -114,7 +114,7 @@ section.profile {
     .candidates-profile {
       margin-top: 160px;
       ul.list-unstyled {
-        overflow: scroll;
+        overflow-y: scroll;
         max-height: 600px;
         padding-right: 20px;
       }

@@ -17,7 +17,6 @@
 .layout.polls {
   section {
     .container {
-      background: white;
       padding: 1.5rem 2rem 2rem;
     }
   }
@@ -36,7 +35,7 @@
 @media only screen and (max-width: 979px) {
   .layout.polls {
     aside.col {
-      padding-top: 3rem;
+      padding-top: 0;
 
       ul.poll-questions {
         min-height: 12em;

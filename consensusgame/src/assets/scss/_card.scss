@@ -27,6 +27,12 @@
       .down-arrow {
         transform: rotate(180deg);
       }
+
+      @media only screen and (max-width: 979px) {
+        img {
+          height: 6px;
+        }
+      }
     }
 
     .profile {
