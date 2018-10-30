@@ -12,7 +12,8 @@ class TwitterUserInput extends React.Component {
     super();
     this.state = {
       value: "",
-      suggestions: []
+      suggestions: [],
+      noResults: false
     };
   }
 
@@ -23,8 +24,12 @@ class TwitterUserInput extends React.Component {
   }
 
   async onSuggestionsFetchRequested({ value }) {
+    const suggestions = await this.getSuggestions(value);
+    const isInputBlank = value.trim().length < 3;
+    const noResults = !isInputBlank && suggestions.length === 0;
     this.setState({
-      suggestions: await this.getSuggestions(value)
+      suggestions,
+      noResults
     });
   }
 
@@ -47,7 +52,7 @@ class TwitterUserInput extends React.Component {
   }
 
   handleValueClear() {
-    this.setState({ value: "" });
+    this.setState({ value: "", noResults: false });
   }
 
   onSuggestionsClearRequested() {
@@ -93,7 +98,7 @@ class TwitterUserInput extends React.Component {
   }
 
   render() {
-    const { value, suggestions } = this.state;
+    const { value, suggestions, noResults } = this.state;
     const { placeholder, searchImg } = this.props;
 
     // Autosuggest will pass through all these props to the input.
@@ -146,6 +151,7 @@ class TwitterUserInput extends React.Component {
           renderSuggestion={this.renderSuggestion}
           inputProps={inputProps}
         />
+        {noResults && <div className="no-results">no results</div>}
       </div>
     );
   }

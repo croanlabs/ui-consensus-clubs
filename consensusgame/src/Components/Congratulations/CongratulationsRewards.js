@@ -6,22 +6,22 @@ import "./CongratulationsRewards.scss";
 
 class CongratulationsRewards extends Component {
   render() {
-    const { retweet, allSelectedUsers, handleOk } = this.props;
+    const { retweet, count, handleOk } = this.props;
 
     let numberOfMerits = retweet ? (
       <span>100</span>
     ) : (
-      <span>{allSelectedUsers.length * 500}</span>
+      <span>{count * 500}</span>
     );
-    let people = allSelectedUsers.length < 2 ? "people" : "person;";
+    let peopleOrPerson = count > 1 ? "people" : "person";
     let message = retweet
       ? "The message has been successfully retweeted!"
       : "DM sent to " +
-        allSelectedUsers.length +
+        count +
         " " +
-        people +
+        peopleOrPerson +
         ", you will receive " +
-        allSelectedUsers.length * 500 +
+        count * 500 +
         " merits if they join the app";
 
     return (

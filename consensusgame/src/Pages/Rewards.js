@@ -52,6 +52,7 @@ class Rewards extends Component {
     if (allSelectedUsers.indexOf(twitterUser) < 0) {
       allSelectedUsers.push(twitterUser);
     }
+
     this.setState({ allSelectedUsers });
   }
 
@@ -161,15 +162,17 @@ class Rewards extends Component {
             placeholder=" Add names here"
             searchImg="white"
           />
-          <button onClick={this.handleDirectMessage.bind(this)}>
-            Direct Message Now
-          </button>
+          {allSelectedUsers.length > 0 && (
+            <button onClick={this.handleDirectMessage.bind(this)}>
+              Direct Message Now
+            </button>
+          )}
         </div>
       </React.Fragment>
     ) : (
       <CongratulationsRewards
         retweet={retweet}
-        allSelectedUsers={allSelectedUsers}
+        count={allSelectedUsers.length > 0 ? allSelectedUsers.length : 0}
         handleOk={this.handleDMOk.bind(this)}
       />
     );
