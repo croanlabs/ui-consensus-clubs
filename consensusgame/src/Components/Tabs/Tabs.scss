@@ -1,16 +1,16 @@
 @import "../../assets/scss/variables";
 .tab-list {
-  border-bottom: 1px solid #eee;
   text-align: center;
   padding-left: 0;
   margin-bottom: 2em;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
 }
 
 .tab-list-item {
   display: inline-block;
   list-style: none;
   margin-bottom: -2px;
-  padding: 0.5rem 0;
+  padding: 0.5em 0;
   width: 50%;
   color: grey;
   font-size: 1.5em;
@@ -32,5 +32,13 @@
   }
   .tab-list-item {
     color: white;
+  }
+}
+
+@media only screen and (max-width: 979px) {
+  .tab-list {
+    background: white;
+    padding: 2em;
+    margin-bottom: 0;
   }
 }

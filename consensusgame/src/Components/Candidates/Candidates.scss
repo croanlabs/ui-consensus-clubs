@@ -3,6 +3,7 @@
 .candidates {
   .search-area {
     margin-right: 20px;
+
     .search-bar {
       position: relative;
       display: flex;
@@ -19,7 +20,7 @@
       input {
         width: 100%;
         border: 1px solid #ccc;
-        padding: 1rem 1rem 1rem 3rem;
+        padding: 1em 1em 1em 3em;
         color: #999;
         border-radius: 3px;
         margin: 0;
@@ -31,20 +32,22 @@
     width: 100%;
     text-align: center;
     color: $light-grey;
-    padding: 1rem 0;
+    padding: 1em 0;
     font-size: 14px;
   }
 
   ul.list-unstyled {
-    overflow: scroll;
+    overflow-y: auto;
     max-height: 600px;
-    padding-right: 20px;
+    padding-right: 2em;
   }
 
   // 0px - 979px
   @media only screen and (max-width: 979px) {
     .search-area {
       margin-right: 0;
+      padding: 0 2em 2em;
+      background: white;
 
       .search-results {
         margin: 0;
@@ -53,6 +56,15 @@
     .total-candidates {
       color: $grey;
       padding: 2rem 0;
+    }
+    .white-box {
+      background: white;
+      padding: 0 2em;
+      margin-top: 0.5em;
+    }
+
+    ul.list-unstyled {
+      padding-right: 0;
     }
   }
   //0px - 479 px
