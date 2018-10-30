@@ -76,13 +76,19 @@ ul {
 
 .container {
   background: white;
-  padding: 1.5rem 2rem 2rem;
+  padding: 1.5em 2em 2em;
 }
 
 @media only screen and (min-width: 980px) {
   .container {
     background: transparent;
     padding: 0;
+  }
+}
+
+@media only screen and (max-width: 979px) {
+  .container {
+    background: transparent;
   }
 }
 
@@ -100,7 +106,7 @@ aside {
 /* width 0px - 599px */
 @media only screen and (max-width: 599px) {
   aside {
-    padding: 1em 1em;
+    padding: 1em 2em;
   }
 }
 
@@ -188,15 +194,15 @@ h6 {
 }
 
 .lg-vspace {
-  margin-top: 7rem;
+  margin-top: 3em;
 }
 
 .md-vspace {
-  margin-top: 2rem;
+  margin-top: 2em;
 }
 
 .sm-vspace {
-  margin-top: 0.5rem;
+  margin-top: 0.5em;
 }
 
 @media only screen and (max-width: 979px) {

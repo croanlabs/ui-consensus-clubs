@@ -69,35 +69,38 @@ class Candidates extends Component {
           </div>
           {searchResults}
         </div>
-        <div className="total-candidates">
-          <span>Total Candidates - {count}</span>
+        <div className="white-box">
+            <div className="total-candidates">
+              <span>Total Candidates - {count}</span>
+            </div>
+            <ul className="list-unstyled">
+              {/* <InfiniteScroll
+                pageStart={0}
+                hasMore={true || false}
+                loader={
+                  <div className="loader" key={0}>
+                    Loading ...
+                  </div>
+                }
+                useWindow={false}
+              > */}
+              {candidates.map((candidate, index) => {
+                return (
+                  <Candidate
+                    corr={index}
+                    color={colors[index % colors.length]}
+                    poll={this.props.poll}
+                    candidate={candidate}
+                    handleOnExpanded={this.onCandidateExpanded.bind(this)}
+                    expanded={candidate.id == this.state.idExpandedCandidate}
+                  />
+                );
+              })}
+              {/* </InfiniteScroll> */}
+            </ul>
+          </div>
         </div>
-        <ul className="list-unstyled">
-          {/* <InfiniteScroll
-            pageStart={0}
-            hasMore={true || false}
-            loader={
-              <div className="loader" key={0}>
-                Loading ...
-              </div>
-            }
-            useWindow={false}
-          > */}
-          {candidates.map((candidate, index) => {
-            return (
-              <Candidate
-                corr={index}
-                color={colors[index % colors.length]}
-                poll={this.props.poll}
-                candidate={candidate}
-                handleOnExpanded={this.onCandidateExpanded.bind(this)}
-                expanded={candidate.id == this.state.idExpandedCandidate}
-              />
-            );
-          })}
-          {/* </InfiniteScroll> */}
-        </ul>
-      </div>
+        
     );
   }
 }

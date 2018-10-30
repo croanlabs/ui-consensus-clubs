@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import TwitterLogin from "react-twitter-auth";
 import Cookies from "universal-cookie";
@@ -13,6 +14,7 @@ import "./Authentication.scss";
 class Authentication extends Component {
   constructor() {
     super();
+    this.getUserInfo = this.getUserInfo.bind(this);
     this.handleSignupClick = this.handleSignupClick.bind(this);
     this.handleOutsideCloseSignup = this.handleOutsideCloseSignup.bind(this);
     this.handleProfileClick = this.handleProfileClick.bind(this);
@@ -22,6 +24,7 @@ class Authentication extends Component {
     let user = cookies.get("user");
     if (user) {
       this.state = { user, profileMenuOpen: false, getStartedMenuOpen: false };
+      this.getUserInfo();
     } else {
       this.state = {};
     }
@@ -32,7 +35,7 @@ class Authentication extends Component {
     if (token) {
       // Add cookies for token and user info
       let cookies = new Cookies();
-      cookies.set("token", token, {
+      await cookies.set("token", token, {
         // FIXME Set httpOnly.
         //httpOnly: true,
         domain: process.env.REACT_APP_CONSENSUS_CLUBS_DOMAIN,
@@ -41,14 +44,24 @@ class Authentication extends Component {
 
       const user = await response.json();
       cookies.set("user", JSON.stringify(user), { httpOnly: false, path: "/" });
+      await this.getUserInfo();
 
       this.setState({ user });
     }
   };
 
-  onFailed = error => {
-    // TODO
-    alert(error);
+  getUserInfo = async () => {
+    const { data: user } = await axios({
+      method: "get",
+      baseURL: process.env.REACT_APP_API_URL,
+      url: process.env.REACT_APP_API_USER,
+      withCredentials: true
+    }).catch(err => {
+      if (err.response && err.response.status == 401) {
+        this.signout();
+      }
+    });
+    this.setState({ unopinionatedMerits: user.unopinionatedMerits });
   };
 
   signout = () => {
@@ -176,7 +189,10 @@ class Authentication extends Component {
         ))
       : null;
 
-    let userTotalMerits = parseInt(1500, 10).toLocaleString();
+    let userTotalMerits = parseInt(
+      this.state.unopinionatedMerits ? this.state.unopinionatedMerits : 0,
+      10
+    ).toLocaleString();
 
     let content = !this.state.user ? (
       <React.Fragment>

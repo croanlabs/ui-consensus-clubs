@@ -116,7 +116,7 @@ section.profile {
     .staked-candidates {
       margin-top: 160px;
       ul.list-unstyled {
-        overflow: scroll;
+        overflow-y: scroll;
         max-height: 600px;
         padding: 0 20px 0 0;
         background: none;
