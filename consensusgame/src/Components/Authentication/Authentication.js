@@ -1,72 +1,79 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import TwitterLogin from "react-twitter-auth";
-import Cookies from "universal-cookie";
-import homeIcon from "../../assets/icons/svg/home-active.svg";
-import notificationsIcon from "../../assets/icons/svg/notifications-inactive.svg";
-import rewardIcon from "../../assets/icons/svg/rewards-inactive.svg";
-import removeIcon from "../../assets/icons/mobile/remove-icon.png";
-import SignupPopup from "../SignupPopup/SignupPopup";
-import "../NavBar/NavBar.scss";
-import "./Authentication.scss";
+import React, {Component} from 'react';
+import axios from 'axios';
+import {Link} from 'react-router-dom';
+import TwitterLogin from 'react-twitter-auth';
+import Cookies from 'universal-cookie';
+import homeIcon from '../../assets/icons/svg/home-active.svg';
+import notificationsIcon from '../../assets/icons/svg/notifications-inactive.svg';
+import rewardIcon from '../../assets/icons/svg/rewards-inactive.svg';
+import removeIcon from '../../assets/icons/mobile/remove-icon.png';
+import SignupPopup from '../SignupPopup/SignupPopup';
+import '../NavBar/NavBar.scss';
+import './Authentication.scss';
 
 class Authentication extends Component {
   constructor() {
     super();
+    this.getUserInfo = this.getUserInfo.bind(this);
     this.handleSignupClick = this.handleSignupClick.bind(this);
     this.handleOutsideCloseSignup = this.handleOutsideCloseSignup.bind(this);
     this.handleProfileClick = this.handleProfileClick.bind(this);
     this.handleProfileOutsideClick = this.handleProfileOutsideClick.bind(this);
 
     let cookies = new Cookies();
-    let user = {
-      username: 'RMS',
-      name: 'Richard Stallman',
-      profileImageUrl: 'http://documentally.com/wp-content/uploads/2011/12/6466311231_985f4e2e3a_o.jpg',
-    };
-    cookies.set('user', user);
+    let user = cookies.get('user');
     if (user) {
-      this.state = {
-        user, profileMenuOpen: false, getStartedMenuOpen: false };
+      this.state = {user, profileMenuOpen: false, getStartedMenuOpen: false};
+      this.getUserInfo();
     } else {
       this.state = {};
     }
   }
 
   onSuccess = async response => {
-    const token = response.headers.get("x-auth-token");
+    const token = response.headers.get('x-auth-token');
     if (token) {
       // Add cookies for token and user info
       let cookies = new Cookies();
-      cookies.set("token", token, {
+      await cookies.set('token', token, {
         // FIXME Set httpOnly.
         //httpOnly: true,
         domain: process.env.REACT_APP_CONSENSUS_CLUBS_DOMAIN,
-        path: "/"
+        path: '/',
       });
 
       const user = await response.json();
-      cookies.set("user", JSON.stringify(user), { httpOnly: false, path: "/" });
+      cookies.set('user', JSON.stringify(user), {httpOnly: false, path: '/'});
+      await this.getUserInfo();
 
-      this.setState({ user });
+      this.setState({user});
     }
   };
 
-  onFailed = error => {
-    // TODO
-    alert(error);
+  getUserInfo = async () => {
+    const {data: user} = await axios({
+      method: 'get',
+      baseURL: process.env.REACT_APP_API_URL,
+      url: process.env.REACT_APP_API_USER,
+      withCredentials: true,
+    }).catch(err => {
+      if (err.response && err.response.status == 401) {
+        this.signout();
+      }
+    });
+    this.setState({unopinionatedMerits: user.unopinionatedMerits});
   };
 
   signout = () => {
     let cookies = new Cookies();
-    cookies.remove("token");
-    cookies.remove("user");
-    window.location = "/";
+    cookies.remove('token');
+    cookies.remove('user');
+    window.location = '/';
   };
 
   handleSignupClick() {
     this.setState(prevState => ({
-      getStartedMenuOpen: !prevState.getStartedMenuOpen
+      getStartedMenuOpen: !prevState.getStartedMenuOpen,
     }));
   }
 
@@ -81,17 +88,17 @@ class Authentication extends Component {
   handleProfileClick() {
     if (!this.state.profileMenuOpen) {
       // attach/remove event handler
-      document.addEventListener("click", this.handleProfileOutsideClick, false);
+      document.addEventListener('click', this.handleProfileOutsideClick, false);
     } else {
       document.removeEventListener(
-        "click",
+        'click',
         this.handleProfileOutsideClick,
-        false
+        false,
       );
     }
 
     this.setState(prevState => ({
-      profileMenuOpen: !prevState.profileMenuOpen
+      profileMenuOpen: !prevState.profileMenuOpen,
     }));
   }
 
@@ -125,8 +132,7 @@ class Authentication extends Component {
             className="profile-menu"
             ref={node => {
               this.node = node;
-            }}
-          >
+            }}>
             <img
               src={removeIcon}
               className="cancel-button"
@@ -137,8 +143,7 @@ class Authentication extends Component {
               <Link
                 className="nav-link"
                 to="/profile"
-                onClick={this.handleProfileClick}
-              >
+                onClick={this.handleProfileClick}>
                 Profile
               </Link>
             </li>
@@ -146,8 +151,7 @@ class Authentication extends Component {
               <Link
                 className="nav-link"
                 to="/"
-                onClick={this.handleProfileClick}
-              >
+                onClick={this.handleProfileClick}>
                 Settings
               </Link>
             </li>
@@ -155,8 +159,7 @@ class Authentication extends Component {
               <Link
                 className="nav-link"
                 to="/"
-                onClick={this.handleProfileClick}
-              >
+                onClick={this.handleProfileClick}>
                 FAQ
               </Link>
             </li>
@@ -164,8 +167,7 @@ class Authentication extends Component {
               <Link
                 className="nav-link"
                 to="/"
-                onClick={this.handleProfileClick}
-              >
+                onClick={this.handleProfileClick}>
                 Policy
               </Link>
             </li>
@@ -173,17 +175,15 @@ class Authentication extends Component {
               <Link
                 className="nav-link"
                 to="/"
-                onClick={this.handleProfileClick}
-              >
-                Terms {"&"} Conditions
+                onClick={this.handleProfileClick}>
+                Terms {'&'} Conditions
               </Link>
             </li>
             <li>
               <Link
                 className="nav-link"
                 to="/"
-                onClick={this.signout.bind(this)}
-              >
+                onClick={this.signout.bind(this)}>
                 Sign out
               </Link>
             </li>
@@ -191,8 +191,10 @@ class Authentication extends Component {
         ))
       : null;
 
-    let userTotalMerits;
-    userTotalMerits = parseInt(1500, 10).toLocaleString();
+    let userTotalMerits = parseInt(
+      this.state.unopinionatedMerits ? this.state.unopinionatedMerits : 0,
+      10,
+    ).toLocaleString();
 
     let content = !this.state.user ? (
       <React.Fragment>
