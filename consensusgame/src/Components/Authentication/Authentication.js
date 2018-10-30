@@ -176,8 +176,7 @@ class Authentication extends Component {
         ))
       : null;
 
-    let userTotalMerits;
-    userTotalMerits = parseInt(1500, 10).toLocaleString();
+    let userTotalMerits = parseInt(1500, 10).toLocaleString();
 
     let content = !this.state.user ? (
       <React.Fragment>

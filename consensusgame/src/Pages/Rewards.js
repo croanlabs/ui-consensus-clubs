@@ -27,9 +27,6 @@ class Rewards extends Component {
             "Download consensus games to solve problems and earn airdrop prizes!"
         }
       ],
-      // name: "",
-      // twitterUser: "",
-      // search: "",
       retweet: true,
       allSelectedUsers: [],
       retweeted: false,
@@ -202,18 +199,6 @@ class Rewards extends Component {
                     <p>{reward.description}</p>
                   </div>
                   {reward.id == 1 ? retweetIcon : DmIcon}
-                  {/* <img
-                    src={
-                      reward.id == 1
-                        ? !retweeted
-                          ? arrowIcon
-                          : completeIcon
-                        : !directMessaged
-                          ? arrowIcon
-                          : completeIcon
-                    }
-                    alt="right-icon"
-                  /> */}
                 </div>
               </li>
             ))}

@@ -66,7 +66,7 @@ class Profile extends Component {
             </div>
           </div>
 
-          <div className="candidates-profile">
+          <div className="staked-candidates">
             <ul className="list-unstyled">
               {opinions.map((opinion, index) => {
                 return (

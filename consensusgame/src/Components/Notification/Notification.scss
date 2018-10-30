@@ -1,0 +1,39 @@
+@import "../../assets/scss/variables";
+
+ul.messages {
+  align-items: center;
+  overflow: scroll;
+  max-height: 800px;
+  li {
+    position: relative;
+    &.unread {
+      background-color: #ccffff;
+    }
+    .card-container {
+      margin: 1.5em 2em;
+
+      h2 {
+        font-size: 18px;
+        color: $navy;
+      }
+      h3 {
+        font-size: 14px;
+        color: $grey;
+      }
+      i {
+        width: 40px;
+        height: 40px;
+        margin-right: 1em;
+        img {
+          height: 40px;
+        }
+      }
+    }
+    h4 {
+      color: $green;
+      position: absolute;
+      bottom: 0.5em;
+      right: 1em;
+    }
+  }
+}

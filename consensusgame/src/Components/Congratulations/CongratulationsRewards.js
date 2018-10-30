@@ -13,17 +13,19 @@ class CongratulationsRewards extends Component {
     ) : (
       <span>{allSelectedUsers.length * 500}</span>
     );
-
+    let people = allSelectedUsers.length < 2 ? "people" : "person;";
     let message = retweet
       ? "The message has been successfully retweeted!"
       : "DM sent to " +
         allSelectedUsers.length +
-        " people, you will receive " +
+        " " +
+        people +
+        ", you will receive " +
         allSelectedUsers.length * 500 +
         " merits if they join the app";
 
     return (
-      <div className="congratulations">
+      <div className="congratulations-rewards">
         <div className="card-container congrats">
           <div className="merits-amount-logo">
             <img
