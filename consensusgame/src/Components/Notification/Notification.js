@@ -1,38 +1,38 @@
-import React, { Component } from "react";
-import "./Notification.scss";
+import React, {Component} from 'react';
+import './Notification.scss';
+import timeago from 'timeago.js';
 
 class Notification extends Component {
   constructor() {
     super();
     this.state = {
-      read: null
+      read: null,
     };
   }
 
   componentDidMount() {
-    this.setState({ read: false });
+    this.setState({read: false});
   }
 
   // for all notifications
   handleRead() {
     let currentTime = new Date();
-    console.log(currentTime);
-    this.setState({ read: true });
+    this.setState({read: true});
   }
 
   // new poll
   handleAddPoll() {
-    console.log("add poll!");
+    console.log('add poll!');
   }
 
   // time to vote
   handleVote() {
-    console.log("time to vote!");
+    console.log('time to vote!');
   }
 
   //successful or weak consensus
   goToProfile() {
-    console.log("go to profile page");
+    console.log('go to profile page');
   }
 
   // notification time
@@ -55,14 +55,13 @@ class Notification extends Component {
   //   }
 
   render() {
-    const { notification } = this.props;
-    const { read } = this.state;
+    const {notification} = this.props;
+    const {read} = this.state;
 
     return (
       <li
         key={notification.title}
-        className={`card yellow ${read || read == null ? null : "unread"}`}
-      >
+        className={`card yellow ${read || read == null ? null : 'unread'}`}>
         <div className="card-container" onClick={this.handleRead.bind(this)}>
           <div className="flex">
             <i>
@@ -74,7 +73,7 @@ class Notification extends Component {
             </div>
           </div>
         </div>
-        <h4>{notification.time}</h4>
+        <h4>{timeago().format(notification.createdAt)}</h4>
       </li>
     );
   }
