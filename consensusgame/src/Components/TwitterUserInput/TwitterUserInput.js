@@ -1,17 +1,17 @@
-import React from "react";
-import Autosuggest from "react-autosuggest";
-import axios from "axios";
-import searchIcon from "../../assets/icons/coloursearch-icon.png";
-import searchIconWhite from "../../assets/icons/rewards/Find Icon@2x.png";
-import addIcon from "../../assets/icons/add.png";
-import deleteButton from "../../assets/icons/remove-icon2.png";
-import "./TwitterUserInput.scss";
+import React from 'react';
+import Autosuggest from 'react-autosuggest';
+import axios from 'axios';
+import searchIcon from '../../assets/icons/coloursearch-icon.png';
+import searchIconWhite from '../../assets/icons/rewards/Find Icon@2x.png';
+import addIcon from '../../assets/icons/add.png';
+import deleteButton from '../../assets/icons/remove-icon2.png';
+import './TwitterUserInput.scss';
 
 class TwitterUserInput extends React.Component {
   constructor() {
     super();
     this.state = {
-      value: "",
+      value: '',
       suggestions: [],
       noResults: false
     };
@@ -48,11 +48,12 @@ class TwitterUserInput extends React.Component {
       }`,
       request
     );
+    console.log(suggestions);
     return suggestions;
   }
 
   handleValueClear() {
-    this.setState({ value: "", noResults: false });
+    this.setState({ value: '', noResults: false });
   }
 
   onSuggestionsClearRequested() {
@@ -67,7 +68,7 @@ class TwitterUserInput extends React.Component {
 
   onSuggestionSelected(event, { suggestion }) {
     this.props.onSuggestionSelected(suggestion);
-    this.setState({ value: "" });
+    this.setState({ value: '' });
   }
 
   renderSuggestion(suggestion) {
@@ -106,11 +107,11 @@ class TwitterUserInput extends React.Component {
       placeholder,
       value,
       onChange: this.onChange.bind(this),
-      className: "find"
+      className: 'find'
     };
 
     let searchIcons =
-      searchImg == "white" ? (
+      searchImg == 'white' ? (
         value.length > 0 ? (
           // Rewards page
           <img

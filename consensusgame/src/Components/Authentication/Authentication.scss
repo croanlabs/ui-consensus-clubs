@@ -32,6 +32,23 @@ ul.navbar-right {
     }
   }
 
+  li {
+    position: relative;
+    .notifications-num {
+      position: absolute;
+      color: white;
+      top: 0.8em;
+      right: 3.5em;
+      background: orange;
+      border-radius: 50%;
+      padding: 2px;
+      width: 16px;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 600;
+    }
+  }
+
   .auth-container {
     .profile-pic {
       position: relative;
