@@ -1,30 +1,32 @@
-import React, { Component } from "react";
-import TwitterUserInput from "../Components/TwitterUserInput/TwitterUserInput";
-import CongratulationsRewards from "../Components/Congratulations/CongratulationsRewards";
-import cancelButton from "../assets/icons/rewards/cancel-button@2x.png";
-import completeIcon from "../assets/icons/rewards/rewardscomplete-icon.png";
-import arrowIcon from "../assets/icons/rewards/rewardsarrow-icon.png";
-import "./Rewards.scss";
-import { throws } from "assert";
+import React, { Component } from 'react';
+import axios from 'axios';
+import TwitterUserInput from '../Components/TwitterUserInput/TwitterUserInput';
+import CongratulationsRewards from '../Components/Congratulations/CongratulationsRewards';
+import cancelButton from '../assets/icons/rewards/cancel-button@2x.png';
+import completeIcon from '../assets/icons/rewards/rewardscomplete-icon.png';
+import arrowIcon from '../assets/icons/rewards/rewardsarrow-icon.png';
+import './Rewards.scss';
+import { throws } from 'assert';
 
 class Rewards extends Component {
   constructor() {
     super();
     this.state = {
+      retweetedUsers: [],
       rewards: [
         {
           id: 1,
           points: 100,
-          title: "Retweet Bonus",
+          title: 'Retweet Bonus',
           description:
-            "Download consensus games to solve problems and earn airdrop prizes!"
+            'Download consensus games to solve problems and earn airdrop prizes!'
         },
         {
           id: 2,
           points: 500,
-          title: "Direct Message",
+          title: 'Direct Message',
           description:
-            "Download consensus games to solve problems and earn airdrop prizes!"
+            'Download consensus games to solve problems and earn airdrop prizes!'
         }
       ],
       retweet: true,
@@ -62,15 +64,32 @@ class Rewards extends Component {
     this.setState({ allSelectedUsers });
   }
 
-  handleRetweet() {
-    // TODO
+  async handleRetweet() {
+    console.log('retweet!');
+
+    // FIX: popup does not work on Chrome
+    // window.open(
+    //   'https://twitter.com/intent/retweet?tweet_id=1058000459330449408',
+    //   '_blank',
+    //   'toolbar=yes,status=0,scrollbars=yes,resizable=yes,top=300,right=100,width=300,height=300'
+    // );
+    const { data: retweetedUsers } = await axios.get(
+      `${process.env.REACT_APP_API_URL}${process.env.REACT_APP_TWITTER_RETWEET}`
+    );
+    console.log(retweetedUsers);
+    this.setState({ retweetedUsers });
+    console.log(this.state.retweetedUsers);
     this.setState({ retweeted: true });
+
+    // if (retweetedUsers.include(user)){
+    //   console.log("Got 100 merits")
+    // }
   }
 
   handleDirectMessage() {
     // TODO
     if (this.state.allSelectedUsers.length < 1) {
-      alert("select followers!");
+      alert('select followers!');
     } else {
       this.setState({ directMessaged: true });
     }
@@ -97,7 +116,7 @@ class Rewards extends Component {
       retweeted,
       directMessaged
     } = this.state;
-    const colors = ["yellow", "teal", "purple", "red", "green", "blue"];
+    const colors = ['yellow', 'teal', 'purple', 'red', 'green', 'blue'];
 
     let selectedTwitterUsers = (
       <ul className="selected-users">

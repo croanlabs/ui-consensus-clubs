@@ -23,7 +23,11 @@ class Authentication extends Component {
     let cookies = new Cookies();
     let user = cookies.get("user");
     if (user) {
-      this.state = { user, profileMenuOpen: false, getStartedMenuOpen: false };
+      this.state = {
+        user,
+        profileMenuOpen: false,
+        getStartedMenuOpen: false
+      };
       this.getUserInfo();
     } else {
       this.state = {};
@@ -63,6 +67,8 @@ class Authentication extends Component {
     });
     this.setState({ unopinionatedMerits: user.unopinionatedMerits });
   };
+
+  // TODO: get Notification number
 
   signout = () => {
     let cookies = new Cookies();
@@ -110,8 +116,10 @@ class Authentication extends Component {
   }
 
   render() {
+    const { user, getStartedMenuOpen, profileMenuOpen } = this.state;
+
     let getStartedMenu;
-    this.state.getStartedMenuOpen
+    getStartedMenuOpen
       ? (getStartedMenu = (
           <SignupPopup
             setRef={signup => {
@@ -126,7 +134,7 @@ class Authentication extends Component {
       : null;
 
     let ProfileMenu;
-    this.state.profileMenuOpen
+    profileMenuOpen
       ? (ProfileMenu = (
           <ul
             className="profile-menu"
@@ -194,7 +202,7 @@ class Authentication extends Component {
       10
     ).toLocaleString();
 
-    let content = !this.state.user ? (
+    let content = !user ? (
       <React.Fragment>
         <li>
           <TwitterLogin
@@ -231,6 +239,10 @@ class Authentication extends Component {
           </Link>
         </li>
         <li>
+          <div className="notifications-num">
+            {/* {numOfNotifications} */}
+            12
+          </div>
           <Link className="nav-link" to="/notifications">
             <div className="icon">
               <img src={notificationsIcon} alt="Home" />
@@ -251,7 +263,7 @@ class Authentication extends Component {
             <div class="profile-pic">
               <img
                 onClick={this.handleProfileClick}
-                src={this.state.user.profileImageUrl}
+                src={user.profileImageUrl}
                 alt="Profile"
               />
               {ProfileMenu}

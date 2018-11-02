@@ -146,16 +146,13 @@ class Notifications extends Component {
 
         <section className="col">
           {numOfNotifications > 0 ? (
-            <React.Fragment>
-              <div className="notifications-num">{numOfNotifications}</div>
-              <div className="notifications-details">
-                <ul className="messages md-vspace">
-                  {notifications.map(notification => (
-                    <Notification notification={notification} />
-                  ))}
-                </ul>
-              </div>
-            </React.Fragment>
+            <div className="notifications-details">
+              <ul className="messages md-vspace">
+                {notifications.map(notification => (
+                  <Notification notification={notification} />
+                ))}
+              </ul>
+            </div>
           ) : (
             <div className="notifications-details">
               <p>no notifications yet.</p>
