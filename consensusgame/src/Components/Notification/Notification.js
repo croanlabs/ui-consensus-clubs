@@ -35,25 +35,6 @@ class Notification extends Component {
     console.log('go to profile page');
   }
 
-  // notification time
-  //   getTime() {
-  //     const notificationGetTime = this.props.notification.time;
-  //     let currentTime = new Date();
-  //     let instance;
-  //     const minutes = instance.getSeconds() / 60;
-  //     const hours = instance.getSeconds() / 60 / 60;
-  //     const days = instance.getHours() / 24;
-  //     var minutes = Math.round(Math.floor(timeDiff / 60) % 60);
-  //     var hours = Math.round(Math.floor(timeDiff / 60) % 24);
-  //     if (minutes > 59) {
-  //       if (hours > 23) {
-  //       }
-  //     }
-  //     return Math.round(
-  //       (currentTime.getTime() - notificationGetTime.getTime()) / 1000
-  //     );
-  //   }
-
   render() {
     const {notification} = this.props;
     const {read} = this.state;
@@ -61,7 +42,7 @@ class Notification extends Component {
     return (
       <li
         key={notification.title}
-        className={`card yellow ${read || read == null ? null : 'unread'}`}>
+        className={`card yellow ${notification.seen ? null : 'unread'}`}>
         <div className="card-container" onClick={this.handleRead.bind(this)}>
           <div className="flex">
             <i>
