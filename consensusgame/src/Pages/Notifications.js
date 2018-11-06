@@ -56,8 +56,12 @@ class Notifications extends Component {
       }
       res.createdAt = n.createdAt;
       res.icon = this.icons[n.icon];
+      res.seen = n.seen;
       return res;
     });
+    // TODO after notifications are fully implemented just remove this commented
+    // code. This is just a guide for now.
+    //
     //this.setState({notifications, numOfNotifications: notifications.length});
     // let notifications = [
     //   {
