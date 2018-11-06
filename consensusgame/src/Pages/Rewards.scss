@@ -1,5 +1,5 @@
-@import "../assets/scss/mixins";
-@import "../assets/scss/variables";
+@import '../assets/scss/mixins';
+@import '../assets/scss/variables';
 
 .rewards {
   aside {
@@ -59,23 +59,36 @@
         }
       }
 
-      .rewards-button {
+      .tweetsForRetweet {
         text-align: center;
-        margin-top: 5em;
-
-        // rewteet button
-        button {
-          letter-spacing: 0.03em;
-          border: 5px solid lightblue;
-          padding: 20px 60px;
-          font-size: 25px;
-          border-radius: 15px;
-          font-weight: 500;
-          &:before {
-            height: 70px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            transition: all 0.5s ease;
+        display: flex;
+        li {
+          border-radius: 10px;
+          border: 2px solid white;
+          width: 330px;
+          margin: 5px;
+          &.grey-out {
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+          }
+          div {
+            margin: 10px;
+          }
+          // rewteet button
+          button {
+            letter-spacing: 0.03em;
+            border: 3px solid lightblue;
+            padding: 10px 20px;
+            font-size: 15px;
+            border-radius: 15px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            &:before {
+              height: 40px;
+              background: rgba(255, 255, 255, 0.1);
+              border-radius: 10px;
+              transition: all 0.5s ease;
+            }
           }
         }
 

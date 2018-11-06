@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Tweet } from 'react-twitter-widgets';
 import TwitterUserInput from '../Components/TwitterUserInput/TwitterUserInput';
 import CongratulationsRewards from '../Components/Congratulations/CongratulationsRewards';
 import cancelButton from '../assets/icons/rewards/cancel-button@2x.png';
@@ -11,8 +12,8 @@ import { throws } from 'assert';
 class Rewards extends Component {
   constructor() {
     super();
+    this.handleRetweet = this.handleRetweet.bind(this);
     this.state = {
-      retweetedUsers: [],
       rewards: [
         {
           id: 1,
@@ -27,6 +28,16 @@ class Rewards extends Component {
           title: 'Direct Message',
           description:
             'Download consensus games to solve problems and earn airdrop prizes!'
+        }
+      ],
+      tweetIds: [
+        {
+          tweetId: '1058000459330449408',
+          active: true
+        },
+        {
+          tweetId: '1059456655690215426',
+          active: false
         }
       ],
       retweet: true,
@@ -50,11 +61,10 @@ class Rewards extends Component {
 
   handleCandidateSelected(suggestion) {
     let allSelectedUsers = this.state.allSelectedUsers;
-    let twitterUser = suggestion.screen_name;
+    let twitterUser = { id: suggestion.id, name: suggestion.screen_name };
     if (allSelectedUsers.indexOf(twitterUser) < 0) {
       allSelectedUsers.push(twitterUser);
     }
-
     this.setState({ allSelectedUsers });
   }
 
@@ -64,35 +74,49 @@ class Rewards extends Component {
     this.setState({ allSelectedUsers });
   }
 
-  async handleRetweet() {
-    console.log('retweet!');
-
-    // FIX: popup does not work on Chrome
-    // window.open(
-    //   'https://twitter.com/intent/retweet?tweet_id=1058000459330449408',
-    //   '_blank',
-    //   'toolbar=yes,status=0,scrollbars=yes,resizable=yes,top=300,right=100,width=300,height=300'
-    // );
-    const { data: retweetedUsers } = await axios.get(
-      `${process.env.REACT_APP_API_URL}${process.env.REACT_APP_TWITTER_RETWEET}`
+  handleRetweet = async (e, id) => {
+    //FIX: popup does not work on Chrome
+    window.open(
+      `https://twitter.com/intent/retweet?tweet_id=${id}`,
+      '_blank',
+      'toolbar=yes,status=0,scrollbars=yes,resizable=yes,top=300,right=100,width=300,height=300'
     );
-    console.log(retweetedUsers);
-    this.setState({ retweetedUsers });
-    console.log(this.state.retweetedUsers);
-    this.setState({ retweeted: true });
 
-    // if (retweetedUsers.include(user)){
-    //   console.log("Got 100 merits")
-    // }
-  }
+    const conf = {
+      method: 'post',
+      baseURL: process.env.REACT_APP_API_URL,
+      url: process.env.REACT_APP_TWITTER_RETWEET,
+      withCredentials: true,
+      data: {
+        tweetId: id
+      }
+    };
+    e.preventDefault();
+    await axios(conf);
+    // set retweeted to true
+    // const retweeted = this.state.tweetIds[index].active;
+    this.setState({ retweeted: true });
+  };
 
   handleDirectMessage() {
     // TODO
-    if (this.state.allSelectedUsers.length < 1) {
-      alert('select followers!');
-    } else {
-      this.setState({ directMessaged: true });
-    }
+    console.log('DM');
+    const allSelectedUsers = this.state.allSelectedUsers;
+    const id = allSelectedUsers.map(user => user.id);
+    const text =
+      'Download%20consensus%20games%20to%20solve%20problems%20and%20earn%20airdrop%20prizes!';
+    const url = `https://twitter.com/messages/compose?recipient_id=${id}&text=${text}`;
+    window.open(
+      url,
+      '_blank',
+      'toolbar=yes,status=0,scrollbars=yes,resizable=yes,top=300,right=100,width=300,height=300'
+    );
+
+    // if (this.state.allSelectedUsers.length < 1) {
+    //   alert('select followers!');
+    // } else {
+    //   this.setState({ directMessaged: true });
+    // }
   }
 
   handleRetweetOk() {
@@ -114,7 +138,8 @@ class Rewards extends Component {
       retweet,
       allSelectedUsers,
       retweeted,
-      directMessaged
+      directMessaged,
+      tweetIds
     } = this.state;
     const colors = ['yellow', 'teal', 'purple', 'red', 'green', 'blue'];
 
@@ -122,7 +147,7 @@ class Rewards extends Component {
       <ul className="selected-users">
         {allSelectedUsers.map((selectedUser, index) => (
           <li>
-            <span>@{selectedUser}</span>
+            <span>@{selectedUser.name}</span>
             <img
               src={cancelButton}
               alt="cancel-buton"
@@ -155,9 +180,16 @@ class Rewards extends Component {
               prizes!
             </p>
           </div>
-          <div className="rewards-button">
-            <button onClick={this.handleRetweet.bind(this)}>Retweet Now</button>
-          </div>
+          <ul className="tweetsForRetweet">
+            {tweetIds.map(tweetId => (
+              <li className={tweetId.active ? 'grey-out' : ''}>
+                <Tweet tweetId={tweetId.tweetId} />
+                <button onClick={e => this.handleRetweet(e, tweetId.tweetId)}>
+                  Retweet Now
+                </button>
+              </li>
+            ))}
+          </ul>
         </React.Fragment>
       ) : (
         <CongratulationsRewards
