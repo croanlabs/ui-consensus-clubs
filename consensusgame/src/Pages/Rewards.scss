@@ -38,17 +38,11 @@
   }
   section {
     .rewards-details {
-      .reward-each-detail {
+      .reward-retweet {
         padding-top: 150px;
-        span {
+        span.yellow {
           color: $yellow;
           font-size: 20px;
-          &.yellow {
-            color: $yellow;
-          }
-          &.teal {
-            color: $teal;
-          }
         }
         h1 {
           color: white;
@@ -57,113 +51,144 @@
         p {
           font-size: 15px;
         }
-      }
 
-      .tweetsForRetweet {
-        text-align: center;
-        display: flex;
-        li {
-          border-radius: 10px;
-          border: 2px solid white;
-          width: 330px;
-          margin: 5px;
-          &.grey-out {
-            opacity: 0.4;
-            filter: alpha(opacity=40);
-          }
-          div {
-            margin: 10px;
-          }
-          // rewteet button
-          button {
-            letter-spacing: 0.03em;
-            border: 3px solid lightblue;
-            padding: 10px 20px;
-            font-size: 15px;
-            border-radius: 15px;
-            font-weight: 500;
-            margin-bottom: 15px;
-            &:before {
-              height: 40px;
-              background: rgba(255, 255, 255, 0.1);
-              border-radius: 10px;
-              transition: all 0.5s ease;
-            }
-          }
-        }
-
-        // DM selected users
-        ul.selected-users {
+        ul.tweetsForRetweet {
+          text-align: center;
           display: flex;
-          flex-wrap: wrap;
+          p {
+            color: lightseagreen;
+            margin: 50px;
+          }
           li {
-            margin: 0.5em;
-            padding: 10px;
-            font-size: 1.5em;
-            background: #cce6ff;
-            border-radius: 5px;
-            border: 3px solid lightblue;
-            span {
-              color: #595959;
+            border-radius: 10px;
+            border: 2px solid white;
+            width: 330px;
+            margin: 5px;
+            div {
+              margin: 10px;
             }
-            img {
-              height: 18px;
-              margin-left: 1em;
-              &:hover {
-                cursor: pointer;
+            // rewteet button
+            button {
+              letter-spacing: 0.03em;
+              border: 3px solid lightblue;
+              padding: 10px 20px;
+              font-size: 15px;
+              border-radius: 15px;
+              font-weight: 500;
+              margin-bottom: 15px;
+              &:before {
+                height: 40px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+                transition: all 0.5s ease;
               }
             }
           }
         }
-
-        .twitter-autosuggest {
-          margin-top: 5em;
-          margin-right: 3em;
-          img.search-icon {
-            right: 1em;
-            left: auto;
-            color: white;
-            width: 30px;
-            top: 2em;
-          }
-          div {
-            input {
-              background: none;
-              border: none;
-              border-bottom: 1px solid white;
+      }
+      .reward-dm {
+        padding-top: 150px;
+        span.teal {
+          color: $teal;
+          font-size: 20px;
+        }
+        h1 {
+          color: white;
+          margin-top: 20px;
+        }
+        p {
+          font-size: 15px;
+        }
+        // DM selected users
+        .rewards-button {
+          text-align: center;
+          ul.selected-users {
+            display: flex;
+            flex-wrap: wrap;
+            li {
+              margin: 0.5em;
+              padding: 10px;
               font-size: 1.5em;
-              padding: 1rem 1rem 1rem 1rem;
-              font-weight: 100;
-              color: rgba(255, 255, 255, 0.7);
-            }
-            input::placeholder {
-              color: rgba(255, 255, 255, 0.7);
-            }
-          }
-          .react-autosuggest__container {
-            border: none;
-            .card {
-              background: none;
-              border: none;
-              .card-container {
-                margin: 1.5em;
-                .name {
-                  text-align: left;
-                  margin-top: 10px;
-                  h2,
-                  h3 {
-                    color: white;
-                    font-weight: lighter;
-                  }
+              background: #cce6ff;
+              border-radius: 5px;
+              border: 3px solid lightblue;
+              span {
+                color: #595959;
+              }
+              img {
+                height: 18px;
+                margin-left: 1em;
+                &:hover {
+                  cursor: pointer;
                 }
               }
             }
           }
-          .no-results {
-            text-align: left;
-            padding-top: 1em;
-            padding-left: 0.5em;
-            color: rgba(255, 255, 255, 0.7);
+
+          .twitter-autosuggest {
+            margin-top: 5em;
+            margin-right: 3em;
+            img.search-icon {
+              right: 1em;
+              left: auto;
+              color: white;
+              width: 30px;
+              top: 2em;
+            }
+            div {
+              input {
+                background: none;
+                border: none;
+                border-bottom: 1px solid white;
+                font-size: 1.5em;
+                padding: 1rem 1rem 1rem 1rem;
+                font-weight: 100;
+                color: rgba(255, 255, 255, 0.7);
+              }
+              input::placeholder {
+                color: rgba(255, 255, 255, 0.7);
+              }
+            }
+            .react-autosuggest__container {
+              border: none;
+              .card {
+                background: none;
+                border: none;
+                .card-container {
+                  margin: 1.5em;
+                  .name {
+                    text-align: left;
+                    margin-top: 10px;
+                    h2,
+                    h3 {
+                      color: white;
+                      font-weight: lighter;
+                    }
+                  }
+                }
+              }
+            }
+            .no-results {
+              text-align: left;
+              padding-top: 1em;
+              padding-left: 0.5em;
+              color: rgba(255, 255, 255, 0.7);
+            }
+          }
+          button {
+            letter-spacing: 0.03em;
+            border: 5px solid lightblue;
+            padding: 20px 40px;
+            font-size: 25px;
+            border-radius: 15px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            &:before {
+              height: 70px;
+              background: rgba(255, 255, 255, 0.1);
+              border-radius: 10px;
+              transition: all 0.5s ease;
+            }
           }
         }
       }

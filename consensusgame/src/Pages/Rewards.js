@@ -30,22 +30,24 @@ class Rewards extends Component {
             'Download consensus games to solve problems and earn airdrop prizes!'
         }
       ],
-      tweetIds: [
-        {
-          tweetId: '1058000459330449408',
-          active: true
-        },
-        {
-          tweetId: '1059456655690215426',
-          active: false
-        }
-      ],
+      availableTweetIds: [],
       retweet: true,
       allSelectedUsers: [],
       retweeted: false,
       directMessaged: false
     };
     this.handleDirectMessage = this.handleDirectMessage.bind(this);
+  }
+
+  async componentDidMount() {
+    const conf = {
+      method: 'get',
+      baseURL: process.env.REACT_APP_API_URL,
+      url: process.env.REACT_APP_API_TWEETIDS,
+      withCredentials: true
+    };
+    const { data: availableTweetIds } = await axios(conf);
+    this.setState({ availableTweetIds });
   }
 
   showRetweet() {
@@ -76,6 +78,7 @@ class Rewards extends Component {
 
   handleRetweet = async (e, id) => {
     //FIX: popup does not work on Chrome
+
     window.open(
       `https://twitter.com/intent/retweet?tweet_id=${id}`,
       '_blank',
@@ -93,9 +96,9 @@ class Rewards extends Component {
     };
     e.preventDefault();
     await axios(conf);
-    // set retweeted to true
-    // const retweeted = this.state.tweetIds[index].active;
-    this.setState({ retweeted: true });
+    const availableTweetIds = [...this.state.availableTweetIds];
+    availableTweetIds.splice(availableTweetIds.indexOf(id), 1);
+    this.setState({ retweeted: true, availableTweetIds });
   };
 
   handleDirectMessage() {
@@ -139,7 +142,7 @@ class Rewards extends Component {
       allSelectedUsers,
       retweeted,
       directMessaged,
-      tweetIds
+      availableTweetIds
     } = this.state;
     const colors = ['yellow', 'teal', 'purple', 'red', 'green', 'blue'];
 
@@ -171,26 +174,27 @@ class Rewards extends Component {
 
     let rewardsDetails = retweet ? (
       !retweeted ? (
-        <React.Fragment>
-          <div className="reward-each-detail">
-            <span className="yellow">100 Merits</span>
-            <h1>Tell Your Twitter Followers</h1>
-            <p>
-              Download consensus games to solve problems and earn airdrop
-              prizes!
-            </p>
-          </div>
+        <div className="reward-retweet">
+          <span className="yellow">100 Merits</span>
+          <h1>Tell Your Twitter Followers</h1>
+          <p>
+            Download consensus games to solve problems and earn airdrop prizes!
+          </p>
           <ul className="tweetsForRetweet">
-            {tweetIds.map(tweetId => (
-              <li className={tweetId.active ? 'grey-out' : ''}>
-                <Tweet tweetId={tweetId.tweetId} />
-                <button onClick={e => this.handleRetweet(e, tweetId.tweetId)}>
-                  Retweet Now
-                </button>
-              </li>
-            ))}
+            {availableTweetIds.length > 0 ? (
+              availableTweetIds.map(tweetId => (
+                <li>
+                  <Tweet tweetId={tweetId} />
+                  <button onClick={e => this.handleRetweet(e, tweetId)}>
+                    Retweet Now
+                  </button>
+                </li>
+              ))
+            ) : (
+              <p>No tweet to retweet...</p>
+            )}
           </ul>
-        </React.Fragment>
+        </div>
       ) : (
         <CongratulationsRewards
           retweet={retweet}
@@ -198,14 +202,12 @@ class Rewards extends Component {
         />
       )
     ) : !directMessaged ? (
-      <React.Fragment>
-        <div className="reward-each-detail">
-          <span className="teal">500 Merits</span>
-          <h1>DM Your Twitter Followers</h1>
-          <p>
-            Download consensus games to solve problems and earn airdrop prizes!
-          </p>
-        </div>
+      <div className="reward-dm">
+        <span className="teal">500 Merits</span>
+        <h1>DM Your Twitter Followers</h1>
+        <p>
+          Download consensus games to solve problems and earn airdrop prizes!
+        </p>
         <div className="rewards-button">
           {selectedTwitterUsers}
           <TwitterUserInput
@@ -219,7 +221,7 @@ class Rewards extends Component {
             </button>
           )}
         </div>
-      </React.Fragment>
+      </div>
     ) : (
       <CongratulationsRewards
         retweet={retweet}
