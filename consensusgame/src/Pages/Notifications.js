@@ -15,8 +15,19 @@ class Notifications extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    //this.props.markAllNotificationsAsRead();
+  async componentDidMount() {
+    // Update last seen time for the user
+    await axios({
+      method: 'post',
+      baseURL: process.env.REACT_APP_API_URL,
+      url: process.env.REACT_APP_API_UPDATE_LAST_SEEN,
+      withCredentials: true,
+    }).catch(err => {
+      if (err.response && err.response.status == 401) {
+        this.signout();
+      }
+    });
+    this.props.markAllNotificationsAsRead();
   }
 
   render() {

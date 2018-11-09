@@ -5,6 +5,7 @@ import NotificationsNavBar from '../Components/Notification/NotificationsNavBar'
 
 const mapStateToProps = state => {
   return {
+    countNewNotifications: state.countNewNotifications,
     notifications: state.notifications,
   };
 };
@@ -14,8 +15,8 @@ const mapDispatchToProps = dispatch => {
     onNotificationsUpdated: notifications => {
       dispatch(actions.updateNotifications(notifications));
     },
-    updateCountNewNotifications: () => {
-      dispatch(actions.updateCountNewNotifications());
+    updateCountNewNotifications: (countNewNotifications) => {
+      dispatch(actions.updateCountNewNotifications(countNewNotifications));
     },
   };
 };

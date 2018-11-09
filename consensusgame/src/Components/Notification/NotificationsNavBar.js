@@ -62,14 +62,12 @@ class NotificationsNavBar extends Component {
     // Update notifications and count of new notifications on redux state
     this.props.onNotificationsUpdated(notifications);
     this.props.updateCountNewNotifications(countNewNotifications);
-
-    this.setState({countNewNotifications});
   }
 
   render() {
-    const notificationsCount = this.state.countNewNotifications ? (
+    const notificationsCount = this.props.countNewNotifications ? (
       <div className="notifications-num">
-        {this.state.countNewNotifications}
+        {this.props.countNewNotifications}
       </div>
     ) : null;
     return (

@@ -3,9 +3,9 @@ const updateNotifications = notifications => ({
   payload: notifications,
 });
 
-const updateCountNewNotifications = () => ({
+const updateCountNewNotifications = (countNewNotifications) => ({
   type: 'UPDATE_COUNT_NEW_NOTIFICATIONS',
-  payload: 0,
+  payload: countNewNotifications,
 });
 
 export {updateNotifications, updateCountNewNotifications};
