@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
 import Cookies from 'universal-cookie';
 import CandidateMyPosition from '../Components/Candidate/CandidateMyPosition';
 import './Profile.scss';
@@ -70,8 +69,7 @@ class Profile extends Component {
             {opinions.length > 0 ? (
               <ul className="list-unstyled">
                 {opinions.map((opinion, index) => {
-                  <div>
-                    <span>aaa</span>
+                  return (
                     <CandidateMyPosition
                       key={opinion.id}
                       color={colors[index % colors.length]}
@@ -82,7 +80,7 @@ class Profile extends Component {
                         opinion.candidate.id == this.state.idExpandedCandidate
                       }
                     />
-                  </div>;
+                  );
                 })}
               </ul>
             ) : (
