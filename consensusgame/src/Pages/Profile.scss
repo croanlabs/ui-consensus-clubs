@@ -1,4 +1,4 @@
-@import "../assets/scss/variables";
+@import '../assets/scss/variables';
 
 section.profile {
   margin-top: 3em;
@@ -52,9 +52,13 @@ section.profile {
 
   .staked-candidates {
     margin-top: 20px;
-    .list-unstyled {
+    ul.list-unstyled {
       padding: 1.5rem 2rem 2rem;
       background: white;
+    }
+    p {
+      color: grey;
+      padding: 1em;
     }
   }
 }
