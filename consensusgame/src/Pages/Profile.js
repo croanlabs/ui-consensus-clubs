@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import axios from 'axios';
 
-import Cookies from "universal-cookie";
-import CandidateMyPosition from "../Components/Candidate/CandidateMyPosition";
-import "./Profile.scss";
+import Cookies from 'universal-cookie';
+import CandidateMyPosition from '../Components/Candidate/CandidateMyPosition';
+import './Profile.scss';
 
 class Profile extends Component {
   constructor() {
     super();
     let cookies = new Cookies();
-    let user = cookies.get("user");
+    let user = cookies.get('user');
     if (user) {
       this.state = { user, opinions: [] };
     } else {
@@ -19,7 +19,7 @@ class Profile extends Component {
   async componentDidMount() {
     // TODO move this query to other place, it's being called all the time.
     const { data: opinions } = await axios({
-      method: "get",
+      method: 'get',
       baseURL: process.env.REACT_APP_API_URL,
       url: process.env.REACT_APP_API_OPINIONS,
       withCredentials: true
@@ -33,7 +33,7 @@ class Profile extends Component {
 
   render() {
     const { user, opinions } = this.state;
-    const colors = ["yellow", "teal", "purple", "red", "green", "blue"];
+    const colors = ['yellow', 'teal', 'purple', 'red', 'green', 'blue'];
 
     return (
       <div className="layout">
@@ -67,22 +67,27 @@ class Profile extends Component {
           </div>
 
           <div className="staked-candidates">
-            <ul className="list-unstyled">
-              {opinions.map((opinion, index) => {
-                return (
-                  <CandidateMyPosition
-                    key={opinion.id}
-                    color={colors[index % colors.length]}
-                    corr={index}
-                    opinion={opinion}
-                    handleOnExpanded={this.onCandidateExpanded.bind(this)}
-                    expanded={
-                      opinion.candidate.id == this.state.idExpandedCandidate
-                    }
-                  />
-                );
-              })}
-            </ul>
+            {opinions.length > 0 ? (
+              <ul className="list-unstyled">
+                {opinions.map((opinion, index) => {
+                  <div>
+                    <span>aaa</span>
+                    <CandidateMyPosition
+                      key={opinion.id}
+                      color={colors[index % colors.length]}
+                      corr={index}
+                      opinion={opinion}
+                      handleOnExpanded={this.onCandidateExpanded.bind(this)}
+                      expanded={
+                        opinion.candidate.id == this.state.idExpandedCandidate
+                      }
+                    />
+                  </div>;
+                })}
+              </ul>
+            ) : (
+              <p>No opinion yet</p>
+            )}
           </div>
         </section>
       </div>

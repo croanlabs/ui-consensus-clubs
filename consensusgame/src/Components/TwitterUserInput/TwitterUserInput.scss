@@ -71,3 +71,11 @@
     color: #616161;
   }
 }
+
+@media only screen and (max-width: 979px) {
+  .twitter-autosuggest {
+    .delete-button {
+      top: 1.5em;
+    }
+  }
+}

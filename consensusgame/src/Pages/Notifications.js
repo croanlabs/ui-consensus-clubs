@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import Notification from '../Components/Notification/Notification';
 import './Notifications.scss';
 import thumbsUpIcon from '../assets/icons/notifications/thumbs-up.png';
 import newIcon from '../assets/icons/notifications/new.png';
 import voteIcon from '../assets/icons/votetime-icon.png';
-import thumbsDownIcon from  '../assets/icons/thumbdown-icon.png';
+import thumbsDownIcon from '../assets/icons/thumbdown-icon.png';
 import bonusIcon from '../assets/icons/bonussuccess-icon.png';
 import successIcon from '../assets/icons/successfulcon-icon.png';
 
@@ -20,7 +20,7 @@ class Notifications extends Component {
   constructor() {
     super();
     this.state = {
-      notifications: [],
+      notifications: []
     };
 
     this.icons = {
@@ -29,16 +29,16 @@ class Notifications extends Component {
       voteIcon,
       thumbsDownIcon,
       bonusIcon,
-      successIcon,
-    }
+      successIcon
+    };
   }
 
   async componentDidMount() {
-    let {data: notifications} = await axios({
+    let { data: notifications } = await axios({
       method: 'get',
       baseURL: process.env.REACT_APP_API_URL,
       url: process.env.REACT_APP_API_NOTIFICATIONS,
-      withCredentials: true,
+      withCredentials: true
     }).catch(err => {
       if (err.response && err.response.status == 401) {
         this.signout();
@@ -131,12 +131,12 @@ class Notifications extends Component {
     //     icon: bonusIcon,
     //   },
     // ];
-    this.setState({notifications});
+    this.setState({ notifications });
   }
 
   render() {
-    const {notifications} = this.state;
-    const {length: numOfNotifications} = notifications;
+    const { notifications } = this.state;
+    const { length: numOfNotifications } = notifications;
     return (
       <div className="layout notifications">
         <aside className="col">
