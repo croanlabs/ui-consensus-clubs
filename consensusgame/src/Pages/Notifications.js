@@ -8,13 +8,10 @@ import voteIcon from '../assets/icons/votetime-icon.png';
 import thumbsDownIcon from '../assets/icons/thumbdown-icon.png';
 import bonusIcon from '../assets/icons/bonussuccess-icon.png';
 import successIcon from '../assets/icons/successfulcon-icon.png';
-
-{
-  /* todo: need to hook up these icons to array below...
+/* todo: need to hook up these icons to array below...
 import thumbsUpIcon from "../assets/icons/notifications/thumbs-up.png";
 import newIcon from "../assets/icons/notifications/new.png";
 */
-}
 
 class Notifications extends Component {
   constructor() {
@@ -34,6 +31,8 @@ class Notifications extends Component {
   }
 
   async componentDidMount() {
+    //this.props.markAllNotificationsAsRead();
+
     let { data: notifications } = await axios({
       method: 'get',
       baseURL: process.env.REACT_APP_API_URL,
@@ -137,6 +136,8 @@ class Notifications extends Component {
   render() {
     const { notifications } = this.state;
     const { length: numOfNotifications } = notifications;
+    this.state = {};
+
     return (
       <div className="layout notifications">
         <aside className="col">

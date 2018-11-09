@@ -8,6 +8,7 @@ import notificationsIcon from "../../assets/icons/svg/notifications-inactive.svg
 import rewardIcon from "../../assets/icons/svg/rewards-inactive.svg";
 import removeIcon from "../../assets/icons/mobile/remove-icon.png";
 import SignupPopup from "../SignupPopup/SignupPopup";
+import NotificationsNavBar from "../../Containers/NotificationsNavBar";
 import "../NavBar/NavBar.scss";
 import "./Authentication.scss";
 
@@ -239,16 +240,7 @@ class Authentication extends Component {
           </Link>
         </li>
         <li>
-          <div className="notifications-num">
-            {/* {numOfNotifications} */}
-            12
-          </div>
-          <Link className="nav-link" to="/notifications">
-            <div className="icon">
-              <img src={notificationsIcon} alt="Home" />
-            </div>
-            <div className="name">Notifications</div>
-          </Link>
+          <NotificationsNavBar />
         </li>
         <li>
           <Link className="nav-link" to="/rewards">
