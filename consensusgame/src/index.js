@@ -7,14 +7,16 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './Reducers/rootReducer';
+import { HashRouter } from 'react-router-dom';
 
 const store = createStore(rootReducer);
+window.store = store;
 
 ReactDOM.render(
   <Provider store={store}>
-      <Router>
+      <HashRouter>
         <App />
-      </Router>
+      </HashRouter>
   </Provider>,
   document.getElementById("root")
 );
