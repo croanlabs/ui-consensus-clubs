@@ -27,7 +27,7 @@ class Notifications extends Component {
       method: 'post',
       baseURL: process.env.REACT_APP_API_URL,
       url: process.env.REACT_APP_API_UPDATE_LAST_SEEN,
-      withCredentials: true,
+      withCredentials: true
     }).catch(err => {
       if (err.response && err.response.status == 401) {
         this.signout();

@@ -1,14 +1,13 @@
-import React from "react";
-import "./App.scss";
-import { Route, Switch } from "react-router-dom";
-import Polls from "./Pages/Polls";
-import NavBar from "./Components/NavBar/NavBar";
-import Notifications from "./Pages/Notifications";
-import NotificationList from "./Containers/Notifications";
-import Rewards from "./Pages/Rewards";
-import Score from "./Pages/Score";
-import Profile from "./Pages/Profile";
-import Dotenv from "dotenv";
+import React from 'react';
+import './App.scss';
+import { Route, Switch } from 'react-router-dom';
+import Polls from './Pages/Polls';
+import NavBar from './Components/NavBar/NavBar';
+import NotificationsList from './Containers/Notifications';
+import Rewards from './Pages/Rewards';
+import Score from './Pages/Score';
+import Profile from './Pages/Profile';
+import Dotenv from 'dotenv';
 
 Dotenv.config();
 
@@ -25,7 +24,7 @@ const App = () => {
         <Switch>
           <Route path="/polls/:id" render={props => <Polls {...props} />} />
           <Route path="/polls" render={props => <Polls {...props} />} />
-          <Route path="/notifications" component={NotificationList} />
+          <Route path="/notifications" component={NotificationsList} />
           <Route path="/rewards" component={Rewards} />
           <Route path="/score" component={Score} />
           <Route path="/profile" component={Profile} />

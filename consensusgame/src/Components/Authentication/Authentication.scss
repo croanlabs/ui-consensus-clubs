@@ -1,4 +1,4 @@
-@import "../../assets/scss/variables";
+@import '../../assets/scss/variables';
 
 ul.navbar-right {
   li {
@@ -48,97 +48,6 @@ ul.navbar-right {
       font-weight: 600;
     }
   }
-
-  .auth-container {
-    .profile-pic {
-      position: relative;
-
-      img {
-        border-radius: 50%;
-        height: 35px;
-        transform: translateY(10%);
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-      ul.profile-menu {
-        text-align: center;
-        height: 340px;
-        background: white;
-        position: absolute;
-        width: 280px;
-        top: 95px;
-        left: -180px;
-        z-index: 1;
-        padding-top: 5px;
-        // triangle white shape on the top
-        :after {
-          width: 0px;
-          height: 0px;
-          position: absolute;
-          top: 0%;
-          right: 80px;
-          content: "";
-          transform: translate(0%, -100%);
-          border-left: 10px solid transparent;
-          border-right: 10px solid transparent;
-          border-bottom: 13px solid white;
-        }
-        img.cancel-button {
-          float: right;
-          margin-top: 3px;
-          margin-right: 8px;
-          height: 15px;
-          &:hover {
-            cursor: pointer;
-          }
-        }
-        li {
-          display: block;
-          font-size: 20px;
-          margin: 35px 0;
-          a.nav-link {
-            display: inline;
-          }
-        }
-        &:hover {
-          font-weight: 600;
-          color: black;
-        }
-      }
-    }
-    .user-total-merits {
-      font-size: 15px;
-      font-weight: bold;
-      margin-left: 15px;
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .profile-pic,
-    .user-total-merits {
-      display: inline-block;
-    }
-  }
-}
-
-// 600px -
-@media only screen and (min-width: 600px) {
-  ul.navbar-right {
-    .auth-container {
-      display: table-cell;
-      .profile-pic {
-        img {
-          height: 50px;
-        }
-      }
-      .user-total-merits {
-        font-size: 20px;
-      }
-    }
-  }
 }
 
 // 0px - 599px
@@ -167,19 +76,6 @@ ul.navbar-right {
         }
       }
     }
-
-    .auth-container {
-      padding: 10px 0px;
-      .profile-pic {
-        ul.profile-menu {
-          top: 60px;
-          left: -200px;
-          :after {
-            right: 70px;
-          }
-        }
-      }
-    }
   }
 }
 
@@ -189,17 +85,6 @@ ul.navbar-right {
     li {
       button.twitter-signin {
         margin-right: 0;
-      }
-    }
-
-    .auth-container {
-      .profile-pic {
-        img {
-          height: 30px;
-        }
-      }
-      .user-total-merits {
-        margin-left: 10px;
       }
     }
   }

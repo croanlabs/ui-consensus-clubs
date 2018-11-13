@@ -1,17 +1,26 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
 const notifications = (state = [], action) => {
-  switch(action.type) {
-     case 'UPDATE_NOTIFICATIONS':
-       return action.payload;
-     default:
-       return state;
+  switch (action.type) {
+    case 'UPDATE_NOTIFICATIONS':
+      return action.payload;
+    default:
+      return state;
   }
 };
 
 const countNewNotifications = (state = 0, action) => {
- switch(action.type) {
+  switch (action.type) {
     case 'UPDATE_COUNT_NEW_NOTIFICATIONS':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const unopinionatedMerits = (state = 0, action) => {
+  switch (action.type) {
+    case 'UPDATE_UNOPINIONATED_MERITS':
       return action.payload;
     default:
       return state;
@@ -21,4 +30,5 @@ const countNewNotifications = (state = 0, action) => {
 export default combineReducers({
   notifications,
   countNewNotifications,
+  unopinionatedMerits
 });

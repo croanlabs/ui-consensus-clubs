@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import Congratulations from "../Congratulations/Congratulations";
-import "./WithdrawModify.scss";
-import MeritsSlider from "../MeritsSlider/MeritsSlider";
-import { runInThisContext } from "vm";
-import axios from "axios";
+import React, { Component } from 'react';
+import Congratulations from '../Congratulations/Congratulations';
+import './WithdrawModify.scss';
+import ModifySlider from '../MeritsSlider/ModifySlider';
+import { runInThisContext } from 'vm';
+import axios from 'axios';
 
 class Modify extends Component {
   constructor(props) {
@@ -28,21 +28,21 @@ class Modify extends Component {
   handleModify = async e => {
     const url =
       process.env.REACT_APP_API_POLLS +
-      "/" +
+      '/' +
       this.props.opinion.candidate.pollId +
-      "/candidates/" +
+      '/candidates/' +
       this.props.opinion.candidate.id +
-      "/modify";
+      '/modify';
     const conf = {
-      method: "post",
+      method: 'post',
       baseURL: process.env.REACT_APP_API_URL,
       url,
       withCredentials: true,
       data: {
         confidence: this.props.opinion.confidence,
-        commitmentMerits: this.state.amountMerits,
-      },
-    }
+        commitmentMerits: this.state.amountMerits
+      }
+    };
     e.preventDefault();
     await axios(conf);
     this.setState({ modified: true });
@@ -83,7 +83,7 @@ class Modify extends Component {
           </div>
         </form>
         <div className="slider">
-          <MeritsSlider
+          <ModifySlider
             amountMerits={this.state.amountMerits}
             passMeritsFromSlider={this.updateMeritsSlider}
             passMeritsFromInput={this.updateMeritsInput}
@@ -95,7 +95,7 @@ class Modify extends Component {
       <Congratulations
         userTwitterName={this.props.opinion.candidate.twitterUser}
         handleOk={this.handleModifyOk.bind(this)}
-        message={this.state.increase ? "increased" : "decreased"}
+        message={this.state.increase ? 'increased' : 'decreased'}
       />
     );
 

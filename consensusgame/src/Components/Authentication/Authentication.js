@@ -1,81 +1,58 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import TwitterLogin from "react-twitter-auth";
-import Cookies from "universal-cookie";
-import homeIcon from "../../assets/icons/svg/home-active.svg";
-import notificationsIcon from "../../assets/icons/svg/notifications-inactive.svg";
-import rewardIcon from "../../assets/icons/svg/rewards-inactive.svg";
-import removeIcon from "../../assets/icons/mobile/remove-icon.png";
-import SignupPopup from "../SignupPopup/SignupPopup";
-import NotificationsNavBar from "../../Containers/NotificationsNavBar";
-import "../NavBar/NavBar.scss";
-import "./Authentication.scss";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import TwitterLogin from 'react-twitter-auth';
+import Cookies from 'universal-cookie';
+import homeIcon from '../../assets/icons/svg/home-active.svg';
+import rewardIcon from '../../assets/icons/svg/rewards-inactive.svg';
+import SignupPopup from '../SignupPopup/SignupPopup';
+import NotificationsNavBar from '../../Containers/NotificationsNavBar';
+import UserInfo from '../../Containers/UserInfo';
+import '../NavBar/NavBar.scss';
+import './Authentication.scss';
 
 class Authentication extends Component {
   constructor() {
     super();
-    this.getUserInfo = this.getUserInfo.bind(this);
     this.handleSignupClick = this.handleSignupClick.bind(this);
     this.handleOutsideCloseSignup = this.handleOutsideCloseSignup.bind(this);
-    this.handleProfileClick = this.handleProfileClick.bind(this);
-    this.handleProfileOutsideClick = this.handleProfileOutsideClick.bind(this);
 
     let cookies = new Cookies();
-    let user = cookies.get("user");
+    let user = cookies.get('user');
     if (user) {
       this.state = {
         user,
-        profileMenuOpen: false,
         getStartedMenuOpen: false
       };
-      this.getUserInfo();
     } else {
       this.state = {};
     }
   }
 
   onSuccess = async response => {
-    const token = response.headers.get("x-auth-token");
+    const token = response.headers.get('x-auth-token');
     if (token) {
       // Add cookies for token and user info
       let cookies = new Cookies();
-      await cookies.set("token", token, {
+      await cookies.set('token', token, {
         // FIXME Set httpOnly.
         //httpOnly: true,
         domain: process.env.REACT_APP_CONSENSUS_CLUBS_DOMAIN,
-        path: "/"
+        path: '/'
       });
 
       const user = await response.json();
-      cookies.set("user", JSON.stringify(user), { httpOnly: false, path: "/" });
+      cookies.set('user', JSON.stringify(user), { httpOnly: false, path: '/' });
       await this.getUserInfo();
 
       this.setState({ user });
     }
   };
 
-  getUserInfo = async () => {
-    const { data: user } = await axios({
-      method: "get",
-      baseURL: process.env.REACT_APP_API_URL,
-      url: process.env.REACT_APP_API_USER,
-      withCredentials: true
-    }).catch(err => {
-      if (err.response && err.response.status == 401) {
-        this.signout();
-      }
-    });
-    this.setState({ unopinionatedMerits: user.unopinionatedMerits });
-  };
-
-  // TODO: get Notification number
-
   signout = () => {
     let cookies = new Cookies();
-    cookies.remove("token");
-    cookies.remove("user");
-    window.location = "/";
+    cookies.remove('token');
+    cookies.remove('user');
+    window.location = '/';
   };
 
   handleSignupClick() {
@@ -92,32 +69,8 @@ class Authentication extends Component {
     this.handleSignupClick();
   }
 
-  handleProfileClick() {
-    if (!this.state.profileMenuOpen) {
-      // attach/remove event handler
-      document.addEventListener("click", this.handleProfileOutsideClick, false);
-    } else {
-      document.removeEventListener(
-        "click",
-        this.handleProfileOutsideClick,
-        false
-      );
-    }
-
-    this.setState(prevState => ({
-      profileMenuOpen: !prevState.profileMenuOpen
-    }));
-  }
-
-  handleProfileOutsideClick(e) {
-    if (this.node.contains(e.target)) {
-      return;
-    }
-    this.handleProfileClick();
-  }
-
   render() {
-    const { user, getStartedMenuOpen, profileMenuOpen } = this.state;
+    const { user, getStartedMenuOpen } = this.state;
 
     let getStartedMenu;
     getStartedMenuOpen
@@ -133,75 +86,6 @@ class Authentication extends Component {
           />
         ))
       : null;
-
-    let ProfileMenu;
-    profileMenuOpen
-      ? (ProfileMenu = (
-          <ul
-            className="profile-menu"
-            ref={node => {
-              this.node = node;
-            }}
-          >
-            <img
-              src={removeIcon}
-              className="cancel-button"
-              alt="remove-icon"
-              onClick={this.handleProfileClick}
-            />
-            <li>
-              <Link
-                className="nav-link"
-                to="/profile"
-                onClick={this.handleProfileClick}
-              >
-                Profile
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="nav-link"
-                to="/"
-                onClick={this.handleProfileClick}
-              >
-                Settings
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="nav-link"
-                to="/"
-                onClick={this.handleProfileClick}
-              >
-                FAQ
-              </Link>
-            </li>
-            <li>
-              <a
-                href="https://www.consensusclubs.network/"
-                className="nav-link"
-                onClick={this.handleProfileClick}
-              >
-                About
-              </a>
-            </li>
-            <li>
-              <Link
-                className="nav-link"
-                to="/"
-                onClick={this.signout.bind(this)}
-              >
-                Sign out
-              </Link>
-            </li>
-          </ul>
-        ))
-      : null;
-
-    let userTotalMerits = parseInt(
-      this.state.unopinionatedMerits ? this.state.unopinionatedMerits : 0,
-      10
-    ).toLocaleString();
 
     let content = !user ? (
       <React.Fragment>
@@ -251,17 +135,7 @@ class Authentication extends Component {
           </Link>
         </li>
         <li>
-          <div className="auth-container">
-            <div class="profile-pic">
-              <img
-                onClick={this.handleProfileClick}
-                src={user.profileImageUrl}
-                alt="Profile"
-              />
-              {ProfileMenu}
-            </div>
-            <div className="user-total-merits">{userTotalMerits}</div>
-          </div>
+          <UserInfo user={user} signout={this.signout} />
         </li>
       </React.Fragment>
     );
