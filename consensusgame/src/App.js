@@ -6,7 +6,7 @@ import NavBar from './Components/NavBar/NavBar';
 import NotificationsList from './Containers/Notifications';
 import Rewards from './Pages/Rewards';
 import Score from './Pages/Score';
-import Profile from './Pages/Profile';
+import ProfileContainer from './Containers/Profile';
 import Dotenv from 'dotenv';
 
 Dotenv.config();
@@ -27,7 +27,7 @@ const App = () => {
           <Route path="/notifications" component={NotificationsList} />
           <Route path="/rewards" component={Rewards} />
           <Route path="/score" component={Score} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile" component={ProfileContainer} />
           <Route path="/" component={Polls} />
           <Route component={() => <p>This page does not exist!</p>} />
         </Switch>

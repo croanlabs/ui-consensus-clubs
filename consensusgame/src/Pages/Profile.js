@@ -55,7 +55,9 @@ class Profile extends Component {
                 <div className="name">
                   <h2>{user.name}</h2>
                   <h3>@{user.username}</h3>
-                  <div className="user-total-merits">1500 Merits</div>
+                  <div className="user-total-merits">
+                    {this.props.unopinionatedMerits} Merits
+                  </div>
                 </div>
               </div>
               <div className="merits-rate">

@@ -1,4 +1,4 @@
-.user-info {
+.auth-container {
   .profile-pic {
     position: relative;
 
@@ -74,7 +74,7 @@
 
 // 600px -
 @media only screen and (min-width: 600px) {
-  .user-info {
+  .auth-container {
     display: table-cell;
     .profile-pic {
       img {
@@ -89,7 +89,7 @@
 
 // 0px - 599px
 @media only screen and (max-width: 599px) {
-  .user-info {
+  .auth-container {
     padding: 10px 0px;
     .profile-pic {
       ul.profile-menu {
@@ -105,7 +105,7 @@
 
 // 0px - 423px
 @media only screen and (max-width: 423px) {
-  .user-info {
+  .auth-container {
     .profile-pic {
       img {
         height: 30px;

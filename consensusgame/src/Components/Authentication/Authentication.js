@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import TwitterLogin from 'react-twitter-auth';
 import Cookies from 'universal-cookie';
@@ -21,6 +22,7 @@ class Authentication extends Component {
     if (user) {
       this.state = {
         user,
+        profileMenuOpen: false,
         getStartedMenuOpen: false
       };
     } else {
@@ -42,7 +44,6 @@ class Authentication extends Component {
 
       const user = await response.json();
       cookies.set('user', JSON.stringify(user), { httpOnly: false, path: '/' });
-      await this.getUserInfo();
 
       this.setState({ user });
     }
@@ -86,6 +87,10 @@ class Authentication extends Component {
           />
         ))
       : null;
+
+    let unopinionatedMerits = this.state.unopinionatedMerits
+      ? this.state.unopinionatedMerits
+      : 0;
 
     let content = !user ? (
       <React.Fragment>

@@ -125,7 +125,7 @@ class UserInfo extends Component {
     ).toLocaleString();
 
     return (
-      <div className="user-info">
+      <div className="auth-container">
         <div class="profile-pic">
           <img
             onClick={this.handleProfileClick}
