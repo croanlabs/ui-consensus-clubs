@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import Slider from "react-rangeslider";
-import "./MeritsSlider.scss";
+import React, { Component } from 'react';
+import Slider from 'react-rangeslider';
+import './MeritsSlider.scss';
 
 class MeritsSlider extends Component {
   render() {
@@ -10,7 +10,7 @@ class MeritsSlider extends Component {
         <Slider
           value={amountMerits}
           min={0}
-          max={1000}
+          max={this.props.unopinionatedMerits}
           onChange={this.props.passMeritsFromSlider}
         />
         <div className="merits-box">

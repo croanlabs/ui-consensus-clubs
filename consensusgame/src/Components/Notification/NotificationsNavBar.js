@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import notificationsIcon from '../../assets/icons/svg/notifications-inactive.svg';
 import thumbsUpIcon from '../../assets/icons/notifications/thumbs-up.png';
 import newIcon from '../../assets/icons/notifications/new.png';
@@ -19,7 +19,7 @@ class NotificationsNavBar extends Component {
       voteIcon,
       thumbsDownIcon,
       bonusIcon,
-      successIcon,
+      successIcon
     };
     this.state = {};
   }
@@ -29,14 +29,14 @@ class NotificationsNavBar extends Component {
   //}
 
   async componentDidMount() {
-    let {data: notifications} = await axios({
+    let { data: notifications } = await axios({
       method: 'get',
       baseURL: process.env.REACT_APP_API_URL,
       url: process.env.REACT_APP_API_NOTIFICATIONS,
-      withCredentials: true,
+      withCredentials: true
     }).catch(err => {
       if (err.response && err.response.status == 401) {
-        this.signout();
+        this.props.signout();
       }
     });
     let countNewNotifications = 0;

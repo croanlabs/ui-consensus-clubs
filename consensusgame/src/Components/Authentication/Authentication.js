@@ -129,7 +129,7 @@ class Authentication extends Component {
           </Link>
         </li>
         <li>
-          <NotificationsNavBar />
+          <NotificationsNavBar signout={this.signout} />
         </li>
         <li>
           <Link className="nav-link" to="/rewards">
