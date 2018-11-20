@@ -1,4 +1,4 @@
-@import "../../assets/scss/variables";
+@import '../../assets/scss/variables';
 
 .candidates {
   .search-area {
@@ -35,11 +35,12 @@
     padding: 1em 0;
     font-size: 14px;
   }
-
-  ul.list-unstyled {
-    overflow-y: auto;
-    max-height: 600px;
-    padding-right: 2em;
+  .scroll {
+    ul.list-unstyled {
+      overflow-y: auto;
+      max-height: 600px;
+      padding-right: 2em;
+    }
   }
 
   // 0px - 979px
@@ -62,9 +63,10 @@
       padding: 0 2em;
       margin-top: 0.5em;
     }
-
-    ul.list-unstyled {
-      padding-right: 0;
+    .scroll {
+      ul.list-unstyled {
+        padding-right: 0;
+      }
     }
   }
   //0px - 479 px

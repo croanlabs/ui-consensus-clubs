@@ -4,13 +4,13 @@ import './ModifySlider.scss';
 
 class ModifySlider extends Component {
   render() {
-    let { amountMerits } = this.props;
+    let { amountMerits, currentValueMerits } = this.props;
     return (
       <div className="slider">
         <Slider
           value={amountMerits}
           min={0}
-          max={1000}
+          max={currentValueMerits + this.props.unopinionatedMerits}
           onChange={this.props.passMeritsFromSlider}
         />
         <div className="merits-box">

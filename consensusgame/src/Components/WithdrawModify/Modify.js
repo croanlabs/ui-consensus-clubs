@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Congratulations from '../Congratulations/Congratulations';
 import './WithdrawModify.scss';
-import ModifySlider from '../MeritsSlider/ModifySlider';
+import ModifySlider from '../../Containers/ModifySlider';
 import { runInThisContext } from 'vm';
 import axios from 'axios';
 
@@ -59,6 +59,8 @@ class Modify extends Component {
   };
 
   render() {
+    const { currentValueMerits } = this.props;
+
     let modifyShow;
     modifyShow = !this.state.modified ? (
       <div className="withdraw-modify">
@@ -87,6 +89,7 @@ class Modify extends Component {
             amountMerits={this.state.amountMerits}
             passMeritsFromSlider={this.updateMeritsSlider}
             passMeritsFromInput={this.updateMeritsInput}
+            currentValueMerits={currentValueMerits}
           />
           <button onClick={this.handleModify.bind(this)}>Confirm</button>
         </div>

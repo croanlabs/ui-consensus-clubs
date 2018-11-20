@@ -1,14 +1,16 @@
-import React, { Component } from "react";
-import Candidate from "../Candidate/Candidate";
-import SearchResult from "../Candidate/SearchResult";
-import searchIcon from "../../assets/icons/coloursearch-icon.png";
-import "./Candidates.scss";
+import React, { Component } from 'react';
+import Candidate from '../Candidate/Candidate';
+import SearchResult from '../Candidate/SearchResult';
+import searchIcon from '../../assets/icons/coloursearch-icon.png';
+import './Candidates.scss';
 
 class Candidates extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchValue: ""
+      searchValue: '',
+      items: 10,
+      loadingState: false
     };
   }
 
@@ -20,18 +22,37 @@ class Candidates extends Component {
     this.setState({ idExpandedCandidate });
   }
 
+  handleScroll = e => {
+    const node = e.target;
+    const bottom = node.scrollHeight - node.scrollTop <= node.clientHeight;
+    if (bottom) {
+      const count = this.props.candidates ? this.props.candidates.length : 0;
+      if (this.state.items < count) {
+        this.loadMoreItems();
+      }
+    }
+  };
+
+  loadMoreItems() {
+    this.setState({ loadingState: true });
+    // you may call ajax instead of setTimeout
+    setTimeout(() => {
+      this.setState({ items: this.state.items + 5, loadingState: false });
+    }, 3000);
+  }
+
   render() {
+    const { colors, candidates, loadingState } = this.props;
+
     const count = this.props.candidates ? this.props.candidates.length : 0;
 
     if (count === 0) return <p>There are no candidates yet.</p>;
 
-    const { colors, candidates } = this.props;
-
     let searchResults = (
       <ul className="search-results">
         {candidates.map((candidate, index) => {
-          let search = this.state.searchValue || "";
-          if (search === "") {
+          let search = this.state.searchValue || '';
+          if (search === '') {
             return null;
           }
           const searchLower = search.toLowerCase();
@@ -70,21 +91,12 @@ class Candidates extends Component {
           {searchResults}
         </div>
         <div className="white-box">
-            <div className="total-candidates">
-              <span>Total Candidates - {count}</span>
-            </div>
+          <div className="total-candidates">
+            <span>Total Candidates - {count}</span>
+          </div>
+          <div class="scroll" onScroll={this.handleScroll}>
             <ul className="list-unstyled">
-              {/* <InfiniteScroll
-                pageStart={0}
-                hasMore={true || false}
-                loader={
-                  <div className="loader" key={0}>
-                    Loading ...
-                  </div>
-                }
-                useWindow={false}
-              > */}
-              {candidates.map((candidate, index) => {
+              {candidates.slice(0, this.state.items).map((candidate, index) => {
                 return (
                   <Candidate
                     corr={index}
@@ -96,11 +108,16 @@ class Candidates extends Component {
                   />
                 );
               })}
-              {/* </InfiniteScroll> */}
+              {loadingState ? (
+                <p className="loading">loading More Items..</p>
+              ) : (
+                ''
+              )}
+              {/* <button onClick={this.showMore}>show more</button> */}
             </ul>
           </div>
         </div>
-        
+      </div>
     );
   }
 }
