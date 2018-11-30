@@ -7,6 +7,7 @@ import NotificationsList from './Containers/Notifications';
 import Rewards from './Pages/Rewards';
 import Score from './Pages/Score';
 import ProfileContainer from './Containers/Profile';
+import Checkout from './Pages/Checkout';
 import Dotenv from 'dotenv';
 
 Dotenv.config();
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/rewards" component={Rewards} />
           <Route path="/score" component={Score} />
           <Route path="/profile" component={ProfileContainer} />
+          <Route path="/checkout" component={Checkout} />
           <Route path="/" component={Polls} />
           <Route component={() => <p>This page does not exist!</p>} />
         </Switch>
